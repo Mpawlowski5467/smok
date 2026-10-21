@@ -1,0 +1,14 @@
+name: change
+description: Inspect, implement, and verify a requested change
+parameters:
+  task: null
+steps:
+  - >-
+    Inspect the project and identify the files needed for this task: {{task}}.
+    For this step, report a short implementation plan without changing files.
+  - >-
+    Implement the requested task using the preceding inspection: {{task}}.
+    Preserve unrelated work and follow the current permission policy.
+  - >-
+    Load skill dev/verify. Verify the changes for {{task}} with the relevant
+    existing checks. Report the result and any checks that could not run.

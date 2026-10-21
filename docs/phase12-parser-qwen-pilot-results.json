@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T04:45:43.633914+00:00",
+  "plan": "docs/phase12-parser-qwen-pilot-plan.json",
+  "plan_sha256": "a379cb810dcf14e64730d850b82cb977faf016ce6772ccffeb726ff1e167be56",
+  "report": "evals/results/20261021T044026.778306Z-phase12/report.json",
+  "report_sha256": "91f3ee76fbb5a46e6e1aaea4fa5e523aa6956c284c4f3b8126d870e94de3a5ef",
+  "run_fingerprint": "a98fa3be4044a888db74def01f23d86e9b01b6d6fcd12bb3d243cbf4488ab15b",
+  "source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-qwen-pilot-freeze-20261021T044022.867759Z/source.tar.gz",
+    "sha256": "3ae75b3fd962f6ac113ab151bce3fbd6f27a7c24e42606d4f94de140d92b9da4",
+    "files": 159
+  },
+  "status": "complete",
+  "planned_cases": 1,
+  "finished_cases": 1,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.6:27b-mlx": {
+        "digest": "d49fd9e0da45e486918c87318b866e5924e37ad5841db58763900297d9616ee7",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4"
+        },
+        "parameters": "temperature                    1\ntop_k                          20\ntop_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 5,
+      "input_tokens": 27265,
+      "output_tokens": 5979,
+      "estimated_requests": 1,
+      "cache_read_input_tokens": 2220,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/qwen3.6:27b-mlx": {
+          "requests": 5,
+          "input_tokens": 27265,
+          "output_tokens": 5979
+        }
+      }
+    },
+    "requests": 5,
+    "turns": 1
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        300.23
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "233042c7fece06f2601c",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "time_limit",
+      "seconds": 300.23,
+      "iterations": 5,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "53cd2c66d64fa04fa379cbb3210f3ec442dea3abd8b6c7e5d03e7d4b7e76bf66",
+            "after": "53cd2c66d64fa04fa379cbb3210f3ec442dea3abd8b6c7e5d03e7d4b7e76bf66",
+            "ok": false,
+            "finished_seconds": 181.0393798330333,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "53cd2c66d64fa04fa379cbb3210f3ec442dea3abd8b6c7e5d03e7d4b7e76bf66"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 27265,
+        "output_tokens": 5979,
+        "estimated_requests": 1,
+        "cache_read_input_tokens": 2220,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 5,
+            "input_tokens": 27265,
+            "output_tokens": 5979
+          }
+        }
+      },
+      "evidence": "attempts/233042c7fece06f2601c-a269fb42",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', [], [''])\n",
+      "evidence_sha256": {
+        "result.json": "2c5317f03c8bfc9ed12e9587e164af00b529e01635e0040aa6d76c8ef8bfa76c",
+        "events.jsonl": "5a74f572ebfee596b6c3aeeed168bdec6fabbd12047a3d90f42c25059ba9d06d",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "b0e60f609771814faf9480bcab08ea8e4be24a82478e5d31173edd61748efdca",
+        "files/arguments/options.py": "662992b240d05d63711c585ee07d556f6f74b29de946ba7f74b25b4815cb5fb7",
+        "files/tests/test_project.py": "0e50f8e4d128cd9f56719cb54c1a3969d2ed7dc442ff009c9b7203b875a96147"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ]
+}

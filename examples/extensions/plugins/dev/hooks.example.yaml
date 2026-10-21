@@ -1,0 +1,6 @@
+# Opt in by copying this file to hooks.yaml in the installed plugin directory.
+- name: format-python
+  event: after_tool
+  tools: [write_file, edit_file]
+  command: python3 .smok-extensions/plugins/dev/format_python.py
+  timeout_seconds: 30

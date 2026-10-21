@@ -1,0 +1,508 @@
+{
+  "schema_version": 1,
+  "kind": "post_run_contract_audit",
+  "audited_utc": "2026-10-21T04:14:11.295296+00:00",
+  "reason": "The frozen independent grader missed a forbidden value field in normalized deletions. The correction checks exact deletion fields, fresh output identity, and unchanged input, as required by the original prompt.",
+  "report": "evals/results/20261021T033242.646266Z-phase12/report.json",
+  "report_sha256": "22aba3633d36d8ea3ebff37a0bc2a174747d134751adaa5f40277355c23a68c8",
+  "run_fingerprint": "bcb4501238f905660e48a15fc97a63f1f96aaf0c510d1516890f329a99b38644",
+  "runtime_source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+  "changed_tasks": [
+    "event-replay"
+  ],
+  "old_grader_sha256": "999a8905958fe8f9d5f660dffeee9edad317d50e4d6161c499f070318b8d0e46",
+  "new_grader_sha256": "48c874191c93a1e88af53ec38524c4f22645a1a4bbe51e96f03b9f40dd7d4a8e",
+  "audit_script_sha256": "8901c3fe54d909fb7c210765766e7398ee315cf8905a1880f99c54c578041021",
+  "new_generation_requests": 0,
+  "original_attempt_files_unchanged": true,
+  "prompts_public_tests_seeds_references_profiles_limits_unchanged": true,
+  "original_reports_preserved": true,
+  "summary": [
+    {
+      "model": "ollama/qwen3.6:27b-mlx",
+      "attempts": 8,
+      "original_passes": 5,
+      "audited_passes": 4,
+      "audited_correct": 4,
+      "verified": 8,
+      "completed": 8
+    },
+    {
+      "model": "ollama/gemma4:26b",
+      "attempts": 8,
+      "original_passes": 1,
+      "audited_passes": 1,
+      "audited_correct": 2,
+      "verified": 5,
+      "completed": 5
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "c36cc27702209aaa0728",
+      "task": "batch-renames",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "stop_reason": "complete",
+      "seconds": 143.5,
+      "iterations": 5,
+      "evidence": "attempts/c36cc27702209aaa0728-69657731",
+      "original_task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "audited_task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "original_passed": true,
+      "audited_passed": true,
+      "original_correct": true,
+      "audited_correct": true,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "[independent check completed]\n"
+    },
+    {
+      "case_id": "ca944bab0b14a5e26651",
+      "task": "batch-renames",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "stop_reason": "complete",
+      "seconds": 43.93,
+      "iterations": 8,
+      "evidence": "attempts/ca944bab0b14a5e26651-fba3aabf",
+      "original_task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "audited_task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "original_passed": true,
+      "audited_passed": true,
+      "original_correct": true,
+      "audited_correct": true,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "[independent check completed]\n"
+    },
+    {
+      "case_id": "54987b88c914ef88c2b2",
+      "task": "byte-windows",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "stop_reason": "iteration_limit",
+      "seconds": 168.23,
+      "iterations": 16,
+      "evidence": "attempts/54987b88c914ef88c2b2-68927317",
+      "original_task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "audited_task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": false,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 30, in <module>\n  File \"/Users/mpawlowski/Documents/Projects/smok/evals/results/20261021T033242.646266Z-phase12/attempts/54987b88c914ef88c2b2-68927317/files/windows/ranges.py\", line 25, in parse_range\n    raise ValueError(\"Invalid range\")\nValueError: Invalid range\n"
+    },
+    {
+      "case_id": "6cf6568d574e4b48fb30",
+      "task": "byte-windows",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "stop_reason": "complete",
+      "seconds": 199.24,
+      "iterations": 6,
+      "evidence": "attempts/6cf6568d574e4b48fb30-54d0a104",
+      "original_task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "audited_task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "original_passed": true,
+      "audited_passed": true,
+      "original_correct": true,
+      "audited_correct": true,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "[independent check completed]\n"
+    },
+    {
+      "case_id": "a1c7b9817581e43e7a07",
+      "task": "event-replay",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "stop_reason": "complete",
+      "seconds": 249.43,
+      "iterations": 8,
+      "evidence": "attempts/a1c7b9817581e43e7a07-3c2e02ea",
+      "original_task_fingerprint": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "audited_task_fingerprint": "f6defb661b9590fe2bf1de3e5b664c76b8f72e8809c40cd5c0a5631f08f2676b",
+      "original_passed": true,
+      "audited_passed": false,
+      "original_correct": true,
+      "audited_correct": false,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 37, in <module>\nAssertionError: delete normalization must omit value and extra fields\n"
+    },
+    {
+      "case_id": "cd72995b5491af55267f",
+      "task": "event-replay",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "stop_reason": "complete",
+      "seconds": 58.79,
+      "iterations": 7,
+      "evidence": "attempts/cd72995b5491af55267f-e87b3b55",
+      "original_task_fingerprint": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "audited_task_fingerprint": "f6defb661b9590fe2bf1de3e5b664c76b8f72e8809c40cd5c0a5631f08f2676b",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 37, in <module>\nAssertionError: delete normalization must omit value and extra fields\n"
+    },
+    {
+      "case_id": "2491cabdda62c825de12",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "stop_reason": "time_limit",
+      "seconds": 300.23,
+      "iterations": 15,
+      "evidence": "attempts/2491cabdda62c825de12-cfa0b39b",
+      "original_task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "audited_task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": true,
+      "audited_correct": true,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "[independent check completed]\n"
+    },
+    {
+      "case_id": "233042c7fece06f2601c",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "stop_reason": "complete",
+      "seconds": 210.18,
+      "iterations": 7,
+      "evidence": "attempts/233042c7fece06f2601c-da2542c8",
+      "original_task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "audited_task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', [], [''])\n"
+    },
+    {
+      "case_id": "dbd505951933732d7641",
+      "task": "batch-renames",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "stop_reason": "complete",
+      "seconds": 53.51,
+      "iterations": 9,
+      "evidence": "attempts/dbd505951933732d7641-4274935c",
+      "original_task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "audited_task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 57, in <module>\n  File \"<string>\", line 12, in rejects\n  File \"<string>\", line 57, in <lambda>\n  File \"/Users/mpawlowski/Documents/Projects/smok/evals/results/20261021T033242.646266Z-phase12/attempts/dbd505951933732d7641-4274935c/files/renames/validation.py\", line 13, in rename_map\n    for change in changes:\n                  ^^^^^^^\nTypeError: 'NoneType' object is not iterable\n"
+    },
+    {
+      "case_id": "d90ce7c0b247a704e132",
+      "task": "batch-renames",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "stop_reason": "complete",
+      "seconds": 172.11,
+      "iterations": 5,
+      "evidence": "attempts/d90ce7c0b247a704e132-702ee74c",
+      "original_task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "audited_task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "original_passed": true,
+      "audited_passed": true,
+      "original_correct": true,
+      "audited_correct": true,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "[independent check completed]\n"
+    },
+    {
+      "case_id": "7db8c7250e846b5a7234",
+      "task": "byte-windows",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "stop_reason": "complete",
+      "seconds": 147.97,
+      "iterations": 5,
+      "evidence": "attempts/7db8c7250e846b5a7234-de9c188a",
+      "original_task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "audited_task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 53, in <module>\n  File \"<string>\", line 9, in rejects\n  File \"<string>\", line 53, in <lambda>\n  File \"/Users/mpawlowski/Documents/Projects/smok/evals/results/20261021T033242.646266Z-phase12/attempts/7db8c7250e846b5a7234-de9c188a/files/windows/ranges.py\", line 14, in parse_range\n    if not header.startswith('bytes='):\n           ^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'startswith'\n"
+    },
+    {
+      "case_id": "707267885e8f94a6dbea",
+      "task": "byte-windows",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "stop_reason": "complete",
+      "seconds": 72.32,
+      "iterations": 8,
+      "evidence": "attempts/707267885e8f94a6dbea-13ba3430",
+      "original_task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "audited_task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": false,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 53, in <module>\n  File \"<string>\", line 9, in rejects\n  File \"<string>\", line 53, in <lambda>\n  File \"/Users/mpawlowski/Documents/Projects/smok/evals/results/20261021T033242.646266Z-phase12/attempts/707267885e8f94a6dbea-13ba3430/files/windows/ranges.py\", line 14, in parse_range\n    match = re.match(pattern, header)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/mpawlowski/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/re/__init__.py\", line 167, in match\n    return _compile(pattern, flags).match(string)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: expected string or bytes-like object, got 'NoneType'\n"
+    },
+    {
+      "case_id": "e3059ebddbc918b331e3",
+      "task": "event-replay",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "stop_reason": "complete",
+      "seconds": 51.77,
+      "iterations": 8,
+      "evidence": "attempts/e3059ebddbc918b331e3-d6b0be2d",
+      "original_task_fingerprint": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "audited_task_fingerprint": "f6defb661b9590fe2bf1de3e5b664c76b8f72e8809c40cd5c0a5631f08f2676b",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 47, in <module>\n  File \"<string>\", line 11, in rejects\n  File \"<string>\", line 47, in <lambda>\n  File \"/Users/mpawlowski/Documents/Projects/smok/evals/results/20261021T033242.646266Z-phase12/attempts/e3059ebddbc918b331e3-d6b0be2d/files/events/replay.py\", line 13, in replay\n    for raw_event in events:\n                     ^^^^^^\nTypeError: 'NoneType' object is not iterable\n"
+    },
+    {
+      "case_id": "7e17c3cb33b193360391",
+      "task": "event-replay",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "stop_reason": "complete",
+      "seconds": 233.32,
+      "iterations": 5,
+      "evidence": "attempts/7e17c3cb33b193360391-d8bd1969",
+      "original_task_fingerprint": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "audited_task_fingerprint": "f6defb661b9590fe2bf1de3e5b664c76b8f72e8809c40cd5c0a5631f08f2676b",
+      "original_passed": true,
+      "audited_passed": true,
+      "original_correct": true,
+      "audited_correct": true,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "[independent check completed]\n"
+    },
+    {
+      "case_id": "a5103da2bb5e57fdee8d",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "stop_reason": "complete",
+      "seconds": 181.71,
+      "iterations": 5,
+      "evidence": "attempts/a5103da2bb5e57fdee8d-25324f77",
+      "original_task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "audited_task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": true,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', [], [''])\n"
+    },
+    {
+      "case_id": "3081c470852128c7553a",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "stop_reason": "error",
+      "seconds": 122.54,
+      "iterations": 5,
+      "evidence": "attempts/3081c470852128c7553a-e15e6fde",
+      "original_task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "audited_task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "original_passed": false,
+      "audited_passed": false,
+      "original_correct": false,
+      "audited_correct": false,
+      "original_verification_passed": false,
+      "original_tool_checks_passed": true,
+      "scope": {
+        "passed": true,
+        "changed": [],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "audit_check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', ['\"\"'], [''])\n"
+    }
+  ],
+  "limitations": [
+    "This is a post-run grading correction, not new model trials or fresh holdout evidence.",
+    "Original completion, verification, and timing evidence is retained. Audit execution time is not a model latency measurement.",
+    "The frozen automatic comparison remains available with its original scores; use audited scores when describing correctness."
+  ]
+}

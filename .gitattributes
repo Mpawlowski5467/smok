@@ -1,0 +1,6 @@
+# Bundled output is rebuilt from web/src; preserve the bundler's exact bytes.
+src/smok/gui/static/assets/* linguist-generated=true -whitespace
+desktop/src-tauri/gen/** linguist-generated=true
+
+# SSE events are terminated by a blank line, including the final fixture event.
+tests/fixtures/*.sse whitespace=-blank-at-eof

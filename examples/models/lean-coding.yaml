@@ -1,0 +1,8 @@
+# Optional candidate profile for the local installation used by the evals.
+# Loading this file is explicit; it does not change workspace defaults.
+# Use full tools when you need MCP, extensions, or team/process tools.
+models:
+  ollama/qwen3.6:27b-mlx:
+    prompt_style: lean
+    tool_set: coding
+    edit_format: both

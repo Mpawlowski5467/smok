@@ -1,0 +1,106 @@
+[
+  {
+    "id": "stock-reservations",
+    "split": "holdout",
+    "category": "profile-qualification",
+    "prompt": "Repair stock.lines.quantities(lines) and stock.orders.reserve(inventory, lines). lines is a list of dictionaries with sku (nonempty string) and quantity (positive integer; booleans invalid). quantities aggregates duplicate SKUs into a dictionary in first-seen order. inventory is a dictionary with nonempty string SKUs and nonnegative integer counts; booleans are invalid. Validate all inventory entries, even for an empty order. reserve returns a new inventory dictionary after subtracting aggregated quantities; unknown SKUs or insufficient stock raise ValueError. Malformed inputs also raise ValueError. Preserve all input objects on success and failure. Extra line fields are ignored; SKU strings are case-sensitive and are not trimmed. Read the project guidance and tests. Repair only the allowed source files, then run the documented project test command on the final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "stock/lines.py": "def quantities(lines):\n    return {line['sku']: line['quantity'] for line in lines}\n",
+      "stock/orders.py": "from .lines import quantities\n\ndef reserve(inventory, lines):\n    for sku, count in quantities(lines).items():\n        inventory[sku] -= count\n    return inventory\n",
+      "stock/__init__.py": "",
+      "README.md": "# stock-reservations\n\nRun project tests with `python3 -B -m unittest discover -s tests -q`. Use only the Python standard library.\n",
+      "AGENTS.md": "Preserve the public API. Change only the allowed source files. Tests and guidance must remain unchanged.\n",
+      "stock/AGENTS.md": "Do not mutate caller-owned inputs, including on failure. Keep package imports working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom stock.lines import quantities\nfrom stock.orders import reserve\n\nclass StockTests(unittest.TestCase):\n    def test_duplicates_and_copy(self):\n        lines = [{'sku':'a', 'quantity':2}, {'sku':'a', 'quantity':3}]\n        inventory = {'a':8, 'b':0}\n        self.assertEqual(quantities(lines), {'a':5})\n        self.assertEqual(reserve(inventory, lines), {'a':3, 'b':0})\n        self.assertEqual(inventory, {'a':8, 'b':0})\n    def test_failure_preserves_stock(self):\n        inventory = {'a':2}\n        with self.assertRaises(ValueError):\n            reserve(inventory, [{'sku':'a','quantity':3}])\n        self.assertEqual(inventory, {'a':2})\n    def test_boolean_is_not_a_quantity(self):\n        with self.assertRaises(ValueError):\n            quantities([{'sku':'a','quantity':True}])\n"
+    },
+    "allowed_changes": [
+      "stock/lines.py",
+      "stock/orders.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/stock-reservations.py"
+  },
+  {
+    "id": "document-splices",
+    "split": "holdout",
+    "category": "profile-qualification",
+    "prompt": "Repair splices.core.replace_spans(text, changes) and splices.batch.apply_documents(documents, edits). text must be a string. changes must be a list of dictionaries with start/end integers (booleans invalid) and text (replacement string). Offsets count Python string characters in the ORIGINAL text and must satisfy 0 <= start < end <= len(text). Unsorted spans are accepted, adjacent spans are allowed, overlaps and duplicate spans raise ValueError. Replacement text may be empty. replace_spans applies all spans simultaneously and preserves inputs. apply_documents takes a dictionary of string filenames to string contents and a dictionary of filenames to change lists; it returns a new dictionary retaining untouched documents. Unknown filenames raise KeyError. Other invalid inputs raise ValueError. Validate all documents even without edits. Preserve inputs on success and failure; no filesystem access. Read the project guidance and tests. Repair only the allowed source files, then run the documented project test command on the final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "splices/core.py": "def replace_spans(text, changes):\n    for change in changes:\n        text = text[:change['start']] + change['text'] + text[change['end']:]\n    return text\n",
+      "splices/batch.py": "from .core import replace_spans\n\ndef apply_documents(documents, edits):\n    for name, changes in edits.items():\n        documents[name] = replace_spans(documents.get(name, ''), changes)\n    return documents\n",
+      "splices/__init__.py": "",
+      "README.md": "# document-splices\n\nRun project tests with `python3 -B -m unittest discover -s tests -q`. Use only the Python standard library.\n",
+      "AGENTS.md": "Preserve the public API. Change only the allowed source files. Tests and guidance must remain unchanged.\n",
+      "splices/AGENTS.md": "Do not mutate caller-owned inputs, including on failure. Keep package imports working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom splices.core import replace_spans\nfrom splices.batch import apply_documents\n\nclass SpliceTests(unittest.TestCase):\n    def test_original_offsets(self):\n        spans = [{'start':0,'end':1,'text':'LONG'}, {'start':3,'end':4,'text':'Z'}]\n        self.assertEqual(replace_spans('abcd', spans), 'LONGbcZ')\n    def test_overlap(self):\n        with self.assertRaises(ValueError):\n            replace_spans('abcd', [{'start':0,'end':3,'text':'x'}, {'start':2,'end':4,'text':'y'}])\n    def test_document_copy(self):\n        docs = {'a':'abc','b':'keep'}\n        self.assertEqual(apply_documents(docs, {'a':[{'start':1,'end':2,'text':''}]}), {'a':'ac','b':'keep'})\n        self.assertEqual(docs, {'a':'abc','b':'keep'})\n"
+    },
+    "allowed_changes": [
+      "splices/core.py",
+      "splices/batch.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/document-splices.py"
+  },
+  {
+    "id": "release-selection",
+    "split": "holdout",
+    "category": "profile-qualification",
+    "prompt": "Repair releases.versions.parse_version(value) and releases.catalog.choose(records, include_rc=False). Use this deliberately small version grammar: MAJOR.MINOR.PATCH optionally followed by -rc.N. Every component is an ASCII decimal integer >=0 with no leading zero unless exactly 0; reject whitespace, signs, other suffixes, nonstrings and all other syntax with ValueError. parse_version returns (major, minor, patch, rc_number_or_None). records is a list of dictionaries with version and optional yanked (boolean, default False); extra fields are retained. Validate EVERY record and version, including yanked or excluded prereleases. include_rc must be boolean. choose returns a shallow copy of the first highest eligible record, or None if none; ignore yanked records, ignore rc versions unless include_rc is True. Order numerically by major/minor/patch, then all rc versions before the stable version of the same core, with rc numbers in numeric order. Preserve caller inputs; malformed records raise ValueError. Read the project guidance and tests. Repair only the allowed source files, then run the documented project test command on the final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "releases/versions.py": "def parse_version(value):\n    core = value.split('-')[0]\n    return (*map(int, core.split('.')), None)\n",
+      "releases/catalog.py": "def choose(records, include_rc=False):\n    return max(records, key=lambda row: row['version']) if records else None\n",
+      "releases/__init__.py": "",
+      "README.md": "# release-selection\n\nRun project tests with `python3 -B -m unittest discover -s tests -q`. Use only the Python standard library.\n",
+      "AGENTS.md": "Preserve the public API. Change only the allowed source files. Tests and guidance must remain unchanged.\n",
+      "releases/AGENTS.md": "Do not mutate caller-owned inputs, including on failure. Keep package imports working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom releases.versions import parse_version\nfrom releases.catalog import choose\n\nclass ReleaseTests(unittest.TestCase):\n    def test_parse_rc(self):\n        self.assertEqual(parse_version('1.2.3-rc.10'), (1,2,3,10))\n        with self.assertRaises(ValueError):\n            parse_version('01.2.3')\n    def test_numeric_order_and_yanked(self):\n        records = [{'version':'1.9.0'}, {'version':'1.10.0'}, {'version':'2.0.0','yanked':True}]\n        self.assertEqual(choose(records), {'version':'1.10.0'})\n    def test_default_excludes_rc(self):\n        self.assertIsNone(choose([{'version':'2.0.0-rc.1'}]))\n\n    def test_rejects_whitespace_and_non_ascii_digits(self):\n        for value in ('1.2.3\\n', '1.2.3-rc.4\\n', '1.2.3\\r\\n', '1.2.3\\t',\n                      '1.2.3 ', ' 1.2.3', '1\\u0661.2.3', '1.2\\u0662.3',\n                      '1.2.3\\u0663', '1.2.3-rc.4\\u0664'):\n            with self.subTest(value=value):\n                with self.assertRaises(ValueError):\n                    parse_version(value)\n\n    def test_leading_zeros_in_every_component(self):\n        self.assertEqual(parse_version('0.0.0-rc.0'), (0, 0, 0, 0))\n        for value in ('01.2.3', '1.02.3', '1.2.03', '1.2.3-rc.01'):\n            with self.subTest(value=value):\n                with self.assertRaises(ValueError):\n                    parse_version(value)\n\n    def test_catalog_requires_a_list_container(self):\n        self.assertIsNone(choose([]), 'An empty list is valid and has no eligible release')\n        for records in (None, {}, (), ({'version': '1.2.3'},)):\n            with self.subTest(container_type=type(records).__name__, records=records):\n                with self.assertRaises(ValueError,\n                        msg='Catalogs must be lists; tuples are invalid, including empty tuples'):\n                    choose(records)\n\n    def test_catalog_validates_all_records_before_filtering(self):\n        for records in ([None], [{}],\n                        [{'version': '4.2.0', 'yanked': 0}],\n                        [{'version': '4.2.0', 'yanked': 1}],\n                        [{'version': '4.2.0-rc.1', 'yanked': None}],\n                        [{'version': 'broken', 'yanked': True}]):\n            with self.subTest(records=records):\n                with self.assertRaises(ValueError):\n                    choose(records)\n        with self.assertRaises(ValueError):\n            choose([], 1)\n\n    def test_stable_beats_rc_and_first_equal_release_wins(self):\n        records = [\n            {'version': '4.2.0-rc.99', 'label': 'candidate'},\n            {'version': '4.2.0', 'label': 'first', 'metadata': []},\n            {'version': '4.2.0', 'label': 'later'},\n        ]\n        selected = choose(records, include_rc=True)\n        self.assertEqual(selected, records[1])\n        self.assertIsNot(selected, records[1])\n        self.assertIs(selected['metadata'], records[1]['metadata'])\n"
+    },
+    "allowed_changes": [
+      "releases/versions.py",
+      "releases/catalog.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/release-selection.py"
+  },
+  {
+    "id": "table-joins",
+    "split": "holdout",
+    "category": "profile-qualification",
+    "prompt": "Repair tables.indexing.index_rows(rows, key) and tables.joining.left_join(left, right, key). rows/left/right must be lists of dictionaries; key must be a nonempty string. Every row must contain key and its value must be a string or integer, excluding booleans. Invalid inputs raise ValueError, including invalid rows on the right when left is empty. index_rows returns a dictionary mapping each key value to a list of deep-copied rows in original order; duplicates are retained. left_join returns a list of dictionaries with exactly left and right fields, each containing a deep copy of its row; right is None for an unmatched left row. Preserve left order and, within each left row, matching right order. Emit one result per matching pair (many-to-many). Inputs must never be mutated, and output rows must not share nested mutable objects with inputs or with other output rows. String and integer key values remain distinct. Read the project guidance and tests. Repair only the allowed source files, then run the documented project test command on the final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "tables/indexing.py": "def index_rows(rows, key):\n    return {row[key]: row for row in rows}\n",
+      "tables/joining.py": "from .indexing import index_rows\n\ndef left_join(left, right, key):\n    index = index_rows(right, key)\n    return [{'left':row, 'right':index[row[key]]} for row in left if row[key] in index]\n",
+      "tables/__init__.py": "",
+      "README.md": "# table-joins\n\nRun project tests with `python3 -B -m unittest discover -s tests -q`. Use only the Python standard library.\n",
+      "AGENTS.md": "Preserve the public API. Change only the allowed source files. Tests and guidance must remain unchanged.\n",
+      "tables/AGENTS.md": "Do not mutate caller-owned inputs, including on failure. Keep package imports working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom tables.indexing import index_rows\nfrom tables.joining import left_join\n\nclass JoinTests(unittest.TestCase):\n    def test_duplicates_and_unmatched(self):\n        left = [{'id':1},{'id':2}]\n        right = [{'id':1,'x':'a'},{'id':1,'x':'b'}]\n        self.assertEqual(index_rows(right,'id'), {1:right})\n        self.assertEqual(left_join(left,right,'id'), [\n            {'left':{'id':1},'right':{'id':1,'x':'a'}},\n            {'left':{'id':1},'right':{'id':1,'x':'b'}},\n            {'left':{'id':2},'right':None}])\n    def test_right_validation_with_empty_left(self):\n        with self.assertRaises(ValueError):\n            left_join([], [{'other':1}], 'id')\n\n    def test_nested_rows_are_independent_for_every_pair(self):\n        left = [{'id': 7, 'meta': {'tags': []}}, {'id': 7, 'meta': {'tags': []}}]\n        right = [{'id': 7, 'meta': {'tags': ['a']}}, {'id': 7, 'meta': {'tags': ['b']}}]\n        joined = left_join(left, right, 'id')\n        self.assertEqual(len(joined), 4)\n        joined[0]['left']['meta']['tags'].append('left change')\n        joined[0]['right']['meta']['tags'].append('right change')\n        self.assertEqual(joined[1]['left']['meta']['tags'], [])\n        self.assertEqual(joined[2]['right']['meta']['tags'], ['a'])\n        self.assertEqual(left[0]['meta']['tags'], [])\n        self.assertEqual(right[0]['meta']['tags'], ['a'])\n        indexed = index_rows(right, 'id')\n        indexed[7][0]['meta']['tags'].append('index change')\n        self.assertEqual(right[0]['meta']['tags'], ['a'])\n\n    def test_containers_are_validated_on_both_sides(self):\n        for rows in (None, {}, (), ({'id': 1},)):\n            with self.subTest(container_type=type(rows).__name__):\n                with self.assertRaises(ValueError):\n                    index_rows(rows, 'id')\n                with self.assertRaises(ValueError):\n                    left_join([], rows, 'id')\n                with self.assertRaises(ValueError):\n                    left_join(rows, [], 'id')\n"
+    },
+    "allowed_changes": [
+      "tables/indexing.py",
+      "tables/joining.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/table-joins.py"
+  }
+]

@@ -1,0 +1,83 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-20T02:36:03.687488+00:00",
+  "smok_version": "0.11.0",
+  "source_fingerprint": "c6aa1f5ff58b013cde36cebc3206aeddd1eeb865e8a019b92ad088ab4a1da8f5",
+  "suite": "phase11",
+  "split": "holdout",
+  "tasks": {
+    "stock-reservations": "2726a5f0cd288859a314fccb0aabe997a6400c8b5ab2a9ce7a57f26215eb68b8",
+    "document-splices": "824205d3b9f35374044ddec161deaae334fee140ebbe4de925371a21777cc1ac",
+    "release-selection": "d01ce0c6aa2f5ab9654f217e400d63d16056ba266e1452a71445bd0d93ccf2ed",
+    "table-joins": "d64e17187290fe18b4ec00d7e893270ed09b099e2c3031e315b8b008d17217c2"
+  },
+  "models": [
+    "ollama/qwen3.6:27b-mlx"
+  ],
+  "variants": [
+    "baseline",
+    "no-thinking"
+  ],
+  "repeats": 2,
+  "planned_cases": 16,
+  "limits": {
+    "task_timeout": 300,
+    "max_iterations": 16,
+    "max_requests": 256,
+    "budget_tokens": 2000000,
+    "allow_shell": true,
+    "allow_lsp": false,
+    "budget_usd": null
+  },
+  "changed_control": {
+    "reasoning_effort": {
+      "baseline": null,
+      "no-thinking": "none"
+    }
+  },
+  "model_metadata": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "model": "qwen3.6:27b-mlx",
+    "model_digest": "d49fd9e0da45e486918c87318b866e5924e37ad5841db58763900297d9616ee7",
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ],
+    "thinking": {
+      "values": [
+        false,
+        true
+      ],
+      "default": true
+    },
+    "details": {
+      "parent_model": "",
+      "format": "safetensors",
+      "family": "qwen3_5",
+      "families": null,
+      "parameter_size": "27.8B",
+      "quantization_level": "nvfp4"
+    },
+    "parameters": "temperature                    1\ntop_k                          20\ntop_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1",
+    "generation_requests": 0
+  },
+  "selection_rules": {
+    "minimum_distinct_tasks": 3,
+    "minimum_repeats_per_task": 2,
+    "minimum_shared_passing_latency_pairs": 3,
+    "minimum_median_time_reduction_percent": 10,
+    "any_paired_pass_code_verification_or_scope_regression": "tradeoff",
+    "defaults_changed": false
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase11-freeze-20261020T023603Z/source.tar.gz",
+    "sha256": "d05823ef18f7b9f20964788b4403ab4bde3eddf4c50c10a94fa9d1c9b54cd45a",
+    "files": 136
+  },
+  "protocol_guide_sha256": "a110eb619e88357afa63505d841df9b5bd7b2d5dd591e92a33b457dd5015d846",
+  "nonadaptive": true,
+  "freshness": "New original tasks before this run; inspecting results makes them known regressions for subsequent tuning."
+}

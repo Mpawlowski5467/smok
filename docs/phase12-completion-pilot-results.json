@@ -1,0 +1,160 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T05:20:28.534731+00:00",
+  "plan": "docs/phase12-completion-pilot-plan.json",
+  "plan_sha256": "1fb31e47bba6558a40a013d3c708d88cd2b728d79d04480d688768bceb7b1b68",
+  "report": "evals/results/20261021T051320.220163Z-phase12/report.json",
+  "report_sha256": "538c03b101fe00208d13537f5bd506f3de6a0efd88bc1005d82675c02d7c7ce6",
+  "run_fingerprint": "05d08df5435fa581829a205a5bca92c9b1810034a686697726acabccc98a1c03",
+  "source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+  "source_snapshot": {
+    "path": "evals/results/phase12-completion-pilot-freeze-20261021T051316.308396Z/source.tar.gz",
+    "sha256": "0ddf8c81a846d5d665add8ba53d2a7be40f8f0ba2c2559a00be1d2ba6e9196bf",
+    "files": 167
+  },
+  "status": "complete",
+  "planned_cases": 1,
+  "finished_cases": 1,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.6:27b-mlx": {
+        "digest": "d49fd9e0da45e486918c87318b866e5924e37ad5841db58763900297d9616ee7",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4"
+        },
+        "parameters": "temperature                    1\ntop_k                          20\ntop_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 8,
+      "input_tokens": 52186,
+      "output_tokens": 6575,
+      "estimated_requests": 1,
+      "cache_read_input_tokens": 18190,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/qwen3.6:27b-mlx": {
+          "requests": 8,
+          "input_tokens": 52186,
+          "output_tokens": 6575
+        }
+      }
+    },
+    "requests": 8,
+    "turns": 1
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        300.19
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "233042c7fece06f2601c",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "time_limit",
+      "seconds": 300.19,
+      "iterations": 8,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "9b04bbed5f59d839cdd5fa866640d22dad1733103651696eb1f09dbcd1d69566",
+            "after": "9b04bbed5f59d839cdd5fa866640d22dad1733103651696eb1f09dbcd1d69566",
+            "ok": false,
+            "finished_seconds": 242.40212037495803,
+            "matches_final_files": false
+          }
+        ],
+        "final_files_fingerprint": "2682a1b089b632e3eb4bdf66cfad42dd5630b346806196daeb06f18e603c7552"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 8,
+        "input_tokens": 52186,
+        "output_tokens": 6575,
+        "estimated_requests": 1,
+        "cache_read_input_tokens": 18190,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 8,
+            "input_tokens": 52186,
+            "output_tokens": 6575
+          }
+        }
+      },
+      "evidence": "attempts/233042c7fece06f2601c-8d1ceb99",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 3, in <module>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-command-arguments-6exw3819/arguments/lexing.py\", line 27\n    nonlocal word_started\n    ^^^^^^^^^^^^^^^^^^^^^\nSyntaxError: name 'word_started' is used prior to nonlocal declaration\n",
+      "evidence_sha256": {
+        "result.json": "eacd327378fe477fbd0fd9732a6b5f82ee4266501b73975bf7610b5807c5c614",
+        "events.jsonl": "4ad584ebeae62e805817d922b6ebadd9c6db4a993734f4b2b0945f5aa5a8f77e",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "f021bec5a151c242cf54aa76ce262bbea91b2fea499581fd62bdc77196ed985a",
+        "files/arguments/options.py": "0c01391d018ff6c00e26ddd478ced01e8244750d8be56b0c0dfc8e3fd1d26e62",
+        "files/tests/test_project.py": "abe027faf2890875a1f741c64d3ecd096114b4b8a134824871850f5f0969221b"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ]
+}

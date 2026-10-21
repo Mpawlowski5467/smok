@@ -1,0 +1,188 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "created_utc": "2026-10-21T05:47:52.429792+00:00",
+  "smok_version": "0.12.1",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+    },
+    "task_splits": {
+      "command-arguments": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/qwen3.8:27b",
+        "model": "qwen3.8:27b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 8192,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "low",
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/qwen3.8:27b",
+        "variant": "baseline",
+        "profile": {
+          "name": "ollama/qwen3.8:27b",
+          "model": "qwen3.8:27b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 8192,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "low",
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "a4060f7efafda82f65d7bb24ef1fcc6f25409c64fe896f8937a816a6f7a382a4"
+    ],
+    "plan": [
+      {
+        "task": "command-arguments",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "baseline",
+        "repeat": 1,
+        "id": "fb1797fa8eec84a8201b"
+      }
+    ],
+    "limits": {
+      "max_iterations": 16,
+      "task_timeout": 600.0,
+      "max_requests": 16,
+      "budget_tokens": 600000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "4d73cc0e37fff35b024385d7bade84fc3d5e353cb042d1968847112b6c9e4064",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/qwen3.8:27b",
+    "--variant",
+    "baseline",
+    "--repeats",
+    "1",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "600.0",
+    "--max-iterations",
+    "16",
+    "--max-requests",
+    "16",
+    "--budget-tokens",
+    "600000",
+    "--config",
+    "/private/tmp/smok-phase12-parser-deliberate.yaml",
+    "--task",
+    "command-arguments"
+  ],
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.8:27b": {
+        "digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "default": "medium"
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "top_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1\ntemperature                    1\ntop_k                          20"
+      }
+    }
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-deliberate-pilot-freeze-20261021T054752.429792Z/source.tar.gz",
+    "sha256": "a89407b125b3ede7d29a63b78c359e7839faf7990393346c9ca4d1e11c644aa0",
+    "files": 167
+  },
+  "protocol": {
+    "nonadaptive_within_run": true,
+    "all_attempts_retained": true,
+    "fresh_holdout": false,
+    "success": "Every planned attempt completes, passes independent correctness, scope and final-file public verification.",
+    "runtime_matches_original_phase12": false,
+    "per_attempt_limits_unchanged_from_phase12": false,
+    "original_results_preserved": true,
+    "selection": "Bounded parser pilot after the frozen Qwen3.8 and Gemma runs finish. Explicit low reasoning, 8192 output allowance, and a 600-second turn replace the no-thinking/4096/300 controls. Same 16-call and 180-second request limits. This is a latency/quality tradeoff experiment, not a pass under the original limits; keep every earlier failure and change no defaults."
+  },
+  "deviations": [],
+  "config_snapshot": {
+    "path": "evals/results/phase12-parser-deliberate-pilot-freeze-20261021T054752.429792Z/profile.yaml",
+    "sha256": "cf906fb2b03cc6e99964f3f62b748d7aa913b6df819e8c4a9c4a402fbdfcff75"
+  }
+}

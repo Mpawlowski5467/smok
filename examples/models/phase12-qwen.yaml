@@ -1,0 +1,23 @@
+# Post-run contract audit: 4/8 complete passes; see docs/phase12-contract-audit.md.
+# This is an opt-in tested profile, not a general reliability claim.
+# Explicit selection: baseline; evidence verdict: tradeoff
+# Run fingerprint: bcb4501238f905660e48a15fc97a63f1f96aaf0c510d1516890f329a99b38644
+# Provider connection and default model are unchanged.
+models:
+  ollama/qwen3.6:27b-mlx:
+    token_parameter: max_tokens
+    max_output_tokens: 4096
+    timeout_seconds: 180
+    context_window: 32768
+    compact_at: 0.8
+    keep_recent: 4
+    chars_per_token: 3.0
+    repo_map_tokens: 1500
+    prompt_cache: false
+    count_tokens: false
+    local: true
+    vision: false
+    prompt_style: lean
+    tool_set: minimal
+    edit_format: both
+    reasoning_effort: none

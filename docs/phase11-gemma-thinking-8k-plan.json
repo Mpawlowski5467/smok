@@ -1,0 +1,115 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-21T00:31:06.639178+00:00",
+  "smok_version": "0.11.1",
+  "purpose": "Separate Gemma thinking pilot with 8192 output allowance after 4096 truncated; unchanged 300-second deadline and 16-call cap.",
+  "start_condition": "4096-output thinking pilot completed with a retained length error.",
+  "followup_condition": "If the release pilot fully passes, freeze both known regression tasks with three repeats and unchanged runtime, profile and fixtures.",
+  "suite": "phase11",
+  "split": "holdout",
+  "freshness": "Known regression task, not fresh qualification.",
+  "source_fingerprint": "b9c0729051341a38a801ef5e29de67906d7dbc8a197af5a5287af50a302d833b",
+  "source_snapshot": {
+    "path": "evals/results/phase11-gemma-thinking-freeze-20261021T002858Z/source.tar.gz",
+    "sha256": "07d3a89f1743b77282e52235709307f9528d9857bc64f60f9563794bf7e4b900",
+    "files": 153
+  },
+  "tasks": {
+    "release-selection": "7fb29eaa234fba8c42645a8065154e32b48ab0f5ea2f67ab93ed191b58328b21"
+  },
+  "variants": [
+    "baseline"
+  ],
+  "profile": {
+    "name": "ollama/gemma4:26b",
+    "model": "gemma4:26b",
+    "adapter": "openai_compat",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "OLLAMA_API_KEY",
+    "key_required": false,
+    "token_parameter": "max_tokens",
+    "max_output_tokens": 8192,
+    "timeout_seconds": 180,
+    "context_window": 32768,
+    "compact_at": 0.8,
+    "keep_recent": 4,
+    "chars_per_token": 3.0,
+    "repo_map_tokens": 1500,
+    "prompt_cache": false,
+    "count_tokens": false,
+    "local": true,
+    "vision": false,
+    "prompt_style": "lean",
+    "tool_set": "minimal",
+    "edit_format": "both",
+    "reasoning_effort": null,
+    "prices": {}
+  },
+  "profile_file": {
+    "path": "evals/results/phase11-gemma-thinking-8k-freeze-20261021T003106Z/profile.yaml",
+    "sha256": "4f60b544289a0a18cd8b683743610592c30dcbf3c845bff0c8f387d5d1a8e128"
+  },
+  "model_metadata": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "model": "gemma4:26b",
+    "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ],
+    "thinking": {
+      "values": [
+        false,
+        true
+      ],
+      "default": true
+    },
+    "details": {
+      "parent_model": "",
+      "format": "safetensors",
+      "family": "gemma4",
+      "families": null,
+      "parameter_size": "26.2B",
+      "quantization_level": "nvfp4",
+      "runner": "mlx"
+    },
+    "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95",
+    "system": "",
+    "generation_requests": 0
+  },
+  "repeats": 1,
+  "planned_cases": 1,
+  "limits": {
+    "task_timeout": 300,
+    "max_iterations": 16,
+    "max_requests": 96,
+    "budget_tokens": 1000000,
+    "allow_shell": true,
+    "allow_lsp": false,
+    "budget_usd": null
+  },
+  "defaults_changed": false,
+  "all_attempts_retained": true,
+  "within_run_changes_allowed": false,
+  "previous_report": "evals/results/20261021T002901.146526Z-phase11/report.json",
+  "previous_report_sha256": "c6fccf9f25188858a0d1957d36e2da22c4e47e162bf24d0434b28e21f8148695",
+  "preflight": {
+    "python_passed": 534,
+    "python_seconds": 24.74,
+    "ruff_check": "passed",
+    "ruff_format": "passed"
+  },
+  "diagnostic_reproduction": {
+    "saved_attempt": "evals/results/20261021T000633.647369Z-phase11/attempts/142696b31f8addf1a487-28a3725d",
+    "exit_code": 1,
+    "output": "======================================================================\nFAIL: test_catalog_requires_a_list_container (test_project.ReleaseTests.test_catalog_requires_a_list_container) (container_type='tuple', records=())\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-tuple-diagnostic-nw627qnn/tests/test_project.py\", line 35, in test_catalog_requires_a_list_container\n    with self.assertRaises(ValueError,\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised : Catalogs must be lists; tuples are invalid, including empty tuples\n\n======================================================================\nFAIL: test_catalog_requires_a_list_container (test_project.ReleaseTests.test_catalog_requires_a_list_container) (container_type='tuple', records=({'version': '1.2.3'},))\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-tuple-diagnostic-nw627qnn/tests/test_project.py\", line 35, in test_catalog_requires_a_list_container\n    with self.assertRaises(ValueError,\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised : Catalogs must be lists; tuples are invalid, including empty tuples\n\n----------------------------------------------------------------------\nRan 8 tests in 0.000s\n\nFAILED (failures=2)\n"
+  },
+  "join_diagnostic_reproduction": {
+    "saved_attempt": "evals/results/20261021T002052.706894Z-phase11/attempts/cea1e37d908b755af1c2-910a7ef2",
+    "exit_code": 1,
+    "output": "======================================================================\nERROR: test_containers_are_validated_on_both_sides (test_project.JoinTests.test_containers_are_validated_on_both_sides) (container_type='NoneType')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-right-container-gs64lnj5/tests/test_project.py\", line 39, in test_containers_are_validated_on_both_sides\n    left_join([], rows, 'id')\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-right-container-gs64lnj5/tables/joining.py\", line 10, in left_join\n    for row in right:\n               ^^^^^\nTypeError: 'NoneType' object is not iterable\n\n======================================================================\nFAIL: test_containers_are_validated_on_both_sides (test_project.JoinTests.test_containers_are_validated_on_both_sides) (container_type='dict')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-right-container-gs64lnj5/tests/test_project.py\", line 38, in test_containers_are_validated_on_both_sides\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_containers_are_validated_on_both_sides (test_project.JoinTests.test_containers_are_validated_on_both_sides) (container_type='tuple')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-right-container-gs64lnj5/tests/test_project.py\", line 38, in test_containers_are_validated_on_both_sides\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_containers_are_validated_on_both_sides (test_project.JoinTests.test_containers_are_validated_on_both_sides) (container_type='tuple')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-right-container-gs64lnj5/tests/test_project.py\", line 38, in test_containers_are_validated_on_both_sides\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 4 tests in 0.000s\n\nFAILED (failures=3, errors=1)\n"
+  }
+}

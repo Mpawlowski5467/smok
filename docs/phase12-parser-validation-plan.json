@@ -1,0 +1,194 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "created_utc": "2026-10-21T04:49:27.826343+00:00",
+  "smok_version": "0.12.1",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "command-arguments": "1684aab4ae855f48e0e82c99169fd4919f22c8b5e64c7a71a71236a7aa0dcd47"
+    },
+    "task_splits": {
+      "command-arguments": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "profile": {
+          "name": "ollama/gemma4:26b",
+          "model": "gemma4:26b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "fb7b137f04a01c308f52fa4a0ed22e83de9af80145b5c097bb8c8dcc9504c0ce"
+    ],
+    "plan": [
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "2491cabdda62c825de12"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "3081c470852128c7553a"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 3,
+        "id": "7578dabb4788750c6da4"
+      }
+    ],
+    "limits": {
+      "max_iterations": 16,
+      "task_timeout": 300.0,
+      "max_requests": 48,
+      "budget_tokens": 700000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "db56c78f36e6b703c221cd8874f2cc41f1f99061dbe17ad28e22af116f54a480",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "4f2435d1763d2160aec1a5da8cbcf93171af24a72ef9ebb3122083683ace0233",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/gemma4:26b",
+    "--variant",
+    "focused-repair",
+    "--repeats",
+    "3",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "300",
+    "--max-iterations",
+    "16",
+    "--max-requests",
+    "48",
+    "--budget-tokens",
+    "700000",
+    "--task",
+    "command-arguments"
+  ],
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-validation-freeze-20261021T044927.826343Z/source.tar.gz",
+    "sha256": "de4aa2a2e37a39e82d181674999ad4cc71391cd55c7a8e9cd3fb7e5da4c44f45",
+    "files": 166
+  },
+  "protocol": {
+    "nonadaptive_within_run": true,
+    "all_attempts_retained": true,
+    "fresh_holdout": false,
+    "success": "Every planned attempt completes, passes independent correctness, scope and final-file public verification.",
+    "runtime_matches_original_phase12": false,
+    "per_attempt_limits_unchanged_from_phase12": true,
+    "original_results_preserved": true,
+    "selection": "Bounded pilot before independent fixed repetitions; no model-default change."
+  },
+  "deviations": []
+}

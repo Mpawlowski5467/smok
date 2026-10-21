@@ -1,0 +1,711 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T05:49:34.787476+00:00",
+  "plan": "docs/phase12-repair-validation-plan.json",
+  "plan_sha256": "556ad8d2fb87069d399f4e79998ffb56d17a567ba6276a7e5a184555bed2ae2f",
+  "report": "evals/results/20261021T053005.524661Z-phase12/report.json",
+  "report_sha256": "0922e4d439bdcdf1a0aef29e35e26f1e415f534c5ea1e7e864e530dfcacf5026",
+  "run_fingerprint": "bdc18705ab0de7b72825c748575b04fdf7982bb0c48761146234d907fd93e795",
+  "source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+  "source_snapshot": {
+    "path": "evals/results/phase12-repair-validation-freeze-20261021T053001.104510Z/source.tar.gz",
+    "sha256": "a5d474c2071ef0236d4f81646cb952aaa1ecde683f787caf59300d23c86e6f1f",
+    "files": 167
+  },
+  "status": "interrupted",
+  "planned_cases": 8,
+  "finished_cases": 4,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.8:27b": {
+        "digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "default": "medium"
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "top_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1\ntemperature                    1\ntop_k                          20"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 31,
+      "input_tokens": 181734,
+      "output_tokens": 25893,
+      "estimated_requests": 4,
+      "cache_read_input_tokens": 67669,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/qwen3.8:27b": {
+          "requests": 31,
+          "input_tokens": 181734,
+          "output_tokens": 25893
+        }
+      }
+    },
+    "requests": 31,
+    "turns": 5
+  },
+  "summary": [
+    {
+      "task": "batch-renames",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        300.22
+      ]
+    },
+    {
+      "task": "byte-windows",
+      "attempts": 1,
+      "passed": 1,
+      "correct": 1,
+      "verified": 1,
+      "completed": 1,
+      "seconds": [
+        135.32
+      ]
+    },
+    {
+      "task": "event-replay",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        300.21
+      ]
+    },
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        300.22
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "d5042ba376162e550ce7",
+      "task": "batch-renames",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "time_limit",
+      "seconds": 300.22,
+      "iterations": 8,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "f540dbd098a098ac5a68b0d6359353bd026ce5e57e4272dfe3fc1fc4ccd1af48",
+            "after": "f540dbd098a098ac5a68b0d6359353bd026ce5e57e4272dfe3fc1fc4ccd1af48",
+            "ok": false,
+            "finished_seconds": 276.25950070808176,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "f540dbd098a098ac5a68b0d6359353bd026ce5e57e4272dfe3fc1fc4ccd1af48"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 8,
+        "input_tokens": 52318,
+        "output_tokens": 6667,
+        "estimated_requests": 1,
+        "cache_read_input_tokens": 17709,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.8:27b": {
+            "requests": 8,
+            "input_tokens": 52318,
+            "output_tokens": 6667
+          }
+        }
+      },
+      "evidence": "attempts/d5042ba376162e550ce7-a5eec9d1",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 25, in <module>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-batch-renames-850udq3z/renames/operations.py\", line 10, in apply_renames\n    mapping = rename_map(registry, changes)\n              ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-batch-renames-850udq3z/renames/validation.py\", line 41, in rename_map\n    raise ValueError('target already in registry')\nValueError: target already in registry\n",
+      "evidence_sha256": {
+        "result.json": "d0fa6755384b64c09773bf4c5c649de1f225dbeaaaae5bf592d77adba542485c",
+        "events.jsonl": "54a1ffd029057645538e3bff5589c53af7c83cbed3804e61ab489f6b851cae27",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/renames/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/renames/validation.py": "b42b08b5d054fcea6162cf645c600809e8f4d66f45e7cd5f9b006fd4f7716f07",
+        "files/renames/operations.py": "ad35569e222d6764d254c367e2a67fda359b5bf6d357a772d5872bb281c733fb",
+        "files/tests/test_project.py": "6a25e5877fef8ae4b2f0fec9250a34d610daa86f9b4adee1c6669a79ad2b9dab"
+      }
+    },
+    {
+      "case_id": "9d680aa1d5272075cc2e",
+      "task": "byte-windows",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": true,
+      "stop_reason": "complete",
+      "seconds": 135.32,
+      "iterations": 4,
+      "check_passed": true,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "cb33a61db0b522bdf38ea66f3a026dbd780be3ad2483afeb70385f8208566288",
+            "after": "cb33a61db0b522bdf38ea66f3a026dbd780be3ad2483afeb70385f8208566288",
+            "ok": true,
+            "finished_seconds": 89.3799517089501,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "cb33a61db0b522bdf38ea66f3a026dbd780be3ad2483afeb70385f8208566288"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 4,
+        "input_tokens": 15029,
+        "output_tokens": 1186,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 6220,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.8:27b": {
+            "requests": 4,
+            "input_tokens": 15029,
+            "output_tokens": 1186
+          }
+        }
+      },
+      "evidence": "attempts/9d680aa1d5272075cc2e-2e24ae44",
+      "error": null,
+      "check_output": "[independent check completed]\n",
+      "evidence_sha256": {
+        "result.json": "b514d809878a45f99ed01255e464fb35cb267bde5d6be7c81cf2376a4db27399",
+        "events.jsonl": "9f051918acf194fcf9f540641444499d4a453f06cc138f72975461d75009b879",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/windows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/windows/ranges.py": "9862000cc33bb029e6034512e68999004ed9960719d22a9a983e456c3c4248ba",
+        "files/windows/response.py": "7f82e01a9081ac0d2948081dff8467c6e72550468b327918f10e5295237d9322",
+        "files/tests/test_project.py": "f65659bbfdb65df0680f97d0a9a938eb67fbb3f34aa5f91cffcae22083027f04"
+      }
+    },
+    {
+      "case_id": "a6faa5a303f45a9745cf",
+      "task": "event-replay",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "time_limit",
+      "seconds": 300.21,
+      "iterations": 9,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [],
+        "final_files_fingerprint": "eb9345bd667b341e208fb435727a7c308edfeaae054be85c0201f471cf566e67"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 9,
+        "input_tokens": 46691,
+        "output_tokens": 6259,
+        "estimated_requests": 1,
+        "cache_read_input_tokens": 25952,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.8:27b": {
+            "requests": 9,
+            "input_tokens": 46691,
+            "output_tokens": 6259
+          }
+        }
+      },
+      "evidence": "attempts/a6faa5a303f45a9745cf-f3d8fada",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 40, in <module>\nAssertionError\n",
+      "evidence_sha256": {
+        "result.json": "d64797ae73d1c23b37c60ae2c79f71d112d0e68a286776e7210e7cc7b74c9afa",
+        "events.jsonl": "18fbad98c42e6a57ebc6610733fd551e2a9ded4a54cdcf39189760d6ff92d4a8",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/events/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/events/validation.py": "0c338edc0f4451f99a5ec5e9a3603a5ff03443b48e8e79f5676bddb851ccff53",
+        "files/events/replay.py": "c13b3bbbdc4b70a293df8630c4b88ad35a3b5dca72d9aa3a98c5556549e158d0",
+        "files/tests/test_project.py": "e5b7b4175ab2619a17df25773c1632dc24ac425441f1f06b60b8319d1aa799be"
+      }
+    },
+    {
+      "case_id": "adbf0d586905aaadcc02",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "time_limit",
+      "seconds": 300.22,
+      "iterations": 7,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "5f979eeb220dbd7f5922f939dfa06fc62da4551a9aad0e1aff849c672ab9a723",
+            "after": "5f979eeb220dbd7f5922f939dfa06fc62da4551a9aad0e1aff849c672ab9a723",
+            "ok": false,
+            "finished_seconds": 161.97350675007328,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "7019884fcdfbf3f2d11be567cfcfff7a98d1fdf28e57e9f2105e64e57062961d",
+            "after": "7019884fcdfbf3f2d11be567cfcfff7a98d1fdf28e57e9f2105e64e57062961d",
+            "ok": false,
+            "finished_seconds": 285.34265366604086,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "7019884fcdfbf3f2d11be567cfcfff7a98d1fdf28e57e9f2105e64e57062961d"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 7,
+        "input_tokens": 56366,
+        "output_tokens": 6923,
+        "estimated_requests": 1,
+        "cache_read_input_tokens": 15700,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.8:27b": {
+            "requests": 7,
+            "input_tokens": 56366,
+            "output_tokens": 6923
+          }
+        }
+      },
+      "evidence": "attempts/adbf0d586905aaadcc02-f1d27c82",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 35, in <module>\nAssertionError\n",
+      "evidence_sha256": {
+        "result.json": "1382f743c25fdcf9018e46ea15ccb160e36a99022985e91beafe2159493486f6",
+        "events.jsonl": "6836cd6d11fb7516aaa26638c000ee5516dd35bc7950252aa93fb03d55e4ec4e",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "b96325e6e83ab3bfad79e5a41f61a4d35b826af308cb45ef9e10bf8eec926029",
+        "files/arguments/options.py": "cd428a967f2f81d2861a299596dcfd4f3a82745ab925f335eaaecc5f04f414fb",
+        "files/tests/test_project.py": "a47f3272eb0b8a2767ac0e5f9da4e7215218b460c21d4a0e75aaafa6887c08ec"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained.",
+    "Interrupted plan: no full-run pass rate or repeatability claim."
+  ],
+  "interrupted_attempts": [
+    {
+      "task": "batch-renames",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "id": "6e28a3cb945e02b9c715",
+      "evidence": "attempts/6e28a3cb945e02b9c715-4ac114ae",
+      "status": "interrupted",
+      "raw_result": {
+        "task": "batch-renames",
+        "task_fingerprint": "fde955041c5e852ef638f90969058bee16243b07df26dc0d896a31fb4a3bebe3",
+        "model": "ollama/qwen3.8:27b",
+        "split": "holdout",
+        "category": "project-repair",
+        "passed": false,
+        "stop_reason": "error",
+        "tools": {
+          "read_file": 4,
+          "write_file": 2
+        },
+        "tool_errors": 1,
+        "denials": 1,
+        "self_checks": 1,
+        "context_samples": [
+          {
+            "model": "ollama/qwen3.8:27b",
+            "input_tokens": 2190,
+            "source": "estimate",
+            "breakdown_estimated_tokens": {
+              "system": 613,
+              "time_budget": 138,
+              "repo_map": 158,
+              "pinned_files": 0,
+              "todos": 0,
+              "tools": 791,
+              "history": 458,
+              "tool_outputs": 0,
+              "summary": 0,
+              "images": 0
+            },
+            "output_allowance": 4096,
+            "working_context_limit": 32768,
+            "fraction_with_output": 0.192,
+            "pinned_files": [],
+            "groups": [
+              {
+                "id": "group:1",
+                "messages": 1,
+                "estimated_tokens": 458
+              }
+            ],
+            "purpose": "task"
+          },
+          {
+            "model": "ollama/qwen3.8:27b",
+            "input_tokens": 3451,
+            "source": "estimate",
+            "breakdown_estimated_tokens": {
+              "system": 613,
+              "time_budget": 138,
+              "repo_map": 158,
+              "pinned_files": 0,
+              "todos": 0,
+              "tools": 791,
+              "history": 625,
+              "tool_outputs": 1094,
+              "summary": 0,
+              "images": 0
+            },
+            "output_allowance": 4096,
+            "working_context_limit": 32768,
+            "fraction_with_output": 0.23,
+            "pinned_files": [],
+            "groups": [
+              {
+                "id": "group:1",
+                "messages": 1,
+                "estimated_tokens": 458
+              },
+              {
+                "id": "group:2",
+                "messages": 2,
+                "estimated_tokens": 1261
+              }
+            ],
+            "purpose": "task"
+          },
+          {
+            "model": "ollama/qwen3.8:27b",
+            "input_tokens": 7085,
+            "source": "estimate",
+            "breakdown_estimated_tokens": {
+              "system": 613,
+              "time_budget": 138,
+              "repo_map": 158,
+              "pinned_files": 0,
+              "todos": 0,
+              "tools": 791,
+              "history": 3182,
+              "tool_outputs": 2171,
+              "summary": 0,
+              "images": 0
+            },
+            "output_allowance": 4096,
+            "working_context_limit": 32768,
+            "fraction_with_output": 0.341,
+            "pinned_files": [],
+            "groups": [
+              {
+                "id": "group:1",
+                "messages": 1,
+                "estimated_tokens": 458
+              },
+              {
+                "id": "group:2",
+                "messages": 2,
+                "estimated_tokens": 1261
+              },
+              {
+                "id": "group:3",
+                "messages": 2,
+                "estimated_tokens": 2041
+              },
+              {
+                "id": "group:4",
+                "messages": 1,
+                "estimated_tokens": 1593
+              }
+            ],
+            "purpose": "task"
+          }
+        ],
+        "profile": {
+          "name": "ollama/qwen3.8:27b",
+          "model": "qwen3.8:27b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "prices": {}
+        },
+        "available_tools": [
+          "edit_file",
+          "list_dir",
+          "read_file",
+          "read_output",
+          "run_shell",
+          "write_file"
+        ],
+        "timing": {
+          "work_seconds": 83.5819,
+          "model_seconds": 82.956,
+          "tool_seconds": 0.0117,
+          "approval_seconds": 0.0005,
+          "other_work_seconds": 0.6142,
+          "model_requests": [
+            {
+              "iteration": 1,
+              "purpose": "task",
+              "started_seconds": 0.43089141696691513,
+              "seconds": 16.1721,
+              "outcome": "returned"
+            },
+            {
+              "iteration": 2,
+              "purpose": "task",
+              "started_seconds": 16.608796624932438,
+              "seconds": 60.4985,
+              "outcome": "returned"
+            },
+            {
+              "iteration": 3,
+              "purpose": "task",
+              "started_seconds": 77.31828095891979,
+              "seconds": 6.2854,
+              "outcome": "interrupted"
+            }
+          ],
+          "tool_calls": [
+            {
+              "id": "call_cyishi6d",
+              "name": "read_file",
+              "started_seconds": 16.603500916971825,
+              "seconds": 0.0013,
+              "outcome": "returned"
+            },
+            {
+              "id": "call_v1bpu39l",
+              "name": "read_file",
+              "started_seconds": 16.604948541964404,
+              "seconds": 0.0008,
+              "outcome": "returned"
+            },
+            {
+              "id": "call_z427zkar",
+              "name": "read_file",
+              "started_seconds": 16.605907499906607,
+              "seconds": 0.0009,
+              "outcome": "returned"
+            },
+            {
+              "id": "call_2l6n35sl",
+              "name": "read_file",
+              "started_seconds": 16.606979666976258,
+              "seconds": 0.0006,
+              "outcome": "returned"
+            },
+            {
+              "id": "call_hy0sju02",
+              "name": "write_file",
+              "started_seconds": 77.10822054196615,
+              "seconds": 0.0049,
+              "outcome": "returned"
+            },
+            {
+              "id": "call_802trsot",
+              "name": "write_file",
+              "started_seconds": 77.11321370897349,
+              "seconds": 0.0027,
+              "outcome": "returned"
+            },
+            {
+              "id": "call_m6t04fkl",
+              "name": "run_shell",
+              "started_seconds": 77.11608354200143,
+              "seconds": 0.0005,
+              "outcome": "error"
+            }
+          ],
+          "setup_seconds": 0.0218,
+          "grading_and_cleanup_seconds": 0.0014
+        },
+        "usage": {
+          "requests": 3,
+          "input_tokens": 11330,
+          "output_tokens": 4858,
+          "estimated_requests": 1,
+          "cache_read_input_tokens": 2088,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/qwen3.8:27b": {
+              "requests": 3,
+              "input_tokens": 11330,
+              "output_tokens": 4858
+            }
+          }
+        },
+        "turns": 1,
+        "iterations": 3,
+        "input_tokens": 11330,
+        "output_tokens": 4858,
+        "seconds": 83.61
+      },
+      "files_provenance": "Reconstructed from immutable seeds and successful write_file events; the runner did not copy the temporary workspace on SIGINT. No successful shell command or other mutation occurred. Not graded or counted as a completed attempt.",
+      "reconstructed_files": "evals/results/20261021T053005.524661Z-phase12/attempts/6e28a3cb945e02b9c715-4ac114ae/reconstructed-files",
+      "evidence_sha256": {
+        "session.jsonl": "d0e2817a5875a71ed2c4fb01913883a8e4eef78f4c8b46aeef13595241e540b2",
+        "result.json": "08e629dabdbdececedbb4b541f40afd195b989b352c2831f72d93c71dfcdf657",
+        "events.jsonl": "de3a73f42088c756933be8f63cc2034cea25f5dd3e33d6bcca1ab5a30c9cf929",
+        "reconstructed-files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "reconstructed-files/renames/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "reconstructed-files/renames/operations.py": "7b7a95d4d338a02d06f64bd4aef505eda3eb9a1d5d28b031de4b024174b3aa31",
+        "reconstructed-files/renames/validation.py": "96b67614f9e71a469026d35faccf48e259501515b553dd6a008ba59cea466af6",
+        "reconstructed-files/tests/test_project.py": "6a25e5877fef8ae4b2f0fec9250a34d610daa86f9b4adee1c6669a79ad2b9dab"
+      }
+    }
+  ],
+  "unstarted_cases": [
+    {
+      "task": "byte-windows",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "id": "3b455172e3ff7a18f649"
+    },
+    {
+      "task": "event-replay",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "id": "d40fdf2dc3ae0728fe39"
+    },
+    {
+      "task": "command-arguments",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "id": "36425c8c9a89dfa0d8e1"
+    }
+  ],
+  "protocol_deviations": [
+    "Stopped deliberately after the first four outcomes contained three timeouts and one pass. Repeat 2 renames was interrupted; three cases were unstarted. This is an incomplete experiment, not fixed validation or qualification. All completed failures and partial event/session evidence are retained."
+  ]
+}

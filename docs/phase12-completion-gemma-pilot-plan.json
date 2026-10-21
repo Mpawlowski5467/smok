@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "created_utc": "2026-10-21T05:20:30.683796+00:00",
+  "smok_version": "0.12.1",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "command-arguments": "11dacc76260f9323474b6043d0f6ffa3eb8395e32a60835b3df51aaaa889e455"
+    },
+    "task_splits": {
+      "command-arguments": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "profile": {
+          "name": "ollama/gemma4:26b",
+          "model": "gemma4:26b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "fb7b137f04a01c308f52fa4a0ed22e83de9af80145b5c097bb8c8dcc9504c0ce"
+    ],
+    "plan": [
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "2491cabdda62c825de12"
+      }
+    ],
+    "limits": {
+      "max_iterations": 16,
+      "task_timeout": 300.0,
+      "max_requests": 16,
+      "budget_tokens": 300000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "222b2c8d3e7e935a42151e9c2ce58e1723c0bbf12218f9f211362350d3efe370",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/gemma4:26b",
+    "--variant",
+    "focused-repair",
+    "--repeats",
+    "1",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "300",
+    "--max-iterations",
+    "16",
+    "--max-requests",
+    "16",
+    "--budget-tokens",
+    "300000",
+    "--task",
+    "command-arguments"
+  ],
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase12-completion-gemma-pilot-freeze-20261021T052030.683796Z/source.tar.gz",
+    "sha256": "56913ffba08e26b040d1e07511b85740afa2fd08e483399516d0ad19285a9ab4",
+    "files": 167
+  },
+  "protocol": {
+    "nonadaptive_within_run": true,
+    "all_attempts_retained": true,
+    "fresh_holdout": false,
+    "success": "Every planned attempt completes, passes independent correctness, scope and final-file public verification.",
+    "runtime_matches_original_phase12": false,
+    "per_attempt_limits_unchanged_from_phase12": true,
+    "original_results_preserved": true,
+    "selection": "Bounded pilot before independent fixed repetitions; no model-default change."
+  },
+  "deviations": []
+}

@@ -1,0 +1,180 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "created_utc": "2026-10-21T04:54:28.774603+00:00",
+  "smok_version": "0.12.1",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "command-arguments": "1684aab4ae855f48e0e82c99169fd4919f22c8b5e64c7a71a71236a7aa0dcd47"
+    },
+    "task_splits": {
+      "command-arguments": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/qwen3.6:35b-a3b-coding",
+        "model": "qwen3.6:35b-a3b-coding",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/qwen3.6:35b-a3b-coding",
+        "variant": "focused-repair",
+        "profile": {
+          "name": "ollama/qwen3.6:35b-a3b-coding",
+          "model": "qwen3.6:35b-a3b-coding",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "279582cb3786d8632b41a1e5d31131f735a8b19fdd6d3e9da7c1e8c637167a70"
+    ],
+    "plan": [
+      {
+        "task": "command-arguments",
+        "model": "ollama/qwen3.6:35b-a3b-coding",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "4a08ea242c46ee29d327"
+      }
+    ],
+    "limits": {
+      "max_iterations": 16,
+      "task_timeout": 300.0,
+      "max_requests": 16,
+      "budget_tokens": 300000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "db56c78f36e6b703c221cd8874f2cc41f1f99061dbe17ad28e22af116f54a480",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "c66a725cf43e49713a6fcafcfbfc96405b59fe5ccbd610794ecbab327db22942",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/qwen3.6:35b-a3b-coding",
+    "--variant",
+    "focused-repair",
+    "--repeats",
+    "1",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "300",
+    "--max-iterations",
+    "16",
+    "--max-requests",
+    "16",
+    "--budget-tokens",
+    "300000",
+    "--task",
+    "command-arguments"
+  ],
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.6:35b-a3b-coding": {
+        "digest": "dd970bac1aa398f6f1e7d032398fdcadeb99efda69aee73ca9386524bc7a676c",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5_moe",
+          "families": null,
+          "parameter_size": "36.0B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "top_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1\ntemperature                    0.6\ntop_k                          20"
+      }
+    }
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-coding-pilot-freeze-20261021T045428.774603Z/source.tar.gz",
+    "sha256": "4c20d82df66d9fa6bd685224421d3448480cac5c5039d53dd69e88e5a0c6bd27",
+    "files": 166
+  },
+  "protocol": {
+    "nonadaptive_within_run": true,
+    "all_attempts_retained": true,
+    "fresh_holdout": false,
+    "success": "Every planned attempt completes, passes independent correctness, scope and final-file public verification.",
+    "runtime_matches_original_phase12": false,
+    "per_attempt_limits_unchanged_from_phase12": true,
+    "original_results_preserved": true,
+    "selection": "Bounded pilot before independent fixed repetitions; no model-default change."
+  },
+  "deviations": []
+}

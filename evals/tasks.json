@@ -1,0 +1,32 @@
+[
+  {
+    "id": "fix-addition",
+    "prompt": "Fix the bug in calculator.py: add(a, b) must return their sum. Preserve subtract. Use read_file and write_file; shell access may be denied. Briefly describe the fix.",
+    "files": {"calculator.py": "def add(a, b):\n    return a - b\n\ndef subtract(a, b):\n    return a - b\n"},
+    "check": "from calculator import add, subtract\nassert add(2, 3) == 5\nassert add(-3, 7) == 4\nassert add(0, 0) == 0\nassert subtract(8, 3) == 5\n"
+  },
+  {
+    "id": "normalize-slug",
+    "prompt": "Implement slugify in text_utils.py. Strip leading/trailing whitespace, lowercase, replace each run of non-ASCII-alphanumeric characters with a single hyphen, and strip leading/trailing hyphens. Return an empty string for empty or punctuation-only input. Use the standard library. Use read_file and write_file; shell access may be denied.",
+    "files": {"text_utils.py": "def slugify(value: str) -> str:\n    return value\n"},
+    "check": "from text_utils import slugify\nassert slugify('  Hello, World!  ') == 'hello-world'\nassert slugify('a___b---c') == 'a-b-c'\nassert slugify('123 Test') == '123-test'\nassert slugify('') == ''\nassert slugify(' !!! ') == ''\n"
+  },
+  {
+    "id": "summarize-csv",
+    "prompt": "Read sales.csv. Create summary.json with exactly two keys: total_amount (numeric sum of all amounts) and order_count (number of data rows). Use read_file and write_file; shell access may be denied.",
+    "files": {"sales.csv": "order_id,amount\nA,12.50\nB,7.25\nC,10.00\nD,-2.75\n"},
+    "check": "import json\nfrom pathlib import Path\nvalue=json.loads(Path('summary.json').read_text())\nassert value == {'total_amount': 27.0, 'order_count': 4}\n"
+  },
+  {
+    "id": "update-config",
+    "prompt": "Update config.json: set server.port to 8080 and features.cache to true. Preserve all other settings. Use read_file and write_file; shell access may be denied.",
+    "files": {"config.json": "{\n  \"server\": {\"host\": \"127.0.0.1\", \"port\": 3000},\n  \"features\": {\"cache\": false, \"telemetry\": false},\n  \"name\": \"fixture\"\n}\n"},
+    "check": "import json\nfrom pathlib import Path\nvalue=json.loads(Path('config.json').read_text())\nassert value == {'server': {'host':'127.0.0.1','port':8080},'features':{'cache':True,'telemetry':False},'name':'fixture'}\n"
+  },
+  {
+    "id": "implement-chunks",
+    "prompt": "Create collections_utils.py with a function chunks(items, size) that returns a list of consecutive non-overlapping lists, each at most size items long. Empty input returns []. Raise ValueError for size <= 0. Do not mutate the input list. Use the standard library. Use write_file; shell access may be denied.",
+    "files": {"README.md": "Small collection utilities. No external dependencies.\n"},
+    "check": "from collections_utils import chunks\nitems=[1,2,3,4,5]\nassert chunks(items,2)==[[1,2],[3,4],[5]]\nassert items==[1,2,3,4,5]\nassert chunks([],3)==[]\nassert chunks([1],5)==[[1]]\nfor size in (0,-2):\n    try:\n        chunks([1],size)\n    except ValueError:\n        pass\n    else:\n        raise AssertionError('expected ValueError')\n"
+  }
+]

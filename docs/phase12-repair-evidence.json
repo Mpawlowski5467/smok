@@ -1,0 +1,826 @@
+{
+  "schema_version": 1,
+  "kind": "phase12_known_regression_repair_index",
+  "smok_version": "0.12.1",
+  "created_utc": "2026-10-21T14:10:18.654767+00:00",
+  "source_fingerprint": "93490ea653fe7ec201beb378b16f2246c3395846595e82284bfa564f3b37f719",
+  "task_fingerprints": {
+    "batch-renames": "fde955041c5e852ef638f90969058bee16243b07df26dc0d896a31fb4a3bebe3",
+    "byte-windows": "f4f3e91a9a097889ad41967d209fc6af4c8ef8742cc96f36889618d7d2e9bbd6",
+    "event-replay": "54c534d597c4140e5041ad84234d64a3d28bd9eea659fee61eae6bb14f4da6b3",
+    "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+  },
+  "all_finished_trials_retained": true,
+  "original_phase12_results_preserved": true,
+  "no_default_or_sampler_changes": true,
+  "fresh_qualification": false,
+  "limitations": [
+    "Adaptive pilots and fixed validations are separate evidence; no pooled model score.",
+    "No general reliability or isolated speed claim. Repeated known tasks are not fresh projects."
+  ],
+  "runs": [
+    {
+      "label": "phase12-repair-pilot",
+      "receipt": "docs/phase12-repair-pilot-results.json",
+      "receipt_sha256": "c072a13eefc2e52a174f58f09349775bb535ae55d58e9859ae2011ba961ece02",
+      "plan": "docs/phase12-repair-pilot-plan.json",
+      "report": "evals/results/20261021T042408.244792Z-phase12/report.json",
+      "model": "ollama/gemma4:26b",
+      "runtime_source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+      "task_fingerprints": {
+        "batch-renames": "0e50fadaac6630e8ff17ecaef0c547f044cd59459bc9ad1593e568c3614d264a",
+        "byte-windows": "e062f2a28fb2dd07a9537b3641c1ad19525693dc9e83ee049124cb3a7ad33d0a",
+        "event-replay": "21c749e5ed382acd4140baabf43b3f79a8f7d533e08a691ee3f0d26ff5d53791",
+        "command-arguments": "bc7e6afe2a41e626fe7507a852c8257636ae21e93367b84536e58479f434a5fd"
+      },
+      "summary": [
+        {
+          "task": "batch-renames",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            83.4
+          ]
+        },
+        {
+          "task": "byte-windows",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            139.88
+          ]
+        },
+        {
+          "task": "event-replay",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            43.13
+          ]
+        },
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            250.64
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 44,
+          "input_tokens": 337540,
+          "output_tokens": 7504,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 15621,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/gemma4:26b": {
+              "requests": 44,
+              "input_tokens": 337540,
+              "output_tokens": 7504
+            }
+          }
+        },
+        "requests": 44,
+        "turns": 4
+      },
+      "status": "complete",
+      "planned_cases": 4,
+      "finished_cases": 4,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-diagnostic-pilot",
+      "receipt": "docs/phase12-diagnostic-pilot-results.json",
+      "receipt_sha256": "816e1ccaaca5a95c1486e5dc1c083b087b2887d40f76a2ffd871013da6bf8674",
+      "plan": "docs/phase12-diagnostic-pilot-plan.json",
+      "report": "evals/results/20261021T043412.883393Z-phase12/report.json",
+      "model": "ollama/gemma4:26b",
+      "runtime_source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+      "task_fingerprints": {
+        "byte-windows": "9ca4b28a9a7e22a5be0f6879d02a5a0c23c70343ed43aff6e50d2996db60c829",
+        "command-arguments": "1684aab4ae855f48e0e82c99169fd4919f22c8b5e64c7a71a71236a7aa0dcd47"
+      },
+      "summary": [
+        {
+          "task": "byte-windows",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            59.22
+          ]
+        },
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            300.2
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 24,
+          "input_tokens": 173053,
+          "output_tokens": 12458,
+          "estimated_requests": 1,
+          "cache_read_input_tokens": 8501,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/gemma4:26b": {
+              "requests": 24,
+              "input_tokens": 173053,
+              "output_tokens": 12458
+            }
+          }
+        },
+        "requests": 24,
+        "turns": 2
+      },
+      "status": "complete",
+      "planned_cases": 2,
+      "finished_cases": 2,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-parser-qwen-pilot",
+      "receipt": "docs/phase12-parser-qwen-pilot-results.json",
+      "receipt_sha256": "0dced20c5caf9ccf73ef2607b991ba7f83432806b8917ae831c8d3bb9c17902f",
+      "plan": "docs/phase12-parser-qwen-pilot-plan.json",
+      "report": "evals/results/20261021T044026.778306Z-phase12/report.json",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "runtime_source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+      "task_fingerprints": {
+        "command-arguments": "1684aab4ae855f48e0e82c99169fd4919f22c8b5e64c7a71a71236a7aa0dcd47"
+      },
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            300.23
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 5,
+          "input_tokens": 27265,
+          "output_tokens": 5979,
+          "estimated_requests": 1,
+          "cache_read_input_tokens": 2220,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/qwen3.6:27b-mlx": {
+              "requests": 5,
+              "input_tokens": 27265,
+              "output_tokens": 5979
+            }
+          }
+        },
+        "requests": 5,
+        "turns": 1
+      },
+      "status": "complete",
+      "planned_cases": 1,
+      "finished_cases": 1,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-guidance-pilot",
+      "receipt": "docs/phase12-guidance-pilot-results.json",
+      "receipt_sha256": "cd39ff2d137c474ee2f2456d70731c0b0d1bcbfbd6a9eabeadf55471bb2a67b0",
+      "plan": "docs/phase12-guidance-pilot-plan.json",
+      "report": "evals/results/20261021T044617.063114Z-phase12/report.json",
+      "model": "ollama/gemma4:26b",
+      "runtime_source_fingerprint": "db56c78f36e6b703c221cd8874f2cc41f1f99061dbe17ad28e22af116f54a480",
+      "task_fingerprints": {
+        "command-arguments": "1684aab4ae855f48e0e82c99169fd4919f22c8b5e64c7a71a71236a7aa0dcd47"
+      },
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            176.38
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 12,
+          "input_tokens": 100677,
+          "output_tokens": 2968,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 4637,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/gemma4:26b": {
+              "requests": 12,
+              "input_tokens": 100677,
+              "output_tokens": 2968
+            }
+          }
+        },
+        "requests": 12,
+        "turns": 1
+      },
+      "status": "complete",
+      "planned_cases": 1,
+      "finished_cases": 1,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-parser-validation",
+      "receipt": "docs/phase12-parser-validation-results.json",
+      "receipt_sha256": "4eff6ac928ce8a2b86795417191ac49472d6e2edaa6928b45d9b01a006a610e6",
+      "plan": "docs/phase12-parser-validation-plan.json",
+      "report": "evals/results/20261021T044930.784611Z-phase12/report.json",
+      "model": "ollama/gemma4:26b",
+      "runtime_source_fingerprint": "db56c78f36e6b703c221cd8874f2cc41f1f99061dbe17ad28e22af116f54a480",
+      "task_fingerprints": {
+        "command-arguments": "1684aab4ae855f48e0e82c99169fd4919f22c8b5e64c7a71a71236a7aa0dcd47"
+      },
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 3,
+          "passed": 1,
+          "correct": 2,
+          "verified": 1,
+          "completed": 2,
+          "seconds": [
+            223.19,
+            150.35,
+            207.89
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 33,
+          "input_tokens": 260826,
+          "output_tokens": 12312,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 26197,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/gemma4:26b": {
+              "requests": 33,
+              "input_tokens": 260826,
+              "output_tokens": 12312
+            }
+          }
+        },
+        "requests": 33,
+        "turns": 3
+      },
+      "status": "complete",
+      "planned_cases": 3,
+      "finished_cases": 3,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-parser-coding-pilot",
+      "receipt": "docs/phase12-parser-coding-pilot-results.json",
+      "receipt_sha256": "03dce2252b1cc2b25908073ff37fbeeba4b41abeda70d7bcc79b3106a2441f06",
+      "plan": "docs/phase12-parser-coding-pilot-plan.json",
+      "report": "evals/results/20261021T045930.117670Z-phase12/report.json",
+      "model": "ollama/qwen3.6:35b-a3b-coding",
+      "runtime_source_fingerprint": "db56c78f36e6b703c221cd8874f2cc41f1f99061dbe17ad28e22af116f54a480",
+      "task_fingerprints": {
+        "command-arguments": "1684aab4ae855f48e0e82c99169fd4919f22c8b5e64c7a71a71236a7aa0dcd47"
+      },
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            300.25
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 13,
+          "input_tokens": 129684,
+          "output_tokens": 10351,
+          "estimated_requests": 1,
+          "cache_read_input_tokens": 11647,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/qwen3.6:35b-a3b-coding": {
+              "requests": 13,
+              "input_tokens": 129684,
+              "output_tokens": 10351
+            }
+          }
+        },
+        "requests": 13,
+        "turns": 1
+      },
+      "status": "complete",
+      "planned_cases": 1,
+      "finished_cases": 1,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-completion-pilot",
+      "receipt": "docs/phase12-completion-pilot-results.json",
+      "receipt_sha256": "7d50c2bfd1757a5436c6205574cd5a7261df05aa230f482d72726cdefad5da78",
+      "plan": "docs/phase12-completion-pilot-plan.json",
+      "report": "evals/results/20261021T051320.220163Z-phase12/report.json",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "runtime_source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+      "task_fingerprints": {
+        "command-arguments": "11dacc76260f9323474b6043d0f6ffa3eb8395e32a60835b3df51aaaa889e455"
+      },
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            300.19
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 8,
+          "input_tokens": 52186,
+          "output_tokens": 6575,
+          "estimated_requests": 1,
+          "cache_read_input_tokens": 18190,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/qwen3.6:27b-mlx": {
+              "requests": 8,
+              "input_tokens": 52186,
+              "output_tokens": 6575
+            }
+          }
+        },
+        "requests": 8,
+        "turns": 1
+      },
+      "status": "complete",
+      "planned_cases": 1,
+      "finished_cases": 1,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-completion-gemma-pilot",
+      "receipt": "docs/phase12-completion-gemma-pilot-results.json",
+      "receipt_sha256": "1a4b45aaa4bde9970106dadd99f0a04ed98e8ab3b0e083483f52154d67334d86",
+      "plan": "docs/phase12-completion-gemma-pilot-plan.json",
+      "report": "evals/results/20261021T052038.384023Z-phase12/report.json",
+      "model": "ollama/gemma4:26b",
+      "runtime_source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+      "task_fingerprints": {
+        "command-arguments": "11dacc76260f9323474b6043d0f6ffa3eb8395e32a60835b3df51aaaa889e455"
+      },
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            300.2
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 12,
+          "input_tokens": 103474,
+          "output_tokens": 8980,
+          "estimated_requests": 1,
+          "cache_read_input_tokens": 53427,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/gemma4:26b": {
+              "requests": 12,
+              "input_tokens": 103474,
+              "output_tokens": 8980
+            }
+          }
+        },
+        "requests": 12,
+        "turns": 1
+      },
+      "status": "complete",
+      "planned_cases": 1,
+      "finished_cases": 1,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-parser-qwen38-pilot",
+      "receipt": "docs/phase12-parser-qwen38-pilot-results.json",
+      "receipt_sha256": "ab9d8cdf154d99964b64b26c54a5df01b6842045c2776e197d37e20df874b8c9",
+      "plan": "docs/phase12-parser-qwen38-pilot-plan.json",
+      "report": "evals/results/20261021T052555.372273Z-phase12/report.json",
+      "model": "ollama/qwen3.8:27b",
+      "runtime_source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+      "task_fingerprints": {
+        "command-arguments": "11dacc76260f9323474b6043d0f6ffa3eb8395e32a60835b3df51aaaa889e455"
+      },
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            188.34
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 6,
+          "input_tokens": 28920,
+          "output_tokens": 1385,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 11593,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/qwen3.8:27b": {
+              "requests": 6,
+              "input_tokens": 28920,
+              "output_tokens": 1385
+            }
+          }
+        },
+        "requests": 6,
+        "turns": 1
+      },
+      "status": "complete",
+      "planned_cases": 1,
+      "finished_cases": 1,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-repair-validation",
+      "receipt": "docs/phase12-repair-validation-results.json",
+      "receipt_sha256": "6e50c40aab3faa6bf39006060ad0168bda80bae5740396aa849224527d5613cf",
+      "plan": "docs/phase12-repair-validation-plan.json",
+      "report": "evals/results/20261021T053005.524661Z-phase12/report.json",
+      "model": "ollama/qwen3.8:27b",
+      "runtime_source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+      "task_fingerprints": {
+        "batch-renames": "fde955041c5e852ef638f90969058bee16243b07df26dc0d896a31fb4a3bebe3",
+        "byte-windows": "9ca4b28a9a7e22a5be0f6879d02a5a0c23c70343ed43aff6e50d2996db60c829",
+        "event-replay": "54c534d597c4140e5041ad84234d64a3d28bd9eea659fee61eae6bb14f4da6b3",
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "summary": [
+        {
+          "task": "batch-renames",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            300.22
+          ]
+        },
+        {
+          "task": "byte-windows",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            135.32
+          ]
+        },
+        {
+          "task": "event-replay",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            300.21
+          ]
+        },
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            300.22
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 31,
+          "input_tokens": 181734,
+          "output_tokens": 25893,
+          "estimated_requests": 4,
+          "cache_read_input_tokens": 67669,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/qwen3.8:27b": {
+              "requests": 31,
+              "input_tokens": 181734,
+              "output_tokens": 25893
+            }
+          }
+        },
+        "requests": 31,
+        "turns": 5
+      },
+      "status": "interrupted",
+      "planned_cases": 8,
+      "finished_cases": 4,
+      "protocol_deviations": [
+        "Stopped deliberately after the first four outcomes contained three timeouts and one pass. Repeat 2 renames was interrupted; three cases were unstarted. This is an incomplete experiment, not fixed validation or qualification. All completed failures and partial event/session evidence are retained."
+      ],
+      "interrupted_cases": 1,
+      "unstarted_cases": 3
+    },
+    {
+      "label": "phase12-input-validation",
+      "receipt": "docs/phase12-input-validation-results.json",
+      "receipt_sha256": "1df94444f0de22bb3738c9ead79e3790e35162feed390f5c4e83eb05ce94aae6",
+      "plan": "docs/phase12-input-validation-plan.json",
+      "report": "evals/results/20261021T054937.448172Z-phase12/report.json",
+      "model": "ollama/gemma4:26b",
+      "runtime_source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+      "task_fingerprints": {
+        "batch-renames": "fde955041c5e852ef638f90969058bee16243b07df26dc0d896a31fb4a3bebe3",
+        "byte-windows": "9ca4b28a9a7e22a5be0f6879d02a5a0c23c70343ed43aff6e50d2996db60c829",
+        "event-replay": "54c534d597c4140e5041ad84234d64a3d28bd9eea659fee61eae6bb14f4da6b3"
+      },
+      "summary": [
+        {
+          "task": "batch-renames",
+          "attempts": 2,
+          "passed": 2,
+          "correct": 2,
+          "verified": 2,
+          "completed": 2,
+          "seconds": [
+            35.72,
+            34.19
+          ]
+        },
+        {
+          "task": "byte-windows",
+          "attempts": 2,
+          "passed": 0,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            52.78,
+            149.08
+          ]
+        },
+        {
+          "task": "event-replay",
+          "attempts": 2,
+          "passed": 2,
+          "correct": 2,
+          "verified": 2,
+          "completed": 2,
+          "seconds": [
+            44.66,
+            41.63
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 56,
+          "input_tokens": 266683,
+          "output_tokens": 9679,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 148410,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/gemma4:26b": {
+              "requests": 56,
+              "input_tokens": 266683,
+              "output_tokens": 9679
+            }
+          }
+        },
+        "requests": 56,
+        "turns": 6
+      },
+      "status": "complete",
+      "planned_cases": 6,
+      "finished_cases": 6,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-parser-deliberate-pilot",
+      "receipt": "docs/phase12-parser-deliberate-pilot-results.json",
+      "receipt_sha256": "c7c10a8d7980aed65a76e15211570f1c01079f9e0197fd081f6ccec7cc3d98de",
+      "plan": "docs/phase12-parser-deliberate-pilot-plan.json",
+      "report": "evals/results/20261021T055548.251898Z-phase12/report.json",
+      "model": "ollama/qwen3.8:27b",
+      "runtime_source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            600.18
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 2,
+          "input_tokens": 5640,
+          "output_tokens": 8299,
+          "estimated_requests": 1,
+          "cache_read_input_tokens": 0,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/qwen3.8:27b": {
+              "requests": 2,
+              "input_tokens": 5640,
+              "output_tokens": 8299
+            }
+          }
+        },
+        "requests": 2,
+        "turns": 1
+      },
+      "status": "complete",
+      "planned_cases": 1,
+      "finished_cases": 1,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    },
+    {
+      "label": "phase12-whole-file-pilot",
+      "receipt": "docs/phase12-whole-file-pilot-results.json",
+      "receipt_sha256": "f36ca8414ef74e0eddea9e6c43966c82eb27a7e2f7a40dd138ca06ac0c4a2f64",
+      "plan": "docs/phase12-whole-file-pilot-plan.json",
+      "report": "evals/results/20261021T060726.006172Z-phase12/report.json",
+      "model": "ollama/gemma4:26b",
+      "runtime_source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+      "task_fingerprints": {
+        "byte-windows": "f4f3e91a9a097889ad41967d209fc6af4c8ef8742cc96f36889618d7d2e9bbd6",
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "summary": [
+        {
+          "task": "byte-windows",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            53.16
+          ]
+        },
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            194.04
+          ]
+        }
+      ],
+      "budget": {
+        "usage": {
+          "requests": 18,
+          "input_tokens": 115314,
+          "output_tokens": 6031,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 49714,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0,
+          "models": {
+            "ollama/gemma4:26b": {
+              "requests": 18,
+              "input_tokens": 115314,
+              "output_tokens": 6031
+            }
+          }
+        },
+        "requests": 18,
+        "turns": 2
+      },
+      "status": "complete",
+      "planned_cases": 2,
+      "finished_cases": 2,
+      "protocol_deviations": [],
+      "interrupted_cases": 0,
+      "unstarted_cases": 0
+    }
+  ]
+}

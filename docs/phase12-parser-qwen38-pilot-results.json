@@ -1,0 +1,171 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T05:29:25.106756+00:00",
+  "plan": "docs/phase12-parser-qwen38-pilot-plan.json",
+  "plan_sha256": "cb40a14fd194b511eecc1d7a163d3e17b8a3a6134f219b4649c1678b65a459e2",
+  "report": "evals/results/20261021T052555.372273Z-phase12/report.json",
+  "report_sha256": "3424e7b81982d853a1519b83f3bfcbc79182936fc2b09cd703f057387f16acf2",
+  "run_fingerprint": "20ee9a77d9f38970b54cecf48e7da69d3b88b7af8530abfc2cd707f20b657c6d",
+  "source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-qwen38-pilot-freeze-20261021T052553.015979Z/source.tar.gz",
+    "sha256": "c248553204bb287db839a227dd0ce91eb2ef4736b1e6f46f3be0ff5a2cea40b4",
+    "files": 167
+  },
+  "status": "complete",
+  "planned_cases": 1,
+  "finished_cases": 1,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.8:27b": {
+        "digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "default": "medium"
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "top_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1\ntemperature                    1\ntop_k                          20"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 6,
+      "input_tokens": 28920,
+      "output_tokens": 1385,
+      "estimated_requests": 0,
+      "cache_read_input_tokens": 11593,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/qwen3.8:27b": {
+          "requests": 6,
+          "input_tokens": 28920,
+          "output_tokens": 1385
+        }
+      }
+    },
+    "requests": 6,
+    "turns": 1
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 1,
+      "completed": 1,
+      "seconds": [
+        188.34
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "adbf0d586905aaadcc02",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "complete",
+      "seconds": 188.34,
+      "iterations": 6,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "c5d87a94b1edc6d520d26c7ecd1418aff9bef21f32571ee1bd1038c9cb26a2f3",
+            "after": "c5d87a94b1edc6d520d26c7ecd1418aff9bef21f32571ee1bd1038c9cb26a2f3",
+            "ok": false,
+            "finished_seconds": 92.2405789589975,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "1e24fd0cbe66d485dc1177293b1429d376ae0cb1305c0c38355c993772e64a8c",
+            "after": "1e24fd0cbe66d485dc1177293b1429d376ae0cb1305c0c38355c993772e64a8c",
+            "ok": true,
+            "finished_seconds": 152.76758770900778,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "1e24fd0cbe66d485dc1177293b1429d376ae0cb1305c0c38355c993772e64a8c"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 6,
+        "input_tokens": 28920,
+        "output_tokens": 1385,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 11593,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.8:27b": {
+            "requests": 6,
+            "input_tokens": 28920,
+            "output_tokens": 1385
+          }
+        }
+      },
+      "evidence": "attempts/adbf0d586905aaadcc02-428b34a0",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 35, in <module>\nAssertionError\n",
+      "evidence_sha256": {
+        "result.json": "ac5dba2dc52ce3c6ce4ba7757e298ed4b37b4f1720f0878e9df72cbf07ee0033",
+        "events.jsonl": "5830c8587381c0e55f56640b70b21b47d674039b0692040e61cdce2c8cf12253",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "48b955093a7a7da921d4539c4644a56c82dbfbe061f8864590a81c24fef07926",
+        "files/arguments/options.py": "d9a2ca22a035ef79ba493f24933eedde94b80ef10b3eec05d82181fcbf64e12d",
+        "files/tests/test_project.py": "abe027faf2890875a1f741c64d3ecd096114b4b8a134824871850f5f0969221b"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ]
+}

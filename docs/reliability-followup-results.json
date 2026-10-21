@@ -1,0 +1,724 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "milestone": "Phase 8 timeout follow-up",
+  "scope": "Six predeclared original-task replays, offline stronger checks, then three fresh interval attempts with clarified public wording. All outcomes retained.",
+  "profile": {
+    "name": "ollama/qwen3.6:27b-mlx",
+    "model": "qwen3.6:27b-mlx",
+    "adapter": "openai_compat",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "OLLAMA_API_KEY",
+    "key_required": false,
+    "token_parameter": "max_tokens",
+    "max_output_tokens": 4096,
+    "timeout_seconds": 180,
+    "context_window": 32768,
+    "compact_at": 0.8,
+    "keep_recent": 4,
+    "chars_per_token": 3.0,
+    "repo_map_tokens": 1500,
+    "prompt_cache": false,
+    "count_tokens": false,
+    "local": true,
+    "vision": false,
+    "prompt_style": "full",
+    "tool_set": "full",
+    "edit_format": "both",
+    "prices": {}
+  },
+  "limits": {
+    "max_iterations": 12,
+    "task_timeout": 180.0,
+    "max_requests": 240,
+    "budget_tokens": 2000000,
+    "budget_usd": null,
+    "allow_shell": false,
+    "allow_lsp": false
+  },
+  "default_profile_changed": false,
+  "sampling": "Provider defaults; no deterministic seed.",
+  "changes": [
+    "Retain the hash of successful writes for consecutive edits, with external-change and approval-time checks unchanged.",
+    "Focus review on concrete defects and available verification.",
+    "Advertise and enforce only authorizable built-in tools in fixture evaluations; disclose unavailable execution and allowed file paths before generation."
+  ],
+  "limitations": [
+    "Known tuning cases are not fresh holdout data or a general coding benchmark.",
+    "The older reference has one attempt per case; the follow-up has three. Totals are not paired speed comparisons.",
+    "Tool disclosure and review guidance changed alongside file-state handling, so individual effects are not isolated.",
+    "No grader code or reference solutions entered the model context; declared task scope and execution restrictions did.",
+    "Cache effects, provider-default sampling, and a single local model/installation limit generalization.",
+    "No builds or test jobs overlapped follow-up inference.",
+    "Source/client fingerprints do not identify provider weights or server settings.",
+    "Local API cost excludes hardware and electricity.",
+    "The interval wording and grader were strengthened after the original replay exposed missing coverage. Keep those results separate from the original task fingerprint."
+  ],
+  "runs": [
+    {
+      "smok_version": "0.8.0",
+      "source_fingerprint": "6b5d83ea1942496e82925a69973930fa8b93730d32b7b540c8430e3a75a7b092",
+      "raw_report": "evals/results/20261019T183726.343379Z-phase7/report.json",
+      "raw_report_sha256": "4e95363fd1e1a6d9e240d31cc8cf5511f800c989fd87f864e745044e085f2b0e",
+      "status": "complete",
+      "advertised_run_tools": null,
+      "summary": {
+        "attempts": 2,
+        "completed_passes": 0,
+        "code_checks_passed": 2,
+        "scope_passed": 2,
+        "seconds": 360.38,
+        "denials": 1,
+        "tool_errors": 2,
+        "requests": 10,
+        "input_tokens": 36652,
+        "output_tokens": 11773,
+        "estimated_requests": 2,
+        "cache_read_input_tokens": 20242,
+        "unpriced_requests": 0,
+        "known_cost_usd": 0.0
+      },
+      "by_task": [
+        {
+          "task": "merge-intervals",
+          "attempts": 1,
+          "completed_passes": 0,
+          "code_checks_passed": 1,
+          "scope_passed": 1,
+          "seconds": [
+            180.14
+          ],
+          "requests": [
+            4
+          ]
+        },
+        {
+          "task": "sales-by-region",
+          "attempts": 1,
+          "completed_passes": 0,
+          "code_checks_passed": 1,
+          "scope_passed": 1,
+          "seconds": [
+            180.24
+          ],
+          "requests": [
+            6
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "task": "merge-intervals",
+          "task_fingerprint": "7706dffe982a5a6c383314bb37c62316ea4f9ddb0b93c6aef0ae4aa561c408a4",
+          "variant": "baseline",
+          "repeat": 1,
+          "passed": false,
+          "check_passed": true,
+          "stop_reason": "time_limit",
+          "seconds": 180.14,
+          "self_checks": 1,
+          "denials": 1,
+          "tool_errors": 1,
+          "evidence": "attempts/68e322ccd4addb4ab203-72c20968",
+          "scope_passed": true,
+          "available_tools": null,
+          "usage": {
+            "requests": 4,
+            "input_tokens": 14135,
+            "output_tokens": 5513,
+            "estimated_requests": 1,
+            "cache_read_input_tokens": 5336,
+            "cache_creation_input_tokens": 0,
+            "known_cost_usd": 0.0,
+            "unpriced_requests": 0
+          }
+        },
+        {
+          "task": "sales-by-region",
+          "task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+          "variant": "baseline",
+          "repeat": 1,
+          "passed": false,
+          "check_passed": true,
+          "stop_reason": "time_limit",
+          "seconds": 180.24,
+          "self_checks": 2,
+          "denials": 0,
+          "tool_errors": 1,
+          "evidence": "attempts/352bfdceb3f87f0f53fa-ed680e6c",
+          "scope_passed": true,
+          "available_tools": null,
+          "usage": {
+            "requests": 6,
+            "input_tokens": 22517,
+            "output_tokens": 6260,
+            "estimated_requests": 1,
+            "cache_read_input_tokens": 14906,
+            "cache_creation_input_tokens": 0,
+            "known_cost_usd": 0.0,
+            "unpriced_requests": 0
+          }
+        }
+      ]
+    },
+    {
+      "smok_version": "0.8.1",
+      "source_fingerprint": "69a7a1476bf7b32893dfca5e7581aa17cf9fdd4de8ec66b589329f7da9783137",
+      "raw_report": "evals/results/20261019T191420.278961Z-phase7/report.json",
+      "raw_report_sha256": "e704e6786a0c6a8423d9c8fbad44e5c40ff9c37225e8784026141b8000684ee4",
+      "status": "complete",
+      "advertised_run_tools": [
+        "edit_file",
+        "glob",
+        "grep",
+        "list_dir",
+        "read_file",
+        "read_output",
+        "repo_map",
+        "write_file",
+        "write_todos"
+      ],
+      "summary": {
+        "attempts": 6,
+        "completed_passes": 6,
+        "code_checks_passed": 6,
+        "scope_passed": 6,
+        "seconds": 587.42,
+        "denials": 0,
+        "tool_errors": 0,
+        "requests": 21,
+        "input_tokens": 43173,
+        "output_tokens": 7175,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 33326,
+        "unpriced_requests": 0,
+        "known_cost_usd": 0.0
+      },
+      "by_task": [
+        {
+          "task": "merge-intervals",
+          "attempts": 3,
+          "completed_passes": 3,
+          "code_checks_passed": 3,
+          "scope_passed": 3,
+          "seconds": [
+            160.71,
+            40.28,
+            46.94
+          ],
+          "requests": [
+            4,
+            3,
+            3
+          ]
+        },
+        {
+          "task": "sales-by-region",
+          "attempts": 3,
+          "completed_passes": 3,
+          "code_checks_passed": 3,
+          "scope_passed": 3,
+          "seconds": [
+            106.62,
+            100.23,
+            132.64
+          ],
+          "requests": [
+            3,
+            4,
+            4
+          ]
+        }
+      ],
+      "cases": [
+        {
+          "task": "merge-intervals",
+          "task_fingerprint": "7706dffe982a5a6c383314bb37c62316ea4f9ddb0b93c6aef0ae4aa561c408a4",
+          "variant": "baseline",
+          "repeat": 1,
+          "passed": true,
+          "check_passed": true,
+          "stop_reason": "complete",
+          "seconds": 160.71,
+          "self_checks": 2,
+          "denials": 0,
+          "tool_errors": 0,
+          "evidence": "attempts/68e322ccd4addb4ab203-f88768ff",
+          "scope_passed": true,
+          "available_tools": [
+            "edit_file",
+            "glob",
+            "grep",
+            "list_dir",
+            "read_file",
+            "read_output",
+            "repo_map",
+            "write_file",
+            "write_todos"
+          ],
+          "usage": {
+            "requests": 4,
+            "input_tokens": 8364,
+            "output_tokens": 1747,
+            "estimated_requests": 0,
+            "cache_read_input_tokens": 5444,
+            "cache_creation_input_tokens": 0,
+            "known_cost_usd": 0.0,
+            "unpriced_requests": 0
+          }
+        },
+        {
+          "task": "sales-by-region",
+          "task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+          "variant": "baseline",
+          "repeat": 1,
+          "passed": true,
+          "check_passed": true,
+          "stop_reason": "complete",
+          "seconds": 106.62,
+          "self_checks": 1,
+          "denials": 0,
+          "tool_errors": 0,
+          "evidence": "attempts/352bfdceb3f87f0f53fa-04cae0a7",
+          "scope_passed": true,
+          "available_tools": [
+            "edit_file",
+            "glob",
+            "grep",
+            "list_dir",
+            "read_file",
+            "read_output",
+            "repo_map",
+            "write_file",
+            "write_todos"
+          ],
+          "usage": {
+            "requests": 3,
+            "input_tokens": 5698,
+            "output_tokens": 1392,
+            "estimated_requests": 0,
+            "cache_read_input_tokens": 3164,
+            "cache_creation_input_tokens": 0,
+            "known_cost_usd": 0.0,
+            "unpriced_requests": 0
+          }
+        },
+        {
+          "task": "merge-intervals",
+          "task_fingerprint": "7706dffe982a5a6c383314bb37c62316ea4f9ddb0b93c6aef0ae4aa561c408a4",
+          "variant": "baseline",
+          "repeat": 2,
+          "passed": true,
+          "check_passed": true,
+          "stop_reason": "complete",
+          "seconds": 40.28,
+          "self_checks": 1,
+          "denials": 0,
+          "tool_errors": 0,
+          "evidence": "attempts/ba7deeabcbee6833232a-812fc719",
+          "scope_passed": true,
+          "available_tools": [
+            "edit_file",
+            "glob",
+            "grep",
+            "list_dir",
+            "read_file",
+            "read_output",
+            "repo_map",
+            "write_file",
+            "write_todos"
+          ],
+          "usage": {
+            "requests": 3,
+            "input_tokens": 5538,
+            "output_tokens": 563,
+            "estimated_requests": 0,
+            "cache_read_input_tokens": 4814,
+            "cache_creation_input_tokens": 0,
+            "known_cost_usd": 0.0,
+            "unpriced_requests": 0
+          }
+        },
+        {
+          "task": "sales-by-region",
+          "task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+          "variant": "baseline",
+          "repeat": 2,
+          "passed": true,
+          "check_passed": true,
+          "stop_reason": "complete",
+          "seconds": 100.23,
+          "self_checks": 1,
+          "denials": 0,
+          "tool_errors": 0,
+          "evidence": "attempts/32e909c8bd0e1659dc05-c335635a",
+          "scope_passed": true,
+          "available_tools": [
+            "edit_file",
+            "glob",
+            "grep",
+            "list_dir",
+            "read_file",
+            "read_output",
+            "repo_map",
+            "write_file",
+            "write_todos"
+          ],
+          "usage": {
+            "requests": 4,
+            "input_tokens": 8158,
+            "output_tokens": 1304,
+            "estimated_requests": 0,
+            "cache_read_input_tokens": 7151,
+            "cache_creation_input_tokens": 0,
+            "known_cost_usd": 0.0,
+            "unpriced_requests": 0
+          }
+        },
+        {
+          "task": "merge-intervals",
+          "task_fingerprint": "7706dffe982a5a6c383314bb37c62316ea4f9ddb0b93c6aef0ae4aa561c408a4",
+          "variant": "baseline",
+          "repeat": 3,
+          "passed": true,
+          "check_passed": true,
+          "stop_reason": "complete",
+          "seconds": 46.94,
+          "self_checks": 1,
+          "denials": 0,
+          "tool_errors": 0,
+          "evidence": "attempts/8340040658ad90662187-b552629f",
+          "scope_passed": true,
+          "available_tools": [
+            "edit_file",
+            "glob",
+            "grep",
+            "list_dir",
+            "read_file",
+            "read_output",
+            "repo_map",
+            "write_file",
+            "write_todos"
+          ],
+          "usage": {
+            "requests": 3,
+            "input_tokens": 5586,
+            "output_tokens": 547,
+            "estimated_requests": 0,
+            "cache_read_input_tokens": 4967,
+            "cache_creation_input_tokens": 0,
+            "known_cost_usd": 0.0,
+            "unpriced_requests": 0
+          }
+        },
+        {
+          "task": "sales-by-region",
+          "task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+          "variant": "baseline",
+          "repeat": 3,
+          "passed": true,
+          "check_passed": true,
+          "stop_reason": "complete",
+          "seconds": 132.64,
+          "self_checks": 2,
+          "denials": 0,
+          "tool_errors": 0,
+          "evidence": "attempts/146d968172e0f198b5b4-77d32836",
+          "scope_passed": true,
+          "available_tools": [
+            "edit_file",
+            "glob",
+            "grep",
+            "list_dir",
+            "read_file",
+            "read_output",
+            "repo_map",
+            "write_file",
+            "write_todos"
+          ],
+          "usage": {
+            "requests": 4,
+            "input_tokens": 9829,
+            "output_tokens": 1622,
+            "estimated_requests": 0,
+            "cache_read_input_tokens": 7786,
+            "cache_creation_input_tokens": 0,
+            "known_cost_usd": 0.0,
+            "unpriced_requests": 0
+          }
+        }
+      ]
+    }
+  ],
+  "native_bundle_validation": {
+    "smok_version": "0.8.1",
+    "bundle": "desktop/src-tauri/target/release/bundle/macos/Smok.app",
+    "server_sha256": "0faa95b36cb5eed3052775786bbced8e3b8b1a7f3491928656740ec665d89b32",
+    "desktop_sha256": "9ddc7f317b03293bf15c32229870fd8a7dc06a7431c43711bd1a70377f7b56ec",
+    "checks": [
+      "bundle version",
+      "bundled server version",
+      "complete bundle signature verification",
+      "loopback readiness",
+      "authentication",
+      "workspace bootstrap",
+      "compiled asset byte parity",
+      "deadline validation",
+      "deadline saved and resumed",
+      "deadline cleared and resumed",
+      "graceful shutdown",
+      "listener closed",
+      "session writer lock released"
+    ],
+    "model_requests": 0,
+    "passed": true
+  },
+  "expanded_checks": {
+    "raw_report": "evals/results/20261019T191420.278961Z-phase7/expanded-checks.json",
+    "raw_report_sha256": "20b42f8cea2fa1f38ace16ba194a7189a04c64a5316863ab847fe94142520af5",
+    "description": "Offline recheck of saved repairs after adding positive-gap interval coverage. Original model inputs and report outcomes are unchanged.",
+    "grader_sha256": {
+      "merge-intervals": "1378d9bb13b3020413d7e3e09de64e43e184174ddbcb8c6aefa0e6079a1d47b8",
+      "sales-by-region": "bd49e6121d855a9fba73a10a45311848a7069f3fa82a4b4a79f50285708f730f"
+    },
+    "cases": [
+      {
+        "raw_report": "evals/results/20261019T183726.343379Z-phase7/report.json",
+        "version": "0.8.0",
+        "task": "merge-intervals",
+        "repeat": 1,
+        "evidence": "attempts/68e322ccd4addb4ab203-72c20968",
+        "original_task_fingerprint": "7706dffe982a5a6c383314bb37c62316ea4f9ddb0b93c6aef0ae4aa561c408a4",
+        "current_task_fingerprint": "0d4697f7651142f48e83b0c45606fbe2e618be5d0fdd8815405eadfab3f2f750",
+        "original_check_passed": true,
+        "expanded_check_passed": false,
+        "scope_passed": true,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 12, in <module>\nAssertionError\n"
+      },
+      {
+        "raw_report": "evals/results/20261019T183726.343379Z-phase7/report.json",
+        "version": "0.8.0",
+        "task": "sales-by-region",
+        "repeat": 1,
+        "evidence": "attempts/352bfdceb3f87f0f53fa-ed680e6c",
+        "original_task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+        "current_task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+        "original_check_passed": true,
+        "expanded_check_passed": true,
+        "scope_passed": true,
+        "output": "[independent check completed]\n"
+      },
+      {
+        "raw_report": "evals/results/20261019T191420.278961Z-phase7/report.json",
+        "version": "0.8.1",
+        "task": "merge-intervals",
+        "repeat": 1,
+        "evidence": "attempts/68e322ccd4addb4ab203-f88768ff",
+        "original_task_fingerprint": "7706dffe982a5a6c383314bb37c62316ea4f9ddb0b93c6aef0ae4aa561c408a4",
+        "current_task_fingerprint": "0d4697f7651142f48e83b0c45606fbe2e618be5d0fdd8815405eadfab3f2f750",
+        "original_check_passed": true,
+        "expanded_check_passed": true,
+        "scope_passed": true,
+        "output": "[independent check completed]\n"
+      },
+      {
+        "raw_report": "evals/results/20261019T191420.278961Z-phase7/report.json",
+        "version": "0.8.1",
+        "task": "sales-by-region",
+        "repeat": 1,
+        "evidence": "attempts/352bfdceb3f87f0f53fa-04cae0a7",
+        "original_task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+        "current_task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+        "original_check_passed": true,
+        "expanded_check_passed": true,
+        "scope_passed": true,
+        "output": "[independent check completed]\n"
+      },
+      {
+        "raw_report": "evals/results/20261019T191420.278961Z-phase7/report.json",
+        "version": "0.8.1",
+        "task": "merge-intervals",
+        "repeat": 2,
+        "evidence": "attempts/ba7deeabcbee6833232a-812fc719",
+        "original_task_fingerprint": "7706dffe982a5a6c383314bb37c62316ea4f9ddb0b93c6aef0ae4aa561c408a4",
+        "current_task_fingerprint": "0d4697f7651142f48e83b0c45606fbe2e618be5d0fdd8815405eadfab3f2f750",
+        "original_check_passed": true,
+        "expanded_check_passed": false,
+        "scope_passed": true,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 12, in <module>\nAssertionError\n"
+      },
+      {
+        "raw_report": "evals/results/20261019T191420.278961Z-phase7/report.json",
+        "version": "0.8.1",
+        "task": "sales-by-region",
+        "repeat": 2,
+        "evidence": "attempts/32e909c8bd0e1659dc05-c335635a",
+        "original_task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+        "current_task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+        "original_check_passed": true,
+        "expanded_check_passed": true,
+        "scope_passed": true,
+        "output": "[independent check completed]\n"
+      },
+      {
+        "raw_report": "evals/results/20261019T191420.278961Z-phase7/report.json",
+        "version": "0.8.1",
+        "task": "merge-intervals",
+        "repeat": 3,
+        "evidence": "attempts/8340040658ad90662187-b552629f",
+        "original_task_fingerprint": "7706dffe982a5a6c383314bb37c62316ea4f9ddb0b93c6aef0ae4aa561c408a4",
+        "current_task_fingerprint": "0d4697f7651142f48e83b0c45606fbe2e618be5d0fdd8815405eadfab3f2f750",
+        "original_check_passed": true,
+        "expanded_check_passed": false,
+        "scope_passed": true,
+        "output": "Traceback (most recent call last):\n  File \"<string>\", line 12, in <module>\nAssertionError\n"
+      },
+      {
+        "raw_report": "evals/results/20261019T191420.278961Z-phase7/report.json",
+        "version": "0.8.1",
+        "task": "sales-by-region",
+        "repeat": 3,
+        "evidence": "attempts/146d968172e0f198b5b4-77d32836",
+        "original_task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+        "current_task_fingerprint": "889b07705b2a162a5feda679b553d3a4d08e2e12e723ded31fef142cf42dc659",
+        "original_check_passed": true,
+        "expanded_check_passed": true,
+        "scope_passed": true,
+        "output": "[independent check completed]\n"
+      }
+    ]
+  },
+  "clarified_interval_contract": {
+    "description": "The public prompt now explicitly excludes every positive gap. The grader adds disjoint adjacent-integer ranges and single-point intervals. This is a new task fingerprint, not a paired quality comparison with the earlier fixture.",
+    "raw_report": "evals/results/20261019T192511.017206Z-phase7/report.json",
+    "raw_report_sha256": "afc41606398f5fc24929db9ce3527241535a6f8a903f9a258223e6f792aa832a",
+    "source_fingerprint": "69a7a1476bf7b32893dfca5e7581aa17cf9fdd4de8ec66b589329f7da9783137",
+    "task_fingerprint": "0d4697f7651142f48e83b0c45606fbe2e618be5d0fdd8815405eadfab3f2f750",
+    "grader_sha256": "1378d9bb13b3020413d7e3e09de64e43e184174ddbcb8c6aefa0e6079a1d47b8",
+    "status": "complete",
+    "completed_passes": 3,
+    "attempts": 3,
+    "summary": [
+      {
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "baseline",
+        "split": "tune",
+        "passed": 3,
+        "total": 3,
+        "requests": 10,
+        "tokens": 22480,
+        "estimated_requests": 0,
+        "unpriced_requests": 0,
+        "known_cost_usd": 0.0,
+        "seconds": 257.34
+      }
+    ],
+    "cases": [
+      {
+        "task": "merge-intervals",
+        "task_fingerprint": "0d4697f7651142f48e83b0c45606fbe2e618be5d0fdd8815405eadfab3f2f750",
+        "repeat": 1,
+        "passed": true,
+        "check_passed": true,
+        "stop_reason": "complete",
+        "seconds": 76.84,
+        "self_checks": 1,
+        "denials": 0,
+        "tool_errors": 0,
+        "evidence": "attempts/68e322ccd4addb4ab203-d6dbc49c",
+        "available_tools": [
+          "edit_file",
+          "glob",
+          "grep",
+          "list_dir",
+          "read_file",
+          "read_output",
+          "repo_map",
+          "write_file",
+          "write_todos"
+        ],
+        "scope_passed": true,
+        "usage": {
+          "requests": 3,
+          "input_tokens": 5582,
+          "output_tokens": 966,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 4665,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0
+        }
+      },
+      {
+        "task": "merge-intervals",
+        "task_fingerprint": "0d4697f7651142f48e83b0c45606fbe2e618be5d0fdd8815405eadfab3f2f750",
+        "repeat": 2,
+        "passed": true,
+        "check_passed": true,
+        "stop_reason": "complete",
+        "seconds": 84.08,
+        "self_checks": 1,
+        "denials": 0,
+        "tool_errors": 0,
+        "evidence": "attempts/ba7deeabcbee6833232a-4db511e4",
+        "available_tools": [
+          "edit_file",
+          "glob",
+          "grep",
+          "list_dir",
+          "read_file",
+          "read_output",
+          "repo_map",
+          "write_file",
+          "write_todos"
+        ],
+        "scope_passed": true,
+        "usage": {
+          "requests": 4,
+          "input_tokens": 8179,
+          "output_tokens": 988,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 7221,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0
+        }
+      },
+      {
+        "task": "merge-intervals",
+        "task_fingerprint": "0d4697f7651142f48e83b0c45606fbe2e618be5d0fdd8815405eadfab3f2f750",
+        "repeat": 3,
+        "passed": true,
+        "check_passed": true,
+        "stop_reason": "complete",
+        "seconds": 96.42,
+        "self_checks": 1,
+        "denials": 0,
+        "tool_errors": 0,
+        "evidence": "attempts/8340040658ad90662187-0f112976",
+        "available_tools": [
+          "edit_file",
+          "glob",
+          "grep",
+          "list_dir",
+          "read_file",
+          "read_output",
+          "repo_map",
+          "write_file",
+          "write_todos"
+        ],
+        "scope_passed": true,
+        "usage": {
+          "requests": 3,
+          "input_tokens": 5609,
+          "output_tokens": 1156,
+          "estimated_requests": 0,
+          "cache_read_input_tokens": 4979,
+          "cache_creation_input_tokens": 0,
+          "known_cost_usd": 0.0,
+          "unpriced_requests": 0
+        }
+      }
+    ]
+  }
+}

@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T05:05:46.075015+00:00",
+  "plan": "docs/phase12-parser-coding-pilot-plan.json",
+  "plan_sha256": "1f230052bb6abd059c8d0558fca25d03c8a5b7de0d3fe5ab29ee18ab7eb9149c",
+  "report": "evals/results/20261021T045930.117670Z-phase12/report.json",
+  "report_sha256": "3d110b1e72a8a92d19bf3e8ae82e25da93ba94284e929e5e45e82c716885f770",
+  "run_fingerprint": "c66a725cf43e49713a6fcafcfbfc96405b59fe5ccbd610794ecbab327db22942",
+  "source_fingerprint": "db56c78f36e6b703c221cd8874f2cc41f1f99061dbe17ad28e22af116f54a480",
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-coding-pilot-freeze-20261021T045428.774603Z/source.tar.gz",
+    "sha256": "4c20d82df66d9fa6bd685224421d3448480cac5c5039d53dd69e88e5a0c6bd27",
+    "files": 166
+  },
+  "status": "complete",
+  "planned_cases": 1,
+  "finished_cases": 1,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.6:35b-a3b-coding": {
+        "digest": "dd970bac1aa398f6f1e7d032398fdcadeb99efda69aee73ca9386524bc7a676c",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5_moe",
+          "families": null,
+          "parameter_size": "36.0B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "top_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1\ntemperature                    0.6\ntop_k                          20"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 13,
+      "input_tokens": 129684,
+      "output_tokens": 10351,
+      "estimated_requests": 1,
+      "cache_read_input_tokens": 11647,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/qwen3.6:35b-a3b-coding": {
+          "requests": 13,
+          "input_tokens": 129684,
+          "output_tokens": 10351
+        }
+      }
+    },
+    "requests": 13,
+    "turns": 1
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        300.25
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "4a08ea242c46ee29d327",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.6:35b-a3b-coding",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "time_limit",
+      "seconds": 300.25,
+      "iterations": 13,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "e54c102cc2205388d7bb2f5f67ce05e77043d57fa21822465900cf6fdb5f3db6",
+            "after": "e54c102cc2205388d7bb2f5f67ce05e77043d57fa21822465900cf6fdb5f3db6",
+            "ok": false,
+            "finished_seconds": 52.32838891609572,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "4e57e5dffc7d335501405b3348369ba0016425518ce7b23f2e3565266c854ecd",
+            "after": "4e57e5dffc7d335501405b3348369ba0016425518ce7b23f2e3565266c854ecd",
+            "ok": false,
+            "finished_seconds": 199.4034777911147,
+            "matches_final_files": false
+          }
+        ],
+        "final_files_fingerprint": "06806ea6941c9a5c3a5dea5f50708e9eee4a4780f75cea741b15828e45b5ccf1"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 13,
+        "input_tokens": 129684,
+        "output_tokens": 10351,
+        "estimated_requests": 1,
+        "cache_read_input_tokens": 11647,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:35b-a3b-coding": {
+            "requests": 13,
+            "input_tokens": 129684,
+            "output_tokens": 10351
+          }
+        }
+      },
+      "evidence": "attempts/4a08ea242c46ee29d327-ba5effe6",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', [], [''])\n",
+      "evidence_sha256": {
+        "result.json": "2dd617562960ac5b7270c2b35c4cfb8ec158bfdac8ab8b7c8651e420beae412a",
+        "events.jsonl": "b05fc677c6837570e958663dcd12d6a37b7ad2c778e3b4c3f2778143c8a93963",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "dc2de802ab6c69626bf342a42eae05e074a1b25dc224e9013d236662f4df0643",
+        "files/arguments/options.py": "1b7f44fdf9f73d47ddd956deb905f51c9ff0fdb70791e5d0241e81c2c0780123",
+        "files/tests/test_project.py": "0e50f8e4d128cd9f56719cb54c1a3969d2ed7dc442ff009c9b7203b875a96147"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ]
+}

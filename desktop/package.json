@@ -1,0 +1,13 @@
+{
+  "name": "smok-desktop",
+  "version": "0.12.1",
+  "private": true,
+  "scripts": {
+    "dev": "tauri dev",
+    "build": "tauri build",
+    "icon": "tauri icon ../assets/dragon_logo.png"
+  },
+  "devDependencies": {
+    "@tauri-apps/cli": "^2.10.0"
+  }
+}

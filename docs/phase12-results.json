@@ -1,0 +1,275 @@
+{
+  "schema_version": 2,
+  "comparison": "models",
+  "model": "ollama/qwen3.6:27b-mlx",
+  "baseline": "baseline",
+  "candidate": "candidate",
+  "selections": {
+    "baseline": {
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "provider_model": "qwen3.6:27b-mlx",
+      "adapter": "openai_compat"
+    },
+    "candidate": {
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "provider_model": "gemma4:26b",
+      "adapter": "openai_compat"
+    }
+  },
+  "connection_differences": [],
+  "run_status": "complete",
+  "source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+  "run_fingerprint": "bcb4501238f905660e48a15fc97a63f1f96aaf0c510d1516890f329a99b38644",
+  "smok_version": "0.12.0",
+  "suite": "phase12",
+  "split": "holdout",
+  "limits": {
+    "max_iterations": 16,
+    "task_timeout": 300.0,
+    "max_requests": 256,
+    "budget_tokens": 2000000,
+    "budget_usd": null,
+    "allow_shell": true,
+    "allow_lsp": false
+  },
+  "task_fingerprints": {
+    "batch-renames": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+    "byte-windows": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+    "event-replay": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+    "command-arguments": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f"
+  },
+  "profiles": {
+    "baseline": {
+      "token_parameter": "max_tokens",
+      "max_output_tokens": 4096,
+      "timeout_seconds": 180,
+      "context_window": 32768,
+      "compact_at": 0.8,
+      "keep_recent": 4,
+      "chars_per_token": 3.0,
+      "repo_map_tokens": 1500,
+      "prompt_cache": false,
+      "count_tokens": false,
+      "local": true,
+      "vision": false,
+      "prompt_style": "lean",
+      "tool_set": "minimal",
+      "edit_format": "both",
+      "reasoning_effort": "none"
+    },
+    "candidate": {
+      "token_parameter": "max_tokens",
+      "max_output_tokens": 4096,
+      "timeout_seconds": 180,
+      "context_window": 32768,
+      "compact_at": 0.8,
+      "keep_recent": 4,
+      "chars_per_token": 3.0,
+      "repo_map_tokens": 1500,
+      "prompt_cache": false,
+      "count_tokens": false,
+      "local": true,
+      "vision": false,
+      "prompt_style": "lean",
+      "tool_set": "minimal",
+      "edit_format": "both",
+      "reasoning_effort": "none"
+    }
+  },
+  "changed_controls": {},
+  "planned_pairs": 8,
+  "paired_cases": 8,
+  "missing_pairs": [],
+  "distinct_tasks": 4,
+  "repeated_coverage": true,
+  "counts": {
+    "both_pass": 1,
+    "regression": 4,
+    "both_fail": 3
+  },
+  "pairs": [
+    {
+      "task": "batch-renames",
+      "repeat": 1,
+      "split": "holdout",
+      "outcome": "both_pass",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_stop": "complete",
+      "candidate_stop": "complete",
+      "baseline_seconds": 143.5,
+      "candidate_seconds": 43.93,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "byte-windows",
+      "repeat": 1,
+      "split": "holdout",
+      "outcome": "regression",
+      "baseline_passed": true,
+      "candidate_passed": false,
+      "baseline_stop": "complete",
+      "candidate_stop": "iteration_limit",
+      "baseline_seconds": 199.24,
+      "candidate_seconds": 168.23,
+      "code_regression": true,
+      "verification_regression": true,
+      "scope_regression": false
+    },
+    {
+      "task": "event-replay",
+      "repeat": 1,
+      "split": "holdout",
+      "outcome": "regression",
+      "baseline_passed": true,
+      "candidate_passed": false,
+      "baseline_stop": "complete",
+      "candidate_stop": "complete",
+      "baseline_seconds": 249.43,
+      "candidate_seconds": 58.79,
+      "code_regression": true,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "command-arguments",
+      "repeat": 1,
+      "split": "holdout",
+      "outcome": "both_fail",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_stop": "complete",
+      "candidate_stop": "time_limit",
+      "baseline_seconds": 210.18,
+      "candidate_seconds": 300.23,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "batch-renames",
+      "repeat": 2,
+      "split": "holdout",
+      "outcome": "regression",
+      "baseline_passed": true,
+      "candidate_passed": false,
+      "baseline_stop": "complete",
+      "candidate_stop": "complete",
+      "baseline_seconds": 172.11,
+      "candidate_seconds": 53.51,
+      "code_regression": true,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "byte-windows",
+      "repeat": 2,
+      "split": "holdout",
+      "outcome": "both_fail",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_stop": "complete",
+      "candidate_stop": "complete",
+      "baseline_seconds": 147.97,
+      "candidate_seconds": 72.32,
+      "code_regression": false,
+      "verification_regression": true,
+      "scope_regression": false
+    },
+    {
+      "task": "event-replay",
+      "repeat": 2,
+      "split": "holdout",
+      "outcome": "regression",
+      "baseline_passed": true,
+      "candidate_passed": false,
+      "baseline_stop": "complete",
+      "candidate_stop": "complete",
+      "baseline_seconds": 233.32,
+      "candidate_seconds": 51.77,
+      "code_regression": true,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "command-arguments",
+      "repeat": 2,
+      "split": "holdout",
+      "outcome": "both_fail",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_stop": "complete",
+      "candidate_stop": "error",
+      "baseline_seconds": 181.71,
+      "candidate_seconds": 122.54,
+      "code_regression": false,
+      "verification_regression": true,
+      "scope_regression": false
+    }
+  ],
+  "shared_pass_latency": {
+    "pairs": 1,
+    "median_candidate_minus_baseline_seconds": -99.57,
+    "median_candidate_time_reduction_percent": 69.39
+  },
+  "summary": {
+    "baseline": {
+      "planned": 8,
+      "recorded": 8,
+      "passed": 5,
+      "correct": 5,
+      "verified": 8,
+      "completed": 8,
+      "stops": {
+        "complete": 8
+      },
+      "total_seconds": 1537.46,
+      "requests": 46,
+      "tokens": 200509,
+      "estimated_requests": 0
+    },
+    "candidate": {
+      "planned": 8,
+      "recorded": 8,
+      "passed": 1,
+      "correct": 2,
+      "verified": 5,
+      "completed": 5,
+      "stops": {
+        "complete": 5,
+        "iteration_limit": 1,
+        "time_limit": 1,
+        "error": 1
+      },
+      "total_seconds": 871.32,
+      "requests": 76,
+      "tokens": 397490,
+      "estimated_requests": 1
+    }
+  },
+  "verdict": "tradeoff",
+  "reason": "Candidate loses completion, correctness, scope, or verification in at least one pair.",
+  "limitations": [
+    "Cross-model results compare the recorded model, provider, and runtime settings together; they do not isolate the effect of model weights.",
+    "The verdict describes this recorded sample, not general model quality or statistical significance.",
+    "Freshness is an evaluation protocol, not something this report can infer. Inspected tasks become known regressions.",
+    "Elapsed times include client work and cleanup. Only pairs passing both profiles enter latency comparison; timeouts are never treated as successful speedups.",
+    "Order, caches, sampler state, and local load can affect results. Repeats are not independent new tasks.",
+    "Report hashes detect accidental changes, not fabricated evidence. No network calls or workspace preference changes occur."
+  ],
+  "report_sha256": "22aba3633d36d8ea3ebff37a0bc2a174747d134751adaa5f40277355c23a68c8",
+  "post_run_contract_audit": {
+    "path": "docs/phase12-contract-audit.json",
+    "sha256": "43e8ab353e7b04688830700e9805c19bfc7b901f2cd80c74d8ec69aeafd7b5bf",
+    "audited_passes": {
+      "ollama/qwen3.6:27b-mlx": 4,
+      "ollama/gemma4:26b": 1
+    },
+    "attempts_per_model": 8,
+    "note": "The frozen grader missed a forbidden deletion value field. One Qwen full pass becomes a failure. Original scores and the raw run are preserved; use audited scores for correctness claims."
+  }
+}

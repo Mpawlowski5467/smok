@@ -1,0 +1,47 @@
+# Conservative request defaults, not advertised model context windows or prices.
+default_model: ollama/qwen3.6:27b
+providers:
+  ollama:
+    local: true
+    adapter: openai_compat
+    base_url: http://127.0.0.1:11434/v1
+    base_url_env: OLLAMA_BASE_URL
+    api_key_env: OLLAMA_API_KEY
+    key_required: false
+    token_parameter: max_tokens
+  anthropic:
+    prompt_cache: true
+    count_tokens: true
+    adapter: anthropic
+    base_url: https://api.anthropic.com/v1
+    base_url_env: ANTHROPIC_BASE_URL
+    api_key_env: ANTHROPIC_API_KEY
+    key_required: true
+  openai:
+    adapter: openai_compat
+    base_url: https://api.openai.com/v1
+    base_url_env: OPENAI_BASE_URL
+    api_key_env: OPENAI_API_KEY
+    key_required: true
+    token_parameter: max_completion_tokens
+  gemini:
+    adapter: openai_compat
+    base_url: https://generativelanguage.googleapis.com/v1beta/openai
+    api_key_env: GEMINI_API_KEY
+    key_required: true
+    token_parameter: max_tokens
+  openrouter:
+    adapter: openai_compat
+    base_url: https://openrouter.ai/api/v1
+    api_key_env: OPENROUTER_API_KEY
+    key_required: true
+    token_parameter: max_tokens
+  local:
+    local: true
+    adapter: openai_compat
+    base_url: http://127.0.0.1:1234/v1
+    base_url_env: SMOK_BASE_URL
+    api_key_env: SMOK_API_KEY
+    key_required: false
+    token_parameter: max_tokens
+models: {}

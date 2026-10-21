@@ -1,0 +1,111 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-21T00:12:59.970730+00:00",
+  "smok_version": "0.11.1",
+  "purpose": "Fixed six-attempt validation after generic exact-input and final-check guidance; same Gemma profile and task fixtures.",
+  "start_condition": "First Gemma fixed run completed 5/6; final guidance passes 533 tests and Ruff checks.",
+  "followup_condition": "Record all six outcomes without retries or within-run changes. Report failures if any; do not promote defaults.",
+  "suite": "phase11",
+  "split": "holdout",
+  "freshness": "Known regression task, not fresh qualification.",
+  "source_fingerprint": "76015e352e742810603dd1ce92cbe575535a73e2b91719448ddcc6ac6f6a647b",
+  "source_snapshot": {
+    "path": "evals/results/phase11-final-repair-freeze-20261021T001259Z/source.tar.gz",
+    "sha256": "92f41e0a1373ba7ab097ed32716128fdd87a2d696e5cb38afe9ffda7bb8e28aa",
+    "files": 153
+  },
+  "tasks": {
+    "release-selection": "e7ef9b02cdd4a29312f42f85779ef06331025121fbce5ba6dd3e357be621248b",
+    "table-joins": "efe7a2c97c82970bd6a626821b0fbccdca5b41617eae0136c9954737aa9b20f5"
+  },
+  "variants": [
+    "focused-repair"
+  ],
+  "profile": {
+    "name": "ollama/gemma4:26b",
+    "model": "gemma4:26b",
+    "adapter": "openai_compat",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "OLLAMA_API_KEY",
+    "key_required": false,
+    "token_parameter": "max_tokens",
+    "max_output_tokens": 4096,
+    "timeout_seconds": 180,
+    "context_window": 32768,
+    "compact_at": 0.8,
+    "keep_recent": 4,
+    "chars_per_token": 3.0,
+    "repo_map_tokens": 1500,
+    "prompt_cache": false,
+    "count_tokens": false,
+    "local": true,
+    "vision": false,
+    "prompt_style": "lean",
+    "tool_set": "minimal",
+    "edit_format": "both",
+    "reasoning_effort": "none",
+    "prices": {}
+  },
+  "profile_file": {
+    "path": "evals/results/phase11-final-repair-freeze-20261021T001259Z/profile.yaml",
+    "sha256": "9d656fc2388d818c22f963780fdf5b8bf4b4331a808ccca708fda70d5d14b8a2"
+  },
+  "model_metadata": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "model": "gemma4:26b",
+    "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ],
+    "thinking": {
+      "values": [
+        false,
+        true
+      ],
+      "default": true
+    },
+    "details": {
+      "parent_model": "",
+      "format": "safetensors",
+      "family": "gemma4",
+      "families": null,
+      "parameter_size": "26.2B",
+      "quantization_level": "nvfp4",
+      "runner": "mlx"
+    },
+    "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95",
+    "system": "",
+    "generation_requests": 0
+  },
+  "repeats": 3,
+  "planned_cases": 6,
+  "limits": {
+    "task_timeout": 300,
+    "max_iterations": 16,
+    "max_requests": 96,
+    "budget_tokens": 1000000,
+    "allow_shell": true,
+    "allow_lsp": false,
+    "budget_usd": null
+  },
+  "defaults_changed": false,
+  "all_attempts_retained": true,
+  "within_run_changes_allowed": false,
+  "previous_report": "evals/results/20261021T000633.647369Z-phase11/report.json",
+  "previous_report_sha256": "50e3f07f35dc561d93f7f9805f057052ba628ad894d2cc3e91b70b2cd3ee0541",
+  "example_profile": {
+    "path": "examples/models/focused-repair-gemma.yaml",
+    "sha256": "9d656fc2388d818c22f963780fdf5b8bf4b4331a808ccca708fda70d5d14b8a2"
+  },
+  "protocol_guide_sha256": "d2db7a7592a329c7453834f4de62f51279d3893c78d6c93efabbf4a81c8c5968",
+  "preflight": {
+    "python_passed": 533,
+    "python_seconds": 24.19,
+    "ruff_check": "passed",
+    "ruff_format": "passed"
+  }
+}

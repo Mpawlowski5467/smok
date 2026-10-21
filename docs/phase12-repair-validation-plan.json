@@ -1,0 +1,235 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "created_utc": "2026-10-21T05:30:01.104510+00:00",
+  "smok_version": "0.12.1",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "batch-renames": "fde955041c5e852ef638f90969058bee16243b07df26dc0d896a31fb4a3bebe3",
+      "byte-windows": "9ca4b28a9a7e22a5be0f6879d02a5a0c23c70343ed43aff6e50d2996db60c829",
+      "event-replay": "54c534d597c4140e5041ad84234d64a3d28bd9eea659fee61eae6bb14f4da6b3",
+      "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+    },
+    "task_splits": {
+      "batch-renames": "holdout",
+      "byte-windows": "holdout",
+      "event-replay": "holdout",
+      "command-arguments": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/qwen3.8:27b",
+        "model": "qwen3.8:27b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "profile": {
+          "name": "ollama/qwen3.8:27b",
+          "model": "qwen3.8:27b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "066e30e1db9be33a43b11d0493c9b26135af02186655ccac0aa4aa2101649ad4"
+    ],
+    "plan": [
+      {
+        "task": "batch-renames",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "d5042ba376162e550ce7"
+      },
+      {
+        "task": "byte-windows",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "9d680aa1d5272075cc2e"
+      },
+      {
+        "task": "event-replay",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "a6faa5a303f45a9745cf"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "adbf0d586905aaadcc02"
+      },
+      {
+        "task": "batch-renames",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "6e28a3cb945e02b9c715"
+      },
+      {
+        "task": "byte-windows",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "3b455172e3ff7a18f649"
+      },
+      {
+        "task": "event-replay",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "d40fdf2dc3ae0728fe39"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/qwen3.8:27b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "36425c8c9a89dfa0d8e1"
+      }
+    ],
+    "limits": {
+      "max_iterations": 16,
+      "task_timeout": 300.0,
+      "max_requests": 128,
+      "budget_tokens": 1400000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "bdc18705ab0de7b72825c748575b04fdf7982bb0c48761146234d907fd93e795",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/qwen3.8:27b",
+    "--variant",
+    "focused-repair",
+    "--repeats",
+    "2",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "300",
+    "--max-iterations",
+    "16",
+    "--max-requests",
+    "128",
+    "--budget-tokens",
+    "1400000"
+  ],
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.8:27b": {
+        "digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "default": "medium"
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "top_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1\ntemperature                    1\ntop_k                          20"
+      }
+    }
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase12-repair-validation-freeze-20261021T053001.104510Z/source.tar.gz",
+    "sha256": "a5d474c2071ef0236d4f81646cb952aaa1ecde683f787caf59300d23c86e6f1f",
+    "files": 167
+  },
+  "protocol": {
+    "nonadaptive_within_run": true,
+    "all_attempts_retained": true,
+    "fresh_holdout": false,
+    "success": "Every planned attempt completes, passes independent correctness, scope and final-file public verification.",
+    "runtime_matches_original_phase12": false,
+    "per_attempt_limits_unchanged_from_phase12": true,
+    "original_results_preserved": true,
+    "selection": "Fixed two repetitions of all four known regressions after the Qwen3.8 parser pilot exposed duplicate-key ordering. No adaptation within this run; all eight outcomes retained. No model-default change."
+  },
+  "deviations": []
+}

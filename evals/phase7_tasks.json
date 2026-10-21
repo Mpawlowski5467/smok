@@ -1,0 +1,272 @@
+[
+  {
+    "id": "fix-addition",
+    "category": "utility",
+    "split": "tune",
+    "prompt": "Fix the bug in calculator.py: add(a, b) must return their sum. Preserve subtract. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "calculator.py": "def add(a, b):\n    return a - b\n\ndef subtract(a, b):\n    return a - b\n"
+    },
+    "allowed_changes": [
+      "calculator.py"
+    ],
+    "check_file": "checks/fix-addition.py"
+  },
+  {
+    "id": "normalize-slug",
+    "category": "utility",
+    "split": "tune",
+    "prompt": "Implement slugify in text_utils.py. Strip leading/trailing whitespace, lowercase, replace each run of non-ASCII-alphanumeric characters with a single hyphen, and strip leading/trailing hyphens. Return an empty string for empty or punctuation-only input. Use the standard library. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "text_utils.py": "def slugify(value: str) -> str:\n    return value\n"
+    },
+    "allowed_changes": [
+      "text_utils.py"
+    ],
+    "check_file": "checks/normalize-slug.py"
+  },
+  {
+    "id": "summarize-csv",
+    "category": "data",
+    "split": "tune",
+    "prompt": "Read sales.csv. Create summary.json with exactly two keys: total_amount (numeric sum of all amounts) and order_count (number of data rows). Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "sales.csv": "order_id,amount\nA,12.50\nB,7.25\nC,10.00\nD,-2.75\n"
+    },
+    "allowed_changes": [
+      "summary.json"
+    ],
+    "check_file": "checks/summarize-csv.py"
+  },
+  {
+    "id": "update-config",
+    "category": "data",
+    "split": "tune",
+    "prompt": "Update config.json: set server.port to 8080 and features.cache to true. Preserve all other settings. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "config.json": "{\n  \"server\": {\"host\": \"127.0.0.1\", \"port\": 3000},\n  \"features\": {\"cache\": false, \"telemetry\": false},\n  \"name\": \"fixture\"\n}\n"
+    },
+    "allowed_changes": [
+      "config.json"
+    ],
+    "check_file": "checks/update-config.py"
+  },
+  {
+    "id": "implement-chunks",
+    "category": "utility",
+    "split": "tune",
+    "prompt": "Create collections_utils.py with a function chunks(items, size) that returns a list of consecutive non-overlapping lists, each at most size items long. Empty input returns []. Raise ValueError for size <= 0. Do not mutate the input list. Use the standard library. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "README.md": "Small collection utilities. No external dependencies.\n"
+    },
+    "allowed_changes": [
+      "collections_utils.py"
+    ],
+    "check_file": "checks/implement-chunks.py"
+  },
+  {
+    "id": "clamp-range",
+    "category": "bugfix",
+    "split": "tune",
+    "prompt": "Fix clamp(value, lower, upper) in numbers.py. Return the nearest bound when outside the inclusive range and the unchanged value otherwise. Raise ValueError when lower > upper. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "numbers.py": "def clamp(value, lower, upper):\n    return min(lower, max(upper, value))\n"
+    },
+    "allowed_changes": [
+      "numbers.py"
+    ],
+    "check_file": "checks/clamp-range.py"
+  },
+  {
+    "id": "stable-unique",
+    "category": "utility",
+    "split": "tune",
+    "prompt": "Implement stable_unique(items) in sequence.py: return a list containing the first occurrence of each equal value in order. Support unhashable lists and dictionaries. Do not mutate input. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "sequence.py": "def stable_unique(items):\n    return sorted(set(items))\n"
+    },
+    "allowed_changes": [
+      "sequence.py"
+    ],
+    "check_file": "checks/stable-unique.py"
+  },
+  {
+    "id": "env-boolean",
+    "category": "bugfix",
+    "split": "tune",
+    "prompt": "Fix env_bool(name, default=False) in config.py. Read os.environ. Trim and ignore case. True values: 1,true,yes,on. False: 0,false,no,off. Missing variable returns default. Any other value, including empty, raises ValueError. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "config.py": "import os\n\ndef env_bool(name, default=False):\n    return bool(os.getenv(name, default))\n"
+    },
+    "allowed_changes": [
+      "config.py"
+    ],
+    "check_file": "checks/env-boolean.py"
+  },
+  {
+    "id": "deep-merge",
+    "category": "utility",
+    "split": "tune",
+    "prompt": "Implement deep_merge(left, right) in mappings.py. Recursively merge dictionaries. Right wins for any other type (including lists and None). Return a deep copy, sharing no nested mutable objects with either input. Inputs remain unchanged. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "mappings.py": "def deep_merge(left, right):\n    return {**left, **right}\n"
+    },
+    "allowed_changes": [
+      "mappings.py"
+    ],
+    "check_file": "checks/deep-merge.py"
+  },
+  {
+    "id": "merge-intervals",
+    "category": "algorithm",
+    "split": "tune",
+    "prompt": "Implement merge_intervals(intervals) in intervals.py. Input is a sequence of (start, end) pairs with start <= end. Sort and merge overlapping or touching closed intervals on the number line. Touching intervals share an endpoint; intervals separated by any positive gap must remain separate, including consecutive integer endpoints. Return a list of tuples; do not mutate the input. Empty returns []. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "intervals.py": "def merge_intervals(intervals):\n    return list(intervals)\n"
+    },
+    "allowed_changes": [
+      "intervals.py"
+    ],
+    "check_file": "checks/merge-intervals.py"
+  },
+  {
+    "id": "natural-sort",
+    "category": "utility",
+    "split": "tune",
+    "prompt": "Implement natural_sort(names) in names.py. Return a new list sorted by alternating case-insensitive text and integer digit runs. Equal keys retain input order (e.g. a02 and A2). Inputs are strings; do not mutate them. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "names.py": "def natural_sort(names):\n    return sorted(names)\n"
+    },
+    "allowed_changes": [
+      "names.py"
+    ],
+    "check_file": "checks/natural-sort.py"
+  },
+  {
+    "id": "retry-call",
+    "category": "control-flow",
+    "split": "tune",
+    "prompt": "Fix retry(call, attempts=3, exceptions=(OSError,)) in retrying.py. Call a zero-argument function up to attempts times. Return first success. Retry only matching exceptions, and re-raise the final original exception when exhausted. Other exceptions propagate immediately. attempts < 1 raises ValueError before calling; no sleeps. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "retrying.py": "def retry(call, attempts=3, exceptions=(OSError,)):\n    return call()\n"
+    },
+    "allowed_changes": [
+      "retrying.py"
+    ],
+    "check_file": "checks/retry-call.py"
+  },
+  {
+    "id": "sales-by-region",
+    "category": "data",
+    "split": "tune",
+    "prompt": "Implement summarize(source) in sales.py. source is CSV text with region,amount columns. Support quoted regions, blank lines, and signed decimal amounts. Return a dictionary of region to total formatted with exactly two decimal places. Preserve case; use decimal arithmetic. Empty input with header returns {}. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "sales.py": "def summarize(source):\n    return {}\n"
+    },
+    "allowed_changes": [
+      "sales.py"
+    ],
+    "check_file": "checks/sales-by-region.py"
+  },
+  {
+    "id": "rename-public-api",
+    "category": "multi-file",
+    "split": "tune",
+    "prompt": "Rename the pricing public function total to total_cents. Update the package export and checkout.py caller. Keep total as a backward-compatible alias accepting the same arguments. Keep integer-cents behavior and discount default zero. No unrelated API changes. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "pricing/__init__.py": "from .core import total\n",
+      "pricing/core.py": "def total(prices, discount=0):\n    return sum(prices)-discount\n",
+      "checkout.py": "from pricing import total\n\ndef checkout(prices):\n    return total(prices, discount=25)\n"
+    },
+    "allowed_changes": [
+      "pricing/__init__.py",
+      "pricing/core.py",
+      "checkout.py"
+    ],
+    "check_file": "checks/rename-public-api.py"
+  },
+  {
+    "id": "package-import",
+    "category": "multi-file",
+    "split": "tune",
+    "prompt": "Repair imports in toolkit so importing toolkit and calling toolkit.render(\"smok\") returns \"[SMOK]\". Use package-relative imports, do not alter sys.path. Preserve toolkit.text.shout behavior and support importing toolkit.formatting directly. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "toolkit/__init__.py": "from formatting import render\n",
+      "toolkit/formatting.py": "from text import shout\n\ndef render(value):\n    return \"[\" + shout(value) + \"]\"\n",
+      "toolkit/text.py": "def shout(value):\n    return value.upper()\n"
+    },
+    "allowed_changes": [
+      "toolkit/__init__.py",
+      "toolkit/formatting.py"
+    ],
+    "check_file": "checks/package-import.py"
+  },
+  {
+    "id": "query-update",
+    "category": "data",
+    "split": "holdout",
+    "prompt": "Implement set_query(url, key, values) in urls.py. Replace all query parameters named key with values (a sequence of strings), appended after other parameters. An empty values sequence removes key. Preserve other parameters including duplicates and blank values, and preserve scheme, host, path, fragment. URL-encode values correctly. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "urls.py": "def set_query(url, key, values):\n    return url\n"
+    },
+    "allowed_changes": [
+      "urls.py"
+    ],
+    "check_file": "checks/query-update.py"
+  },
+  {
+    "id": "utc-timestamps",
+    "category": "bugfix",
+    "split": "holdout",
+    "prompt": "Fix as_utc(text) in timestamps.py. Parse ISO-8601 datetime strings. Naive datetimes are assumed UTC; aware datetimes must be converted to UTC without changing the instant. Accept trailing Z. Return a timezone-aware datetime with timezone.utc. Invalid input raises ValueError. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "timestamps.py": "from datetime import datetime, timezone\n\ndef as_utc(text):\n    return datetime.fromisoformat(text).replace(tzinfo=timezone.utc)\n"
+    },
+    "allowed_changes": [
+      "timestamps.py"
+    ],
+    "check_file": "checks/utc-timestamps.py"
+  },
+  {
+    "id": "ttl-cache",
+    "category": "state",
+    "split": "holdout",
+    "prompt": "Implement TTLCache in cache.py. Constructor takes an injectable zero-argument clock. set(key,value,ttl) stores the value until clock()+ttl; ttl<=0 removes that key immediately. get(key,default=None) returns default for absent/expired values; expire at now >= deadline. Replacing a key resets its deadline. Handle falsy stored values. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "cache.py": "class TTLCache:\n    def __init__(self, clock):\n        self.clock = clock\n        self.values = {}\n\n    def set(self, key, value, ttl):\n        self.values[key] = value\n\n    def get(self, key, default=None):\n        return self.values.get(key, default)\n"
+    },
+    "allowed_changes": [
+      "cache.py"
+    ],
+    "check_file": "checks/ttl-cache.py"
+  },
+  {
+    "id": "dependency-order",
+    "category": "algorithm",
+    "split": "holdout",
+    "prompt": "Implement dependency_order(graph) in graph.py. graph maps string node names to lists of names they depend on. Return a topological order with each dependency before its node. Include nodes only mentioned as dependencies, ignore duplicate edges, and choose lexicographically smallest among all currently ready nodes. Cycles (including self-dependencies) raise ValueError. Do not mutate graph. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "graph.py": "def dependency_order(graph):\n    return sorted(graph)\n"
+    },
+    "allowed_changes": [
+      "graph.py"
+    ],
+    "check_file": "checks/dependency-order.py"
+  },
+  {
+    "id": "paginate-results",
+    "category": "multi-file",
+    "split": "holdout",
+    "prompt": "Fix paginate(items, page, per_page) in catalog/paging.py and integrate it into catalog.service.list_products(items,page=1,per_page=10). Return a dict with items (a new list for the 1-based page slice), total (input count), pages (ceiling count, zero for empty input). page<1 or per_page<1 raises ValueError. Beyond last page returns empty items. Preserve input. Preserve unrelated files and behavior. Use only the Python standard library. Shell access may be denied; report only checks you actually ran.",
+    "files": {
+      "catalog/__init__.py": "",
+      "catalog/paging.py": "def paginate(items, page, per_page):\n    return {\"items\":items[page:page+per_page],\"total\":len(items),\"pages\":len(items)//per_page}\n",
+      "catalog/service.py": "def list_products(items, page=1, per_page=10):\n    return {\"items\":items,\"total\":len(items),\"pages\":1}\n"
+    },
+    "allowed_changes": [
+      "catalog/paging.py",
+      "catalog/service.py"
+    ],
+    "check_file": "checks/paginate-results.py"
+  }
+]

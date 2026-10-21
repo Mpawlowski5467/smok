@@ -1,0 +1,158 @@
+[
+  {
+    "id": "config-precedence",
+    "split": "tune",
+    "category": "project-workflow",
+    "prompt": "Fix launch.config.load_config(env) and launch.cli.options(argv, env). Defaults are host localhost, port 8000 and debug False. APP_HOST/APP_PORT/APP_DEBUG override defaults; CLI --host, --port and --debug/--no-debug override the environment only when supplied. Environment boolean values, stripped and case-insensitive, accept true/1/yes or false/0/no; other values raise ValueError. Ports must be integers in 1..65535 or raise ValueError. Preserve the return dictionary keys host, port, debug. Read the project guidance and tests. Repair the allowed source files, then run the documented project test command on your final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "launch/config.py": "def load_config(env):\n    return {'host': env.get('APP_HOST', 'localhost'),\n            'port': env.get('APP_PORT', 8000),\n            'debug': bool(env.get('APP_DEBUG', False))}\n",
+      "launch/cli.py": "import argparse\nfrom .config import load_config\n\ndef options(argv, env):\n    parser = argparse.ArgumentParser()\n    parser.add_argument('--host', default='localhost')\n    parser.add_argument('--port', type=int, default=8000)\n    parser.add_argument('--debug', action=argparse.BooleanOptionalAction, default=False)\n    args = parser.parse_args(argv)\n    return {**load_config(env), **vars(args)}\n",
+      "launch/__init__.py": "",
+      "README.md": "# config-precedence\n\nRun the project tests with `python3 -B -m unittest discover -s tests -q`.\nUse only the Python standard library.\n",
+      "AGENTS.md": "Keep the public API and unrelated behavior. Change only the source files listed in the task. Tests and project guidance must remain unchanged.\n",
+      "launch/AGENTS.md": "Preserve input values: functions must not mutate caller-owned data. Keep imports within this package working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom launch.config import load_config\nfrom launch.cli import options\n\nclass ConfigTests(unittest.TestCase):\n    def test_environment_types(self):\n        self.assertEqual(load_config({'APP_PORT':'9000', 'APP_DEBUG':'false'}),\n                         {'host':'localhost', 'port':9000, 'debug':False})\n    def test_cli_precedence(self):\n        env = {'APP_HOST':'example', 'APP_PORT':'9000', 'APP_DEBUG':'yes'}\n        self.assertEqual(options(['--no-debug'], env),\n                         {'host':'example', 'port':9000, 'debug':False})\n\n    def test_cli_port_boundaries(self):\n        for port in (1, 65535):\n            with self.subTest(port=port):\n                env = {'APP_PORT': '9000'}\n                self.assertEqual(options(['--port', str(port)], env)['port'], port)\n                self.assertEqual(env, {'APP_PORT': '9000'})\n\n    def test_cli_rejects_out_of_range_ports(self):\n        for port in (-1, 0, 65536):\n            with self.subTest(port=port):\n                with self.assertRaises(ValueError):\n                    options(['--port', str(port)], {'APP_PORT': '9000'})\n"
+    },
+    "allowed_changes": [
+      "launch/config.py",
+      "launch/cli.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/config-precedence.py"
+  },
+  {
+    "id": "invoice-totals",
+    "split": "tune",
+    "category": "project-workflow",
+    "prompt": "Repair invoices.reader.read_rows(text) and invoices.summary.totals(text). read_rows returns a list of dictionaries with customer (trimmed string), amount (finite Decimal), and status (trimmed lowercase string) using real CSV quoting. Required headers are customer,amount,status; extra columns are ignored. Missing fields, empty customers, nonnumeric or nonfinite amounts raise ValueError, even for cancelled rows. totals ignores status cancelled, sums all other rows exactly by customer, and returns a dictionary inserted in sorted customer order with two-decimal strings rounded ROUND_HALF_UP only after summing. Retain zero totals and support empty input with valid headers. Read the project guidance and tests. Repair the allowed source files, then run the documented project test command on your final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "invoices/reader.py": "def read_rows(text):\n    lines = text.strip().splitlines()[1:]\n    return [dict(zip(('customer', 'amount', 'status'), line.split(','))) for line in lines]\n",
+      "invoices/summary.py": "from .reader import read_rows\n\ndef totals(text):\n    result = {}\n    for row in read_rows(text):\n        name = row['customer']\n        result[name] = result.get(name, 0.0) + float(row['amount'])\n    return {name: str(amount) for name, amount in result.items()}\n",
+      "invoices/__init__.py": "",
+      "README.md": "# invoice-totals\n\nRun the project tests with `python3 -B -m unittest discover -s tests -q`.\nUse only the Python standard library.\n",
+      "AGENTS.md": "Keep the public API and unrelated behavior. Change only the source files listed in the task. Tests and project guidance must remain unchanged.\n",
+      "invoices/AGENTS.md": "Preserve input values: functions must not mutate caller-owned data. Keep imports within this package working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom decimal import Decimal\nfrom invoices.reader import read_rows\nfrom invoices.summary import totals\n\nclass InvoiceTests(unittest.TestCase):\n    def test_quoted_names(self):\n        rows = read_rows('customer,amount,status\\n\"Acme, Inc\",1.25, PAID \\n')\n        self.assertEqual(rows, [{'customer':'Acme, Inc','amount':Decimal('1.25'),'status':'paid'}])\n    def test_exact_totals(self):\n        self.assertEqual(totals('customer,amount,status\\nb,0.105,paid\\nb,0.105,paid\\na,100,cancelled\\n'), {'b':'0.21'})\n"
+    },
+    "allowed_changes": [
+      "invoices/reader.py",
+      "invoices/summary.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/invoice-totals.py"
+  },
+  {
+    "id": "catalog-pages",
+    "split": "tune",
+    "category": "project-workflow",
+    "prompt": "Fix catalog.paging.page(items, number, size) and catalog.api.list_items(items, query). page sorts records by (name.casefold(), id), slices a 1-based page, and returns items,total,page,pages; total is pre-slice count, pages is ceiling(total/size), with zero pages for empty input. number must be an integer >=1 and size an integer 1..100; booleans are invalid and invalid values raise ValueError. Out-of-range pages return an empty items list but retain totals. list_items reads optional page/per_page strings from query, defaulting to 1/20, converts them to integers and delegates. Preserve inputs and their order. Read the project guidance and tests. Repair the allowed source files, then run the documented project test command on your final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "catalog/paging.py": "def page(items, number, size):\n    items.sort(key=lambda row: row['name'])\n    selected = items[number * size:(number + 1) * size]\n    return {'items':selected, 'total':len(selected), 'page':number, 'pages':len(items) // size}\n",
+      "catalog/api.py": "from .paging import page\n\ndef list_items(items, query):\n    return page(items, query.get('page', 1), query.get('per_page', 20))\n",
+      "catalog/__init__.py": "",
+      "README.md": "# catalog-pages\n\nRun the project tests with `python3 -B -m unittest discover -s tests -q`.\nUse only the Python standard library.\n",
+      "AGENTS.md": "Keep the public API and unrelated behavior. Change only the source files listed in the task. Tests and project guidance must remain unchanged.\n",
+      "catalog/AGENTS.md": "Preserve input values: functions must not mutate caller-owned data. Keep imports within this package working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom catalog.api import list_items\nfrom catalog.paging import page\n\nclass PageTests(unittest.TestCase):\n    def test_api_strings(self):\n        rows = [{'id':2,'name':'b'}, {'id':1,'name':'a'}, {'id':3,'name':'c'}]\n        self.assertEqual(list_items(rows, {'page':'2','per_page':'2'}),\n                         {'items':[{'id':3,'name':'c'}], 'total':3,'page':2,'pages':2})\n        self.assertEqual(rows[0]['id'],2)\n    def test_empty(self):\n        self.assertEqual(page([],1,10), {'items':[],'total':0,'page':1,'pages':0})\n"
+    },
+    "allowed_changes": [
+      "catalog/paging.py",
+      "catalog/api.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/catalog-pages.py"
+  },
+  {
+    "id": "redact-jsonl",
+    "split": "tune",
+    "category": "project-workflow",
+    "prompt": "Repair scrub.core.redact(value) and scrub.cli.run(source, out, err), where arguments are text streams. Recursively copy JSON dicts/lists, replacing values of exact case-insensitive keys password, token, api_key with [REDACTED]; preserve all other values and key spelling. Do not alter inputs. run processes nonblank input lines in order, writes one redacted JSON value and newline for each valid line, and returns 0 on success. On the first invalid JSON line it writes exactly line N: invalid JSON plus newline to err (physical 1-based line number), returns 2, and processes no later lines. Keep already written output; report no source content in errors. Read the project guidance and tests. Repair the allowed source files, then run the documented project test command on your final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "scrub/core.py": "def redact(value):\n    if isinstance(value, dict):\n        for key in value:\n            if 'token' in key:\n                value[key] = '[REDACTED]'\n    return value\n",
+      "scrub/cli.py": "import json\nfrom .core import redact\n\ndef run(source, out, err):\n    for line in source:\n        out.write(json.dumps(redact(json.loads(line))))\n    return 0\n",
+      "scrub/__init__.py": "",
+      "README.md": "# redact-jsonl\n\nRun the project tests with `python3 -B -m unittest discover -s tests -q`.\nUse only the Python standard library.\n",
+      "AGENTS.md": "Keep the public API and unrelated behavior. Change only the source files listed in the task. Tests and project guidance must remain unchanged.\n",
+      "scrub/AGENTS.md": "Preserve input values: functions must not mutate caller-owned data. Keep imports within this package working from the repository root.\n",
+      "tests/test_project.py": "import io\nimport json\nimport unittest\nfrom scrub.core import redact\nfrom scrub.cli import run\n\nclass RedactionTests(unittest.TestCase):\n    def test_nested_copy(self):\n        source = {'user':[{'Token':'secret'}], 'token_count':4}\n        self.assertEqual(redact(source), {'user':[{'Token':'[REDACTED]'}], 'token_count':4})\n        self.assertEqual(source['user'][0]['Token'], 'secret')\n    def test_lines(self):\n        out,err = io.StringIO(),io.StringIO()\n        self.assertEqual(run(io.StringIO('\\n{\"password\":\"s\"}\\nBAD\\n{}\\n'),out,err),2)\n        self.assertEqual(json.loads(out.getvalue()), {'password':'[REDACTED]'})\n        self.assertTrue(out.getvalue().endswith('\\n'))\n        self.assertEqual(err.getvalue(),'line 3: invalid JSON\\n')\n"
+    },
+    "allowed_changes": [
+      "scrub/core.py",
+      "scrub/cli.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/redact-jsonl.py"
+  },
+  {
+    "id": "manifest-paths",
+    "split": "holdout",
+    "category": "project-workflow",
+    "prompt": "Repair manifest.paths.normalize(value) and manifest.loader.load(text). normalize accepts only nonempty relative POSIX path strings, removes dot segments and redundant slashes, and rejects absolute paths, any .. segment, backslashes, NUL characters, nonstrings, or a path with no remaining name using ValueError. It does not access the filesystem. load reads one path per line, trims surrounding whitespace, skips blank lines and full-line # comments, normalizes entries, and removes duplicate normalized paths while preserving first occurrence order. Inline # is part of the filename. The first invalid entry raises ValueError with a message containing line N for its physical 1-based line number. Read the project guidance and tests. Repair the allowed source files, then run the documented project test command on your final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "manifest/paths.py": "def normalize(value):\n    return value.strip('/')\n",
+      "manifest/loader.py": "from .paths import normalize\n\ndef load(text):\n    return sorted(set(normalize(line) for line in text.splitlines() if line))\n",
+      "manifest/__init__.py": "",
+      "README.md": "# manifest-paths\n\nRun the project tests with `python3 -B -m unittest discover -s tests -q`.\nUse only the Python standard library.\n",
+      "AGENTS.md": "Keep the public API and unrelated behavior. Change only the source files listed in the task. Tests and project guidance must remain unchanged.\n",
+      "manifest/AGENTS.md": "Preserve input values: functions must not mutate caller-owned data. Keep imports within this package working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom manifest.paths import normalize\nfrom manifest.loader import load\n\nclass ManifestTests(unittest.TestCase):\n    def test_order(self):\n        self.assertEqual(load('# files\\n z//one \\n./a\\nz/./one\\n'), ['z/one','a'])\n    def test_parent(self):\n        with self.assertRaises(ValueError):\n            normalize('a/../b')\n        with self.assertRaisesRegex(ValueError,'line 3'):\n            load('a\\n\\n/absolute\\n')\n"
+    },
+    "allowed_changes": [
+      "manifest/paths.py",
+      "manifest/loader.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/manifest-paths.py"
+  },
+  {
+    "id": "retry-client",
+    "split": "holdout",
+    "category": "project-workflow",
+    "prompt": "Repair retrieval.policy.delay(headers, retry_index) and retrieval.client.fetch(send, sleep, attempts=3). send() returns an object with status (integer) and headers (dictionary); return the first response whose status is not 429 or 503, or the final response when attempts are exhausted. attempts counts total send calls and must be a positive int (bool invalid), else ValueError. Sleep only before another retry, using delay(response.headers, retry_index), where retry_index starts at 0. delay uses a nonnegative finite numeric Retry-After header (case-insensitive key, float seconds); otherwise fall back to 2**retry_index seconds. Propagate exceptions from send/sleep without retrying them. Never perform real networking or sleeping in tests; callers supply fakes. Read the project guidance and tests. Repair the allowed source files, then run the documented project test command on your final changes. Preserve all other files. Use only the Python standard library.",
+    "files": {
+      "retrieval/policy.py": "def delay(headers, retry_index):\n    return float(headers.get('Retry-After', 1))\n",
+      "retrieval/client.py": "from .policy import delay\n\ndef fetch(send, sleep, attempts=3):\n    for index in range(attempts + 1):\n        response = send()\n        if response.status == 200:\n            return response\n        sleep(delay(response.headers, index))\n    return response\n",
+      "retrieval/__init__.py": "",
+      "README.md": "# retry-client\n\nRun the project tests with `python3 -B -m unittest discover -s tests -q`.\nUse only the Python standard library.\n",
+      "AGENTS.md": "Keep the public API and unrelated behavior. Change only the source files listed in the task. Tests and project guidance must remain unchanged.\n",
+      "retrieval/AGENTS.md": "Preserve input values: functions must not mutate caller-owned data. Keep imports within this package working from the repository root.\n",
+      "tests/test_project.py": "import unittest\nfrom types import SimpleNamespace\nfrom retrieval.client import fetch\nfrom retrieval.policy import delay\n\nclass RetryTests(unittest.TestCase):\n    def test_retry(self):\n        final = SimpleNamespace(status=201,headers={})\n        replies = iter([SimpleNamespace(status=429,headers={'retry-after':'0.25'}),final])\n        sleeps=[]\n        self.assertIs(fetch(lambda: next(replies),sleeps.append),final)\n        self.assertEqual(sleeps,[0.25])\n    def test_exhausted(self):\n        response=SimpleNamespace(status=503,headers={})\n        sleeps=[]\n        self.assertIs(fetch(lambda: response,sleeps.append,attempts=2),response)\n        self.assertEqual(sleeps,[1])\n        self.assertEqual(delay({},2),4)\n"
+    },
+    "allowed_changes": [
+      "retrieval/policy.py",
+      "retrieval/client.py"
+    ],
+    "shell_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "verification_commands": [
+      "python3 -B -m unittest discover -s tests -q"
+    ],
+    "check_file": "checks/retry-client.py"
+  }
+]

@@ -1,0 +1,105 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-20T23:56:18.209167+00:00",
+  "smok_version": "0.11.1",
+  "purpose": "Bounded release-selection pilot on the already installed 35B coding model with thinking explicitly disabled; original 4096 output allowance, 300-second deadline, 16 calls.",
+  "start_condition": "Both earlier thinking pilots have completed.",
+  "followup_condition": "If the pilot fully passes, freeze a separate six-case validation (both tasks, three repeats) with unchanged source, task fixtures and profile. Retain pilot and all failures.",
+  "suite": "phase11",
+  "split": "holdout",
+  "freshness": "Known regression task, not fresh qualification.",
+  "source_fingerprint": "b9c0729051341a38a801ef5e29de67906d7dbc8a197af5a5287af50a302d833b",
+  "source_snapshot": {
+    "path": "evals/results/phase11-followup-final-freeze-20261020T232758Z/source.tar.gz",
+    "sha256": "89f59cb438f9f63c7dcd163f3bbb9e6d78020767f450948ad6c6bae5a70e037f",
+    "files": 152
+  },
+  "tasks": {
+    "release-selection": "e7ef9b02cdd4a29312f42f85779ef06331025121fbce5ba6dd3e357be621248b"
+  },
+  "variants": [
+    "focused-repair"
+  ],
+  "profile": {
+    "name": "ollama/qwen3.6:35b-a3b-coding",
+    "model": "qwen3.6:35b-a3b-coding",
+    "adapter": "openai_compat",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "OLLAMA_API_KEY",
+    "key_required": false,
+    "token_parameter": "max_tokens",
+    "max_output_tokens": 4096,
+    "timeout_seconds": 180,
+    "context_window": 32768,
+    "compact_at": 0.8,
+    "keep_recent": 4,
+    "chars_per_token": 3.0,
+    "repo_map_tokens": 1500,
+    "prompt_cache": false,
+    "count_tokens": false,
+    "local": true,
+    "vision": false,
+    "prompt_style": "lean",
+    "tool_set": "minimal",
+    "edit_format": "both",
+    "reasoning_effort": "none",
+    "prices": {}
+  },
+  "profile_file": {
+    "path": "evals/results/phase11-local-no-thinking-freeze-20261020T235618Z/profile.yaml",
+    "sha256": "bc788226f2009a28b2e02f27ded77aa8dbf5f403feb552d2a98c0f469ec6512b"
+  },
+  "model_metadata": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "model": "qwen3.6:35b-a3b-coding",
+    "digest": "dd970bac1aa398f6f1e7d032398fdcadeb99efda69aee73ca9386524bc7a676c",
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ],
+    "thinking": {
+      "values": [
+        false,
+        true
+      ],
+      "default": true
+    },
+    "details": {
+      "parent_model": "",
+      "format": "safetensors",
+      "family": "qwen3_5_moe",
+      "families": null,
+      "parameter_size": "36.0B",
+      "quantization_level": "nvfp4",
+      "runner": "mlx"
+    },
+    "parameters": "top_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1\ntemperature                    0.6\ntop_k                          20",
+    "system": "",
+    "generation_requests": 0
+  },
+  "repeats": 1,
+  "planned_cases": 1,
+  "limits": {
+    "task_timeout": 300,
+    "max_iterations": 16,
+    "max_requests": 96,
+    "budget_tokens": 1000000,
+    "allow_shell": true,
+    "allow_lsp": false,
+    "budget_usd": null
+  },
+  "defaults_changed": false,
+  "all_attempts_retained": true,
+  "within_run_changes_allowed": false,
+  "previous_report": "evals/results/20261020T235337.790462Z-phase11/report.json",
+  "previous_report_sha256": "bee43b0c48c712292ad35c4487ce586df675a62e53ebfb379977742d1a61b874",
+  "changed_controls_from_first_35b_pilot": {
+    "reasoning_effort": {
+      "previous": null,
+      "candidate": "none"
+    }
+  }
+}

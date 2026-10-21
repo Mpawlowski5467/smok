@@ -1,0 +1,21 @@
+# Explicit selection: no-thinking; evidence verdict: candidate_supported
+# Run fingerprint: 2b5d60a93c4bbffb036e6ee7ed46f74f815993d808723abe7fab4a5d33e04a5c
+# Provider connection and default model are unchanged.
+models:
+  ollama/qwen3.6:27b-mlx:
+    token_parameter: max_tokens
+    max_output_tokens: 4096
+    timeout_seconds: 180
+    context_window: 32768
+    compact_at: 0.8
+    keep_recent: 4
+    chars_per_token: 3.0
+    repo_map_tokens: 1500
+    prompt_cache: false
+    count_tokens: false
+    local: true
+    vision: false
+    prompt_style: full
+    tool_set: full
+    edit_format: both
+    reasoning_effort: none

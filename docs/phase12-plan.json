@@ -1,0 +1,381 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-21T03:32:27.878348+00:00",
+  "smok_version": "0.12.0",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "batch-renames": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "byte-windows": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "event-replay": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "command-arguments": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f"
+    },
+    "task_splits": {
+      "batch-renames": "holdout",
+      "byte-windows": "holdout",
+      "event-replay": "holdout",
+      "command-arguments": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "profile": {
+          "name": "ollama/qwen3.6:27b-mlx",
+          "model": "qwen3.6:27b-mlx",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "prices": {}
+        }
+      },
+      {
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "profile": {
+          "name": "ollama/gemma4:26b",
+          "model": "gemma4:26b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "25e8439919287721cbdec7361fedbd1486943a22a1a3763d3de8c68360faa198",
+      "fb7b137f04a01c308f52fa4a0ed22e83de9af80145b5c097bb8c8dcc9504c0ce"
+    ],
+    "plan": [
+      {
+        "task": "batch-renames",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "c36cc27702209aaa0728"
+      },
+      {
+        "task": "batch-renames",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "ca944bab0b14a5e26651"
+      },
+      {
+        "task": "byte-windows",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "54987b88c914ef88c2b2"
+      },
+      {
+        "task": "byte-windows",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "6cf6568d574e4b48fb30"
+      },
+      {
+        "task": "event-replay",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "a1c7b9817581e43e7a07"
+      },
+      {
+        "task": "event-replay",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "cd72995b5491af55267f"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "2491cabdda62c825de12"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "233042c7fece06f2601c"
+      },
+      {
+        "task": "batch-renames",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "dbd505951933732d7641"
+      },
+      {
+        "task": "batch-renames",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "d90ce7c0b247a704e132"
+      },
+      {
+        "task": "byte-windows",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "7db8c7250e846b5a7234"
+      },
+      {
+        "task": "byte-windows",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "707267885e8f94a6dbea"
+      },
+      {
+        "task": "event-replay",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "e3059ebddbc918b331e3"
+      },
+      {
+        "task": "event-replay",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "7e17c3cb33b193360391"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "a5103da2bb5e57fdee8d"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "3081c470852128c7553a"
+      }
+    ],
+    "limits": {
+      "max_iterations": 16,
+      "task_timeout": 300.0,
+      "max_requests": 256,
+      "budget_tokens": 2000000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "bcb4501238f905660e48a15fc97a63f1f96aaf0c510d1516890f329a99b38644",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/qwen3.6:27b-mlx",
+    "--model",
+    "ollama/gemma4:26b",
+    "--variant",
+    "focused-repair",
+    "--repeats",
+    "2",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "300",
+    "--max-iterations",
+    "16",
+    "--max-requests",
+    "256",
+    "--budget-tokens",
+    "2000000"
+  ],
+  "source_snapshot": {
+    "path": "evals/results/phase12-freeze-20261021T033227Z/source.tar.gz",
+    "sha256": "d4fba7dc5d92cfe951ffb6be9b2356988aec7251b0a6692edbedae7d56c1594a",
+    "files": 166
+  },
+  "protocol_guide_sha256": "7098fdc826f9a7ee776a5c4c477ab06c9f25a47e2a953d7ce2d3f4efa1729a5b",
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.6:27b-mlx": {
+        "digest": "d49fd9e0da45e486918c87318b866e5924e37ad5841db58763900297d9616ee7",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4"
+        },
+        "parameters": "temperature                    1\ntop_k                          20\ntop_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1"
+      },
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "selection": {
+    "baseline": {
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair"
+    },
+    "candidate": {
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair"
+    }
+  },
+  "selection_rules": {
+    "minimum_distinct_tasks": 3,
+    "minimum_repeats_per_task": 2,
+    "any_paired_pass_code_verification_or_scope_regression": "tradeoff",
+    "minimum_shared_passing_latency_pairs": 3,
+    "minimum_median_time_reduction_percent": 10,
+    "defaults_changed": false
+  },
+  "freshness": "Four original projects unused in prior model runs; after this run they become known regression cases.",
+  "nonadaptive": true,
+  "deviations": []
+}

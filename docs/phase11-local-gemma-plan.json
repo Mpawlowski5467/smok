@@ -1,0 +1,99 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-21T00:05:34.455893+00:00",
+  "smok_version": "0.11.1",
+  "purpose": "Bounded release-selection pilot on installed Gemma4 with thinking disabled; original 4096 output allowance, 300-second deadline, 16 calls.",
+  "start_condition": "All prior pilots have completed.",
+  "followup_condition": "If the pilot fully passes, freeze a separate six-case validation (both tasks, three repeats) with unchanged source, task fixtures and profile. Retain pilot and all failures.",
+  "suite": "phase11",
+  "split": "holdout",
+  "freshness": "Known regression task, not fresh qualification.",
+  "source_fingerprint": "b9c0729051341a38a801ef5e29de67906d7dbc8a197af5a5287af50a302d833b",
+  "source_snapshot": {
+    "path": "evals/results/phase11-followup-final-freeze-20261020T232758Z/source.tar.gz",
+    "sha256": "89f59cb438f9f63c7dcd163f3bbb9e6d78020767f450948ad6c6bae5a70e037f",
+    "files": 152
+  },
+  "tasks": {
+    "release-selection": "e7ef9b02cdd4a29312f42f85779ef06331025121fbce5ba6dd3e357be621248b"
+  },
+  "variants": [
+    "focused-repair"
+  ],
+  "profile": {
+    "name": "ollama/gemma4:26b",
+    "model": "gemma4:26b",
+    "adapter": "openai_compat",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "OLLAMA_API_KEY",
+    "key_required": false,
+    "token_parameter": "max_tokens",
+    "max_output_tokens": 4096,
+    "timeout_seconds": 180,
+    "context_window": 32768,
+    "compact_at": 0.8,
+    "keep_recent": 4,
+    "chars_per_token": 3.0,
+    "repo_map_tokens": 1500,
+    "prompt_cache": false,
+    "count_tokens": false,
+    "local": true,
+    "vision": false,
+    "prompt_style": "lean",
+    "tool_set": "minimal",
+    "edit_format": "both",
+    "reasoning_effort": "none",
+    "prices": {}
+  },
+  "profile_file": {
+    "path": "evals/results/phase11-local-gemma-freeze-20261021T000534Z/profile.yaml",
+    "sha256": "9d656fc2388d818c22f963780fdf5b8bf4b4331a808ccca708fda70d5d14b8a2"
+  },
+  "model_metadata": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "model": "gemma4:26b",
+    "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ],
+    "thinking": {
+      "values": [
+        false,
+        true
+      ],
+      "default": true
+    },
+    "details": {
+      "parent_model": "",
+      "format": "safetensors",
+      "family": "gemma4",
+      "families": null,
+      "parameter_size": "26.2B",
+      "quantization_level": "nvfp4",
+      "runner": "mlx"
+    },
+    "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95",
+    "system": "",
+    "generation_requests": 0
+  },
+  "repeats": 1,
+  "planned_cases": 1,
+  "limits": {
+    "task_timeout": 300,
+    "max_iterations": 16,
+    "max_requests": 96,
+    "budget_tokens": 1000000,
+    "allow_shell": true,
+    "allow_lsp": false,
+    "budget_usd": null
+  },
+  "defaults_changed": false,
+  "all_attempts_retained": true,
+  "within_run_changes_allowed": false,
+  "previous_report": "evals/results/20261021T000027.103010Z-phase11/report.json",
+  "previous_report_sha256": "25d3fe9ffbb6678a68c812d97664ace1d2894ed290213f768df05be0c6d9576b"
+}

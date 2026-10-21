@@ -1,0 +1,20 @@
+# Opt-in profile for small repairs; see docs/repair-reliability.md.
+# No default model or provider connection settings are changed.
+models:
+  ollama/qwen3.6:27b-mlx:
+    token_parameter: max_tokens
+    max_output_tokens: 4096
+    timeout_seconds: 180
+    context_window: 32768
+    compact_at: 0.8
+    keep_recent: 4
+    chars_per_token: 3.0
+    repo_map_tokens: 1500
+    prompt_cache: false
+    count_tokens: false
+    local: true
+    vision: false
+    prompt_style: lean
+    tool_set: minimal
+    edit_format: both
+    reasoning_effort: none

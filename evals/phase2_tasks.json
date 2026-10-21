@@ -1,0 +1,37 @@
+[
+  {
+    "id": "search-edit-verify",
+    "prompt": "Find the total_cents function using glob and grep. Read applicable AGENTS.md and the source. Fix the discount bug using edit_file: discount_cents must reduce the total without changing the API or comments. Run python3 verify.py and review your changes.",
+    "files": {
+      "AGENTS.md": "Preserve existing APIs and comments. Use exact-match edits. No new dependencies. Run python3 verify.py after a fix.\n",
+      "src/AGENTS.md": "Prices and discounts are integer cents. Keep the default discount at zero.\n",
+      "src/totals.py": "# All amounts are integer cents.\ndef total_cents(prices, discount_cents=0):\n    return sum(prices) + discount_cents\n",
+      "verify.py": "from src.totals import total_cents\nassert total_cents([100, 250], 50) == 300\nassert total_cents([100, 250]) == 350\nassert total_cents([]) == 0\nprint(\"3 checks passed\")\n"
+    },
+    "check": "import runpy\nfrom pathlib import Path\nrunpy.run_path(\"verify.py\")\nassert Path(\"src/totals.py\").read_text().startswith(\"# All amounts are integer cents.\")",
+    "expected_tools": {
+      "glob": 1,
+      "grep": 1,
+      "read_file": 1,
+      "edit_file": 1,
+      "run_shell": 1
+    },
+    "verify_undo": true
+  },
+  {
+    "id": "lsp-repair",
+    "prompt": "Use lsp_diagnostics on app.py to identify its undefined name. Read the file, then use edit_file to fix it so greet returns the supplied name. Use lsp_definition and lsp_references to inspect greet. Query lsp_diagnostics again after the edit to verify the problem is gone. Summarize only the checks you actually performed.",
+    "files": {
+      "app.py": "def greet(name):\n    return missing_name\n\nmessage = greet(\"Smok\")\n"
+    },
+    "check": "import runpy\nnamespace = runpy.run_path(\"app.py\")\nassert namespace[\"message\"] == \"Smok\"\nassert namespace[\"greet\"](\"dragon\") == \"dragon\"",
+    "expected_tools": {
+      "lsp_diagnostics": 2,
+      "lsp_definition": 1,
+      "lsp_references": 1,
+      "edit_file": 1,
+      "read_file": 1
+    },
+    "verify_undo": true
+  }
+]

@@ -1,0 +1,197 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "created_utc": "2026-10-21T06:07:21.945277+00:00",
+  "smok_version": "0.12.1",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "byte-windows": "f4f3e91a9a097889ad41967d209fc6af4c8ef8742cc96f36889618d7d2e9bbd6",
+      "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+    },
+    "task_splits": {
+      "byte-windows": "holdout",
+      "command-arguments": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "whole_file",
+        "reasoning_effort": "none",
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/gemma4:26b",
+        "variant": "whole-file",
+        "profile": {
+          "name": "ollama/gemma4:26b",
+          "model": "gemma4:26b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "whole_file",
+          "reasoning_effort": "none",
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "57dbbc928b39d2775e26c1dff4958b9b562d451ae3c14a0c0aadfe4b65375c0e"
+    ],
+    "plan": [
+      {
+        "task": "byte-windows",
+        "model": "ollama/gemma4:26b",
+        "variant": "whole-file",
+        "repeat": 1,
+        "id": "013c42c3a72b98fcbb39"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "whole-file",
+        "repeat": 1,
+        "id": "2fbe6bceb1ef7c65f987"
+      }
+    ],
+    "limits": {
+      "max_iterations": 20,
+      "task_timeout": 300.0,
+      "max_requests": 40,
+      "budget_tokens": 800000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "110205e5de0f9ee94a5dbe97bc215695163e7def7febf908af030a8b1cf4ca99",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/gemma4:26b",
+    "--variant",
+    "whole-file",
+    "--repeats",
+    "1",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "300",
+    "--max-iterations",
+    "20",
+    "--max-requests",
+    "40",
+    "--budget-tokens",
+    "800000",
+    "--config",
+    "examples/models/focused-repair-gemma.yaml",
+    "--task",
+    "byte-windows",
+    "--task",
+    "command-arguments"
+  ],
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase12-whole-file-pilot-freeze-20261021T060721.945277Z/source.tar.gz",
+    "sha256": "f21616dbfbb569a739304453be2652e6c1c0468a120394418b2fd210fb45e305",
+    "files": 167
+  },
+  "protocol": {
+    "nonadaptive_within_run": true,
+    "all_attempts_retained": true,
+    "fresh_holdout": false,
+    "success": "Every planned attempt completes, passes independent correctness, scope and final-file public verification.",
+    "runtime_matches_original_phase12": false,
+    "per_attempt_limits_unchanged_from_phase12": false,
+    "original_results_preserved": true,
+    "selection": "Bounded two-project pilot using the existing Gemma lean/minimal/no-thinking profile with whole-file writes. The 300-second turn and 4096-output limits return to their original values; the call cap is explicitly 20 instead of 16 to leave room for final verification after repairs. Byte public tests now distinguish an empty header from None. No contract, independent grader, default model, sampler, or permission change; keep all earlier failures."
+  },
+  "deviations": [],
+  "config_snapshot": {
+    "path": "evals/results/phase12-whole-file-pilot-freeze-20261021T060721.945277Z/profile.yaml",
+    "sha256": "9d656fc2388d818c22f963780fdf5b8bf4b4331a808ccca708fda70d5d14b8a2"
+  }
+}

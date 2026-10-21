@@ -1,0 +1,12 @@
+[package]
+name = "smok-desktop"
+version = "0.12.1"
+description = "Smok local coding companion"
+edition = "2021"
+[build-dependencies]
+tauri-build = { version = "2", features = [] }
+[dependencies]
+tauri = { version = "2", features = ["tray-icon", "image-png"] }
+serde_json = "1"
+rfd = "0.17"
+libc = "0.2"

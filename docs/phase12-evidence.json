@@ -1,0 +1,3723 @@
+{
+  "schema_version": 1,
+  "audited_utc": "2026-10-21T04:13:05.067000+00:00",
+  "report": "evals/results/20261021T033242.646266Z-phase12/report.json",
+  "report_sha256": "22aba3633d36d8ea3ebff37a0bc2a174747d134751adaa5f40277355c23a68c8",
+  "plan": "docs/phase12-plan.json",
+  "plan_sha256": "f50356c7aaa0035c2cc3f8192e49587f778373bdff16fa9c8bc5861133c4c102",
+  "source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+  "source_snapshot": {
+    "path": "evals/results/phase12-freeze-20261021T033227Z/source.tar.gz",
+    "sha256": "d4fba7dc5d92cfe951ffb6be9b2356988aec7251b0a6692edbedae7d56c1594a",
+    "files": 166
+  },
+  "run_fingerprint": "bcb4501238f905660e48a15fc97a63f1f96aaf0c510d1516890f329a99b38644",
+  "status": "complete",
+  "planned_cases": 16,
+  "finished_cases": 16,
+  "budget": {
+    "usage": {
+      "requests": 122,
+      "input_tokens": 561104,
+      "output_tokens": 36895,
+      "estimated_requests": 1,
+      "cache_read_input_tokens": 61083,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/qwen3.6:27b-mlx": {
+          "requests": 46,
+          "input_tokens": 189028,
+          "output_tokens": 11481
+        },
+        "ollama/gemma4:26b": {
+          "requests": 76,
+          "input_tokens": 372076,
+          "output_tokens": 25414
+        }
+      }
+    },
+    "requests": 122,
+    "turns": 16
+  },
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.6:27b-mlx": {
+        "digest": "d49fd9e0da45e486918c87318b866e5924e37ad5841db58763900297d9616ee7",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4"
+        },
+        "parameters": "temperature                    1\ntop_k                          20\ntop_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1"
+      },
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "metadata_matches_before": true,
+  "deviations": [],
+  "attempts": [
+    {
+      "task": "batch-renames",
+      "task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "case_id": "c36cc27702209aaa0728",
+      "profile": {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": true,
+      "check_passed": true,
+      "check_output": "[independent check completed]\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "bdeacb6559be65285edf478d2beeb9363825187c6d71ef638ceec8a57b4456b5",
+            "after": "bdeacb6559be65285edf478d2beeb9363825187c6d71ef638ceec8a57b4456b5",
+            "ok": true,
+            "finished_seconds": 112.55876383406576,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "bdeacb6559be65285edf478d2beeb9363825187c6d71ef638ceec8a57b4456b5"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 143.5,
+      "iterations": 5,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 17230,
+        "output_tokens": 958,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 3334,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 5,
+            "input_tokens": 17230,
+            "output_tokens": 958
+          }
+        }
+      },
+      "tools": {
+        "read_file": 4,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 143.4207,
+        "model_seconds": 142.5031,
+        "tool_seconds": 0.1079,
+        "approval_seconds": 0.0006,
+        "other_work_seconds": 0.8097,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.12166325002908707,
+            "seconds": 24.5339,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 24.670079124975018,
+            "seconds": 43.1983,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 67.99946974997874,
+            "seconds": 23.9542,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 92.12194887502119,
+            "seconds": 20.3457,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 112.67821849999018,
+            "seconds": 30.471,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_an17bl8t",
+            "name": "read_file",
+            "started_seconds": 24.656171959009953,
+            "seconds": 0.0068,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_9wusmrxq",
+            "name": "read_file",
+            "started_seconds": 24.66301908402238,
+            "seconds": 0.0008,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_atkd843k",
+            "name": "read_file",
+            "started_seconds": 24.66387745901011,
+            "seconds": 0.0014,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_74qr7ajk",
+            "name": "read_file",
+            "started_seconds": 24.665388124994934,
+            "seconds": 0.0004,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ho1ehh7p",
+            "name": "write_file",
+            "started_seconds": 67.86913279199507,
+            "seconds": 0.0043,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_4sjg5hur",
+            "name": "write_file",
+            "started_seconds": 91.95426012505777,
+            "seconds": 0.0036,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_naxzmx2g",
+            "name": "run_shell",
+            "started_seconds": 112.46814795897808,
+            "seconds": 0.0906,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0162,
+        "grading_and_cleanup_seconds": 0.0619
+      },
+      "evidence": "attempts/c36cc27702209aaa0728-69657731",
+      "evidence_sha256": {
+        "events.jsonl": "e400a030db1e6377cde9e54c23561f00272538ed3a0c67ae0b939d9187335613",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/renames/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/renames/operations.py": "df8ca4811b1179d2100b3c56737e09bca5513f493106ba7fa5b1f427f9883bbc",
+        "files/renames/validation.py": "aaf2946a941f8c4edcc8406f435ca1099969f21d0ab5093707d0d0239fc5a786",
+        "files/tests/test_project.py": "61aa5c80324ec348f2ef7b4c1e1e51801c836eb154ce10820da8d1882096b8bb",
+        "result.json": "a3d0648c2c5840b944ab143c7c8c48703f2f3182f95c4df42f8325472421330c",
+        "session.jsonl": "35531fb04c90737e9db67af15725dfd6d4e13899932bd27896d5d241bc8575da"
+      }
+    },
+    {
+      "task": "batch-renames",
+      "task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "case_id": "ca944bab0b14a5e26651",
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": true,
+      "check_passed": true,
+      "check_output": "[independent check completed]\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "054efe6347b49e3f0cb95b16688acb3782ebb69c5e7cd87fb59dc6800d300d73",
+            "after": "054efe6347b49e3f0cb95b16688acb3782ebb69c5e7cd87fb59dc6800d300d73",
+            "ok": true,
+            "finished_seconds": 35.22002620797139,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "054efe6347b49e3f0cb95b16688acb3782ebb69c5e7cd87fb59dc6800d300d73"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 43.93,
+      "iterations": 8,
+      "usage": {
+        "requests": 8,
+        "input_tokens": 24073,
+        "output_tokens": 906,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 2459,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 8,
+            "input_tokens": 24073,
+            "output_tokens": 906
+          }
+        }
+      },
+      "tools": {
+        "read_file": 4,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 43.8359,
+        "model_seconds": 42.9769,
+        "tool_seconds": 0.1152,
+        "approval_seconds": 0.001,
+        "other_work_seconds": 0.7438,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.13401220797095448,
+            "seconds": 4.444,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 4.58214312500786,
+            "seconds": 1.8482,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 6.433331958018243,
+            "seconds": 1.6243,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 8.062610832974315,
+            "seconds": 11.0641,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 19.25376450002659,
+            "seconds": 3.8431,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 23.101414666045457,
+            "seconds": 7.1673,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 30.393321207957342,
+            "seconds": 4.7235,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 8,
+            "purpose": "task",
+            "started_seconds": 35.332352333003655,
+            "seconds": 8.2624,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_fey3ohka",
+            "name": "read_file",
+            "started_seconds": 4.5783433329779655,
+            "seconds": 0.0018,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_w79d15om",
+            "name": "read_file",
+            "started_seconds": 6.430837958003394,
+            "seconds": 0.0011,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ig4g2xll",
+            "name": "read_file",
+            "started_seconds": 8.05811658303719,
+            "seconds": 0.0021,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_354ryvb9",
+            "name": "write_file",
+            "started_seconds": 19.127230540965684,
+            "seconds": 0.0041,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_nbub39b7",
+            "name": "read_file",
+            "started_seconds": 23.097366707981564,
+            "seconds": 0.0016,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ar1egcsb",
+            "name": "write_file",
+            "started_seconds": 30.269222958013415,
+            "seconds": 0.0045,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_7esr6vu5",
+            "name": "run_shell",
+            "started_seconds": 35.11999512498733,
+            "seconds": 0.1,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0187,
+        "grading_and_cleanup_seconds": 0.074
+      },
+      "evidence": "attempts/ca944bab0b14a5e26651-fba3aabf",
+      "evidence_sha256": {
+        "events.jsonl": "98048edacad956ad0504a060cd1274adbb19054cf03b1b6480e9e248d45cb568",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/renames/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/renames/operations.py": "ba63f4281cf7334735b73cc0c220db6174326ee6baa11329e8af60421750c865",
+        "files/renames/validation.py": "d8cb673a364f6b0c1c733157acab8cce0e567ead852e15df9e558f145414698f",
+        "files/tests/test_project.py": "61aa5c80324ec348f2ef7b4c1e1e51801c836eb154ce10820da8d1882096b8bb",
+        "result.json": "71f74ef1efb4229a444fbee455d79276fa0919d5d8ad3974cc018d2f8191be3a",
+        "session.jsonl": "a27c6908a13c8125589e659016e89e1115d764634df54eff551c8fbb71f75ee0"
+      }
+    },
+    {
+      "task": "byte-windows",
+      "task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "case_id": "54987b88c914ef88c2b2",
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 30, in <module>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-byte-windows-4723xafs/windows/ranges.py\", line 25, in parse_range\n    raise ValueError(\"Invalid range\")\nValueError: Invalid range\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "b06dd91fd46d13a314f8859038078d0f636fd3dd89309bbca2ade51f87f4b62c",
+            "after": "b06dd91fd46d13a314f8859038078d0f636fd3dd89309bbca2ade51f87f4b62c",
+            "ok": false,
+            "finished_seconds": 29.56766029202845,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "7e84ea0661b8cb1469a912393b041de47a594df63700dd06e8abf5086323d089",
+            "after": "7e84ea0661b8cb1469a912393b041de47a594df63700dd06e8abf5086323d089",
+            "ok": false,
+            "finished_seconds": 76.11631479207426,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "0ec01933ada340d93a5749f9484a386e71de0bbb8e6fe43d68082459cbb4fda4",
+            "after": "0ec01933ada340d93a5749f9484a386e71de0bbb8e6fe43d68082459cbb4fda4",
+            "ok": false,
+            "finished_seconds": 144.95320762507617,
+            "matches_final_files": true
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "0ec01933ada340d93a5749f9484a386e71de0bbb8e6fe43d68082459cbb4fda4",
+            "after": "0ec01933ada340d93a5749f9484a386e71de0bbb8e6fe43d68082459cbb4fda4",
+            "ok": false,
+            "finished_seconds": 156.46595125005115,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "0ec01933ada340d93a5749f9484a386e71de0bbb8e6fe43d68082459cbb4fda4"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "iteration_limit",
+      "seconds": 168.23,
+      "iterations": 16,
+      "usage": {
+        "requests": 16,
+        "input_tokens": 92870,
+        "output_tokens": 3734,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 6038,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 16,
+            "input_tokens": 92870,
+            "output_tokens": 3734
+          }
+        }
+      },
+      "tools": {
+        "read_file": 6,
+        "write_file": 3,
+        "edit_file": 3
+      },
+      "tool_errors": 4,
+      "denials": 0,
+      "self_checks": 6,
+      "timing": {
+        "work_seconds": 168.1343,
+        "model_seconds": 166.3372,
+        "tool_seconds": 0.3523,
+        "approval_seconds": 0.0017,
+        "other_work_seconds": 1.4448,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.1440366670722142,
+            "seconds": 1.1971,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 1.34468687500339,
+            "seconds": 1.7927,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 3.140961791970767,
+            "seconds": 1.5812,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 4.726583625073545,
+            "seconds": 8.6494,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 13.491678292048164,
+            "seconds": 3.3661,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 16.864493625005707,
+            "seconds": 8.0384,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 25.028592042042874,
+            "seconds": 4.4535,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 8,
+            "purpose": "task",
+            "started_seconds": 29.686457208008505,
+            "seconds": 4.4781,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 9,
+            "purpose": "task",
+            "started_seconds": 34.171163083054125,
+            "seconds": 21.3386,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 10,
+            "purpose": "task",
+            "started_seconds": 55.64003895805217,
+            "seconds": 12.6357,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 11,
+            "purpose": "task",
+            "started_seconds": 68.40701291698497,
+            "seconds": 7.6295,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 12,
+            "purpose": "task",
+            "started_seconds": 76.22665162500925,
+            "seconds": 32.6167,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 13,
+            "purpose": "task",
+            "started_seconds": 108.98807862505782,
+            "seconds": 16.1589,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 14,
+            "purpose": "task",
+            "started_seconds": 125.27196020807605,
+            "seconds": 19.5895,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 15,
+            "purpose": "task",
+            "started_seconds": 145.0777685829671,
+            "seconds": 11.3246,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 16,
+            "purpose": "task",
+            "started_seconds": 156.57764337502886,
+            "seconds": 11.4872,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_i5xxxneu",
+            "name": "read_file",
+            "started_seconds": 1.3414942079689354,
+            "seconds": 0.0015,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_56m2ek6a",
+            "name": "read_file",
+            "started_seconds": 3.137941332999617,
+            "seconds": 0.0013,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_vl6k8cua",
+            "name": "read_file",
+            "started_seconds": 4.722621749970131,
+            "seconds": 0.0013,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ddrfuyhf",
+            "name": "write_file",
+            "started_seconds": 13.376481375074945,
+            "seconds": 0.0034,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_43awlrq7",
+            "name": "read_file",
+            "started_seconds": 16.858385083032772,
+            "seconds": 0.0038,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_v69jj9tk",
+            "name": "edit_file",
+            "started_seconds": 24.903591083013453,
+            "seconds": 0.0034,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_u6idjor8",
+            "name": "run_shell",
+            "started_seconds": 29.483269624994136,
+            "seconds": 0.0844,
+            "outcome": "error"
+          },
+          {
+            "id": "call_n66q1fqt",
+            "name": "read_file",
+            "started_seconds": 34.165111333015375,
+            "seconds": 0.0036,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_pyr0oovt",
+            "name": "edit_file",
+            "started_seconds": 55.51039633306209,
+            "seconds": 0.0034,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_9i36kqyb",
+            "name": "write_file",
+            "started_seconds": 68.27641020796727,
+            "seconds": 0.0037,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_cyt8lcuj",
+            "name": "run_shell",
+            "started_seconds": 76.0371630829759,
+            "seconds": 0.0792,
+            "outcome": "error"
+          },
+          {
+            "id": "call_1w2k4ro4",
+            "name": "edit_file",
+            "started_seconds": 108.84607570804656,
+            "seconds": 0.0042,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_plv6b9ek",
+            "name": "write_file",
+            "started_seconds": 125.14884195802733,
+            "seconds": 0.0042,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_xkciun5q",
+            "name": "run_shell",
+            "started_seconds": 144.86253820802085,
+            "seconds": 0.0907,
+            "outcome": "error"
+          },
+          {
+            "id": "call_wb8krtdb",
+            "name": "run_shell",
+            "started_seconds": 156.40330379200168,
+            "seconds": 0.0626,
+            "outcome": "error"
+          },
+          {
+            "id": "call_zo4fu5dq",
+            "name": "read_file",
+            "started_seconds": 168.0658391250763,
+            "seconds": 0.0016,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0177,
+        "grading_and_cleanup_seconds": 0.0814
+      },
+      "evidence": "attempts/54987b88c914ef88c2b2-68927317",
+      "evidence_sha256": {
+        "events.jsonl": "53ad84c7c9848807b88e17f438d7e22bb27cf4c92c5c65078e991edcc36eeb47",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/tests/test_project.py": "95cf12728cecf3103b1884127cc3a6add40cae2b0b1ec1c3af7cf8006cfa0684",
+        "files/windows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/windows/ranges.py": "d9f9a6b56b166288602c0fe823a864657a4a7603617aee16675236e84de367ac",
+        "files/windows/response.py": "44243feb57e389beeeaca8dfda4206e8037ab7a5c91d7a136fd3e0c3a4667aa3",
+        "result.json": "bf6f4f7658ddf3601a3a85457448dba6713379cc8c2839fc7f5f4404046fe306",
+        "session.jsonl": "54f39dd89899881d3c27ec78fc6b19e203da2e1964aa23f8369d9a0f7d2a0d4a"
+      }
+    },
+    {
+      "task": "byte-windows",
+      "task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "case_id": "6cf6568d574e4b48fb30",
+      "profile": {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": true,
+      "check_passed": true,
+      "check_output": "[independent check completed]\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "747613f841e9a734502c6d435509869764f3507d5395dc40d4c30bc2f218990e",
+            "after": "747613f841e9a734502c6d435509869764f3507d5395dc40d4c30bc2f218990e",
+            "ok": true,
+            "finished_seconds": 163.21518520801328,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "747613f841e9a734502c6d435509869764f3507d5395dc40d4c30bc2f218990e"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 199.24,
+      "iterations": 6,
+      "usage": {
+        "requests": 6,
+        "input_tokens": 23125,
+        "output_tokens": 1372,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 4437,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 6,
+            "input_tokens": 23125,
+            "output_tokens": 1372
+          }
+        }
+      },
+      "tools": {
+        "read_file": 3,
+        "write_file": 2,
+        "edit_file": 1,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 3,
+      "timing": {
+        "work_seconds": 199.1367,
+        "model_seconds": 197.9323,
+        "tool_seconds": 0.1164,
+        "approval_seconds": 0.0007,
+        "other_work_seconds": 1.088,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.12917891598772258,
+            "seconds": 18.4539,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 18.58981787506491,
+            "seconds": 57.3026,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 76.01768370799255,
+            "seconds": 31.5199,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 107.75338454102166,
+            "seconds": 29.7407,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 137.62886233301833,
+            "seconds": 25.484,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 163.3424452909967,
+            "seconds": 35.4312,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_6qtvayg1",
+            "name": "read_file",
+            "started_seconds": 18.583680708077736,
+            "seconds": 0.0023,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_22xfwaj5",
+            "name": "read_file",
+            "started_seconds": 18.586067750002258,
+            "seconds": 0.001,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_hai2w3sk",
+            "name": "read_file",
+            "started_seconds": 18.587174833053723,
+            "seconds": 0.0008,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_iglarrdy",
+            "name": "write_file",
+            "started_seconds": 75.89437337499112,
+            "seconds": 0.0022,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_i8uj2483",
+            "name": "write_file",
+            "started_seconds": 107.53816541598644,
+            "seconds": 0.0041,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_qnk45hi2",
+            "name": "edit_file",
+            "started_seconds": 137.49459025007673,
+            "seconds": 0.0041,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ass9cqhc",
+            "name": "run_shell",
+            "started_seconds": 163.1133257499896,
+            "seconds": 0.1019,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0174,
+        "grading_and_cleanup_seconds": 0.0871
+      },
+      "evidence": "attempts/6cf6568d574e4b48fb30-54d0a104",
+      "evidence_sha256": {
+        "events.jsonl": "29765cd20aaa25630883378c780f3c937b80f031bc538262b94c3e02384c3e8b",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/tests/test_project.py": "95cf12728cecf3103b1884127cc3a6add40cae2b0b1ec1c3af7cf8006cfa0684",
+        "files/windows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/windows/ranges.py": "247f5248dfaaab8a6838aaa4a3fab859bcb23d63daaf860132c593b467924a57",
+        "files/windows/response.py": "0bfbf36f06c762cd79d9bc106d07712e7762fb06a1e13396e31efff1fa0c4df0",
+        "result.json": "90dfd44353ee9356514660857a5431fe1639abfd27dfcad58185775f529472b5",
+        "session.jsonl": "1487fea9f8413e1d20de9028658ff1fe9cf8b16b7097bfd32574f3ba12f68d1c"
+      }
+    },
+    {
+      "task": "event-replay",
+      "task_fingerprint": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "case_id": "a1c7b9817581e43e7a07",
+      "profile": {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": true,
+      "check_passed": true,
+      "check_output": "[independent check completed]\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "322376366dcf7d81a107efaf52b085f1aa52d5f4fd78472e52b2d05afdd34e46",
+            "after": "322376366dcf7d81a107efaf52b085f1aa52d5f4fd78472e52b2d05afdd34e46",
+            "ok": false,
+            "finished_seconds": 136.02086495794356,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "4861e8409ba2610fce502606b8c3d9a45831578da1e6a8cfe3b630bb493cb053",
+            "after": "4861e8409ba2610fce502606b8c3d9a45831578da1e6a8cfe3b630bb493cb053",
+            "ok": true,
+            "finished_seconds": 209.29638420802075,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "4861e8409ba2610fce502606b8c3d9a45831578da1e6a8cfe3b630bb493cb053"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 249.43,
+      "iterations": 8,
+      "usage": {
+        "requests": 8,
+        "input_tokens": 36249,
+        "output_tokens": 1647,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 7691,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 8,
+            "input_tokens": 36249,
+            "output_tokens": 1647
+          }
+        }
+      },
+      "tools": {
+        "read_file": 4,
+        "write_file": 2,
+        "edit_file": 1,
+        "run_shell": 1
+      },
+      "tool_errors": 1,
+      "denials": 0,
+      "self_checks": 3,
+      "timing": {
+        "work_seconds": 249.3508,
+        "model_seconds": 248.1025,
+        "tool_seconds": 0.2318,
+        "approval_seconds": 0.0009,
+        "other_work_seconds": 1.0165,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.14048670802731067,
+            "seconds": 14.5177,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 14.664773457916453,
+            "seconds": 13.0152,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 27.68222895800136,
+            "seconds": 34.7031,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 62.52827912499197,
+            "seconds": 47.5981,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 110.2573290419532,
+            "seconds": 25.6588,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 136.14583891700022,
+            "seconds": 40.467,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 176.7709709169576,
+            "seconds": 32.4125,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 8,
+            "purpose": "task",
+            "started_seconds": 209.41952899994794,
+            "seconds": 39.7301,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_c8dffsgs",
+            "name": "read_file",
+            "started_seconds": 14.65847045800183,
+            "seconds": 0.0017,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_3vltfu7v",
+            "name": "read_file",
+            "started_seconds": 14.660282957949676,
+            "seconds": 0.0011,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_it4yixsv",
+            "name": "read_file",
+            "started_seconds": 14.661543083027937,
+            "seconds": 0.0011,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_cqb6zrrz",
+            "name": "read_file",
+            "started_seconds": 27.68028762494214,
+            "seconds": 0.0007,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_bbb9xl1o",
+            "name": "write_file",
+            "started_seconds": 62.385969375027344,
+            "seconds": 0.0036,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_6vc005br",
+            "name": "write_file",
+            "started_seconds": 110.12706191698089,
+            "seconds": 0.004,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_uifb86bu",
+            "name": "run_shell",
+            "started_seconds": 135.91682225000113,
+            "seconds": 0.104,
+            "outcome": "error"
+          },
+          {
+            "id": "call_3p9ruqh3",
+            "name": "edit_file",
+            "started_seconds": 176.61351483291946,
+            "seconds": 0.0046,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_zpb2wagb",
+            "name": "run_shell",
+            "started_seconds": 209.18541149992961,
+            "seconds": 0.111,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.018,
+        "grading_and_cleanup_seconds": 0.0643
+      },
+      "evidence": "attempts/a1c7b9817581e43e7a07-3c2e02ea",
+      "evidence_sha256": {
+        "events.jsonl": "c1207b9798516bb71a7566c23619ff8be1e51d322a1dd3ea245bd0b9f31ef6fa",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/events/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/events/replay.py": "e80918432ddcc440cbe6fe4c9e832c5c8671964654654bdd15a71002804dab1a",
+        "files/events/validation.py": "033c25798ec3ba5bbc352d7dc23bca88f0716ce58f1efaefe0a916d74f84e105",
+        "files/tests/test_project.py": "f014ced64354fb75cfc3ee17a2da098e06c37327906f16eca18c368b3d069bd8",
+        "result.json": "74e90d730ef4f46f97f439af333d497cd04e7db75c78808ee5773b72138c95ad",
+        "session.jsonl": "f7c7cf2443c2323985e37c5606398a420420fc0496e27bf50ebca0e3c546a882"
+      }
+    },
+    {
+      "task": "event-replay",
+      "task_fingerprint": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "case_id": "cd72995b5491af55267f",
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 42, in <module>\n  File \"<string>\", line 11, in rejects\n  File \"<string>\", line 42, in <lambda>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-event-replay-fni8gvfe/events/replay.py\", line 9, in replay\n    for raw_event in events:\n                     ^^^^^^\nTypeError: 'NoneType' object is not iterable\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "96bda655d5631252bcb6292b5e660745663bae53130845ad1932396c456c1025",
+            "after": "96bda655d5631252bcb6292b5e660745663bae53130845ad1932396c456c1025",
+            "ok": true,
+            "finished_seconds": 45.37680691690184,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "96bda655d5631252bcb6292b5e660745663bae53130845ad1932396c456c1025"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 58.79,
+      "iterations": 7,
+      "usage": {
+        "requests": 7,
+        "input_tokens": 22724,
+        "output_tokens": 1451,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 2039,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 7,
+            "input_tokens": 22724,
+            "output_tokens": 1451
+          }
+        }
+      },
+      "tools": {
+        "read_file": 3,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 58.7037,
+        "model_seconds": 57.8961,
+        "tool_seconds": 0.1136,
+        "approval_seconds": 0.0006,
+        "other_work_seconds": 0.694,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.1270385419484228,
+            "seconds": 4.662,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 4.793849457986653,
+            "seconds": 1.8528,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 6.651941666961648,
+            "seconds": 1.6402,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 8.296434457995929,
+            "seconds": 10.8575,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 19.284339541918598,
+            "seconds": 19.8979,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 39.314992666943,
+            "seconds": 5.9604,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 45.49078179197386,
+            "seconds": 13.0253,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_2f3k8eui",
+            "name": "read_file",
+            "started_seconds": 4.790040832944214,
+            "seconds": 0.0019,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_2ft0o6m2",
+            "name": "read_file",
+            "started_seconds": 6.64903799991589,
+            "seconds": 0.0014,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_0hvl1uw4",
+            "name": "read_file",
+            "started_seconds": 8.292653207900003,
+            "seconds": 0.0012,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ut7xk1um",
+            "name": "write_file",
+            "started_seconds": 19.154475707910024,
+            "seconds": 0.0042,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_1kz7ranx",
+            "name": "write_file",
+            "started_seconds": 39.18286649999209,
+            "seconds": 0.0042,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_nll0z8kp",
+            "name": "run_shell",
+            "started_seconds": 45.2760869578924,
+            "seconds": 0.1007,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.018,
+        "grading_and_cleanup_seconds": 0.0658
+      },
+      "evidence": "attempts/cd72995b5491af55267f-e87b3b55",
+      "evidence_sha256": {
+        "events.jsonl": "adf5cb2d1a5a6087048c429809c2cff0492a8d17b3e1d513786dd85b747e62ff",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/events/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/events/replay.py": "64b571c438249f24dd6a28e15305e9403e35ecf8c714db41eb32f30b8661efaa",
+        "files/events/validation.py": "736dd24e57c114514be6a414be2875e86d70c08a1726fc4508819996f19d5c1f",
+        "files/tests/test_project.py": "f014ced64354fb75cfc3ee17a2da098e06c37327906f16eca18c368b3d069bd8",
+        "result.json": "b3a68ac799e70a3a0994eda320f765492e5201701fc9b93a8b9f8bc98dadb1f5",
+        "session.jsonl": "a9835526159d5041c3fc2423dd533fbba5e28b9348a79636c3337d243fe95057"
+      }
+    },
+    {
+      "task": "command-arguments",
+      "task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "case_id": "2491cabdda62c825de12",
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": true,
+      "check_output": "[independent check completed]\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "fbef4a144c5d8414b5ff1ad120d12d8ea16fcee0b2a7256582b46b8a6147ac00",
+            "after": "fbef4a144c5d8414b5ff1ad120d12d8ea16fcee0b2a7256582b46b8a6147ac00",
+            "ok": false,
+            "finished_seconds": 6.702368417056277,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "1b4bc28825cfaff8dc79cf1e7dbc92cc7f5bd82d717ca88d1ae7a98e4817a5fa",
+            "after": "1b4bc28825cfaff8dc79cf1e7dbc92cc7f5bd82d717ca88d1ae7a98e4817a5fa",
+            "ok": true,
+            "finished_seconds": 299.73540950007737,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "1b4bc28825cfaff8dc79cf1e7dbc92cc7f5bd82d717ca88d1ae7a98e4817a5fa"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "time_limit",
+      "seconds": 300.23,
+      "iterations": 15,
+      "usage": {
+        "requests": 15,
+        "input_tokens": 138271,
+        "output_tokens": 10987,
+        "estimated_requests": 1,
+        "cache_read_input_tokens": 4825,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 15,
+            "input_tokens": 138271,
+            "output_tokens": 10987
+          }
+        }
+      },
+      "tools": {
+        "read_file": 5,
+        "write_file": 6,
+        "run_shell": 1
+      },
+      "tool_errors": 1,
+      "denials": 0,
+      "self_checks": 6,
+      "timing": {
+        "work_seconds": 300.1088,
+        "model_seconds": 298.8537,
+        "tool_seconds": 0.2032,
+        "approval_seconds": 0.0018,
+        "other_work_seconds": 1.0519,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.1315595000050962,
+            "seconds": 1.2168,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 1.3522897500079125,
+            "seconds": 1.8048,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 3.1606678339885548,
+            "seconds": 1.5274,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 4.692356709041633,
+            "seconds": 1.922,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 6.798896500025876,
+            "seconds": 21.0239,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 27.932550917030312,
+            "seconds": 6.604,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 34.543499291990884,
+            "seconds": 37.1291,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 8,
+            "purpose": "task",
+            "started_seconds": 71.79283187503461,
+            "seconds": 23.6053,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 9,
+            "purpose": "task",
+            "started_seconds": 95.54384612501599,
+            "seconds": 46.8899,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 10,
+            "purpose": "task",
+            "started_seconds": 142.54704829200637,
+            "seconds": 86.5143,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 11,
+            "purpose": "compaction",
+            "started_seconds": 229.17683004203718,
+            "seconds": 16.0578,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 12,
+            "purpose": "task",
+            "started_seconds": 245.23921437503304,
+            "seconds": 16.6152,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 13,
+            "purpose": "task",
+            "started_seconds": 261.8602698750328,
+            "seconds": 20.6869,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 14,
+            "purpose": "task",
+            "started_seconds": 282.6701982499799,
+            "seconds": 16.9804,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 15,
+            "purpose": "task",
+            "started_seconds": 299.85153575008735,
+            "seconds": 0.2759,
+            "outcome": "interrupted"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_1fbzvj0c",
+            "name": "read_file",
+            "started_seconds": 1.3488743340130895,
+            "seconds": 0.0017,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_5pzu3mco",
+            "name": "read_file",
+            "started_seconds": 3.1575706669827923,
+            "seconds": 0.0011,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_cu8uk5lx",
+            "name": "read_file",
+            "started_seconds": 4.68854875001125,
+            "seconds": 0.0012,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_29cd6d2b",
+            "name": "run_shell",
+            "started_seconds": 6.615162792033516,
+            "seconds": 0.0872,
+            "outcome": "error"
+          },
+          {
+            "id": "call_mhk212px",
+            "name": "write_file",
+            "started_seconds": 27.823432250064798,
+            "seconds": 0.0038,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_jd1el0f5",
+            "name": "read_file",
+            "started_seconds": 34.53874574997462,
+            "seconds": 0.0018,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ivm3b0c7",
+            "name": "write_file",
+            "started_seconds": 71.67323470907286,
+            "seconds": 0.0039,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_5zwv6fwj",
+            "name": "write_file",
+            "started_seconds": 95.39881345897447,
+            "seconds": 0.0046,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_az2hwoq0",
+            "name": "write_file",
+            "started_seconds": 142.4345743750455,
+            "seconds": 0.0045,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_xdlo4nt5",
+            "name": "write_file",
+            "started_seconds": 229.06221524998546,
+            "seconds": 0.0044,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_s4w9x2eb",
+            "name": "read_file",
+            "started_seconds": 261.8554864170728,
+            "seconds": 0.0018,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_r3t3kdjw",
+            "name": "write_file",
+            "started_seconds": 282.547978250077,
+            "seconds": 0.0032,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_36qb46vl",
+            "name": "run_shell",
+            "started_seconds": 299.6514216250507,
+            "seconds": 0.084,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0186,
+        "grading_and_cleanup_seconds": 0.1074
+      },
+      "evidence": "attempts/2491cabdda62c825de12-cfa0b39b",
+      "evidence_sha256": {
+        "events.jsonl": "17ebf9515b0e57694c5a2d82cdc16a2ccf181b2169162ebcea6e36caf9d76b07",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "59ebc01111ab3b06e00c21924dc461ae592ad0e5485406a160608bdff104dc54",
+        "files/arguments/options.py": "816ee2e838f6087e75f933a1d2a7782f2f10d04a0fcde5448b326e8426b0c6f4",
+        "files/tests/test_project.py": "164df8c9699b908f5accdc0ccbf8bd582fc5fb5551f8c88e9cb6ed99ece53394",
+        "result.json": "dac88c4dc19f0ea007b91c6ccc52c0c6c85c19381b1d85c20b1de665229f02d5",
+        "session.jsonl": "e0129ec80fb185bc6c217ad036e5ad02cdca01ef1108bbaff02ddac1a9af52e4"
+      }
+    },
+    {
+      "task": "command-arguments",
+      "task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "case_id": "233042c7fece06f2601c",
+      "profile": {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', [], [''])\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "fbef4a144c5d8414b5ff1ad120d12d8ea16fcee0b2a7256582b46b8a6147ac00",
+            "after": "fbef4a144c5d8414b5ff1ad120d12d8ea16fcee0b2a7256582b46b8a6147ac00",
+            "ok": false,
+            "finished_seconds": 30.96682824997697,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "7863993d637f35835378ca01ed58f7d34069d5e95f1f89973e12d693d95ee8fd",
+            "after": "7863993d637f35835378ca01ed58f7d34069d5e95f1f89973e12d693d95ee8fd",
+            "ok": true,
+            "finished_seconds": 165.81013012502808,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "7863993d637f35835378ca01ed58f7d34069d5e95f1f89973e12d693d95ee8fd"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 210.18,
+      "iterations": 7,
+      "usage": {
+        "requests": 7,
+        "input_tokens": 32424,
+        "output_tokens": 1290,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 5552,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 7,
+            "input_tokens": 32424,
+            "output_tokens": 1290
+          }
+        }
+      },
+      "tools": {
+        "read_file": 3,
+        "write_file": 2,
+        "edit_file": 1,
+        "run_shell": 1
+      },
+      "tool_errors": 1,
+      "denials": 0,
+      "self_checks": 3,
+      "timing": {
+        "work_seconds": 210.0732,
+        "model_seconds": 208.7537,
+        "tool_seconds": 0.1932,
+        "approval_seconds": 0.0007,
+        "other_work_seconds": 1.1263,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.32395612506661564,
+            "seconds": 17.217,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 17.548079084022902,
+            "seconds": 13.3244,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 31.061450625071302,
+            "seconds": 41.8503,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 73.0260169589892,
+            "seconds": 33.9641,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 107.12164825003128,
+            "seconds": 29.1985,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 136.44342954200692,
+            "seconds": 29.2817,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 165.92218612506986,
+            "seconds": 43.9177,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_8f9cl6oj",
+            "name": "read_file",
+            "started_seconds": 17.541440459084697,
+            "seconds": 0.0021,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_t5dl2a7o",
+            "name": "read_file",
+            "started_seconds": 17.543692084029317,
+            "seconds": 0.001,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_n1376mlm",
+            "name": "read_file",
+            "started_seconds": 17.544745167018846,
+            "seconds": 0.001,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_a18i2s3m",
+            "name": "run_shell",
+            "started_seconds": 30.872833500034176,
+            "seconds": 0.094,
+            "outcome": "error"
+          },
+          {
+            "id": "call_nfj8wqkb",
+            "name": "write_file",
+            "started_seconds": 72.91229279199615,
+            "seconds": 0.0033,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_aw1d9o1a",
+            "name": "write_file",
+            "started_seconds": 106.99072887504008,
+            "seconds": 0.0035,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_tk1s6z90",
+            "name": "edit_file",
+            "started_seconds": 136.3209352090489,
+            "seconds": 0.0039,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_3syts77m",
+            "name": "run_shell",
+            "started_seconds": 165.725694208988,
+            "seconds": 0.0844,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0271,
+        "grading_and_cleanup_seconds": 0.0824
+      },
+      "evidence": "attempts/233042c7fece06f2601c-da2542c8",
+      "evidence_sha256": {
+        "events.jsonl": "de57fecc22fe379552a52a46307cd7f2bd92de8f445f2035804282fc44e3d445",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "e267324832160d4b4bee671f9ad29332f2a6034803ad169544a60f8813c7194b",
+        "files/arguments/options.py": "9f51ccc7d79278987f8ecf4762596e07e1654b9a0afecc69246929597eaeec7b",
+        "files/tests/test_project.py": "164df8c9699b908f5accdc0ccbf8bd582fc5fb5551f8c88e9cb6ed99ece53394",
+        "result.json": "04f1507d5d4232334530d901e01b084a250b66002cd0ef2e4770d5753b8f525c",
+        "session.jsonl": "a2298588a1ae231fe5d5a298d7445ad671a915f2298675b89e5a7776ca7ac2e3"
+      }
+    },
+    {
+      "task": "batch-renames",
+      "task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "case_id": "dbd505951933732d7641",
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 57, in <module>\n  File \"<string>\", line 12, in rejects\n  File \"<string>\", line 57, in <lambda>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-batch-renames-0fu4gttc/renames/validation.py\", line 13, in rename_map\n    for change in changes:\n                  ^^^^^^^\nTypeError: 'NoneType' object is not iterable\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "664bf1a2a1c0f153d50be55eb823b2a946b7b8322d0357a64d7a96169818104f",
+            "after": "664bf1a2a1c0f153d50be55eb823b2a946b7b8322d0357a64d7a96169818104f",
+            "ok": false,
+            "finished_seconds": 11.760272750048898,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "dfbd916bf86155de9fc2882e14dd278bf9277d4e81b9ec6e1422d9b90acb4f4c",
+            "after": "dfbd916bf86155de9fc2882e14dd278bf9277d4e81b9ec6e1422d9b90acb4f4c",
+            "ok": true,
+            "finished_seconds": 42.504890082986094,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "dfbd916bf86155de9fc2882e14dd278bf9277d4e81b9ec6e1422d9b90acb4f4c"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 53.51,
+      "iterations": 9,
+      "usage": {
+        "requests": 9,
+        "input_tokens": 32523,
+        "output_tokens": 812,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 2868,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 9,
+            "input_tokens": 32523,
+            "output_tokens": 812
+          }
+        }
+      },
+      "tools": {
+        "read_file": 4,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 1,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 53.4316,
+        "model_seconds": 52.4391,
+        "tool_seconds": 0.2044,
+        "approval_seconds": 0.0005,
+        "other_work_seconds": 0.7881,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.13822891598101705,
+            "seconds": 4.7428,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 4.889074500068091,
+            "seconds": 2.2824,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 7.175935000064783,
+            "seconds": 2.1014,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 9.28217800008133,
+            "seconds": 2.3695,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 11.858745665987954,
+            "seconds": 5.4574,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 17.420307416003197,
+            "seconds": 5.0456,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 22.471022707992233,
+            "seconds": 13.3678,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 8,
+            "purpose": "task",
+            "started_seconds": 35.971393750049174,
+            "seconds": 6.4519,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 9,
+            "purpose": "task",
+            "started_seconds": 42.6179991660174,
+            "seconds": 10.6203,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_iutl6r0f",
+            "name": "read_file",
+            "started_seconds": 4.881578291067854,
+            "seconds": 0.0057,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_lka9xllx",
+            "name": "read_file",
+            "started_seconds": 7.172034083050676,
+            "seconds": 0.0016,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ztrkcuyv",
+            "name": "read_file",
+            "started_seconds": 9.277958665974438,
+            "seconds": 0.0016,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_fnwybjwm",
+            "name": "run_shell",
+            "started_seconds": 11.652220208081417,
+            "seconds": 0.1081,
+            "outcome": "error"
+          },
+          {
+            "id": "call_m7yiyny0",
+            "name": "write_file",
+            "started_seconds": 17.31650900002569,
+            "seconds": 0.0021,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_q3a5vdpo",
+            "name": "read_file",
+            "started_seconds": 22.46663174999412,
+            "seconds": 0.002,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_d1lpzxpk",
+            "name": "write_file",
+            "started_seconds": 35.83918816607911,
+            "seconds": 0.0025,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_nzlk6m1w",
+            "name": "run_shell",
+            "started_seconds": 42.424073333037086,
+            "seconds": 0.0808,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0191,
+        "grading_and_cleanup_seconds": 0.0631
+      },
+      "evidence": "attempts/dbd505951933732d7641-4274935c",
+      "evidence_sha256": {
+        "events.jsonl": "95dafc34d212e09a413841945c2b8d30665e09cd980177461ab392ebeeb35120",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/renames/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/renames/operations.py": "03367fcb228170b580d00e9646a84d7186850d3773f09513a87f55221894b57d",
+        "files/renames/validation.py": "168df8b11648a157a098a1bafa08b8f126d0ccca6bdf49032f22c124375f5c6b",
+        "files/tests/test_project.py": "61aa5c80324ec348f2ef7b4c1e1e51801c836eb154ce10820da8d1882096b8bb",
+        "result.json": "fb1b466b0949da91ea9c3ce0382fe8e673724f8b2ec68baed7e104ee828c1568",
+        "session.jsonl": "7167e11ec610b20c3b5d7287ee35f4fb7e520a95ceb4899ced2af7cd32d2225e"
+      }
+    },
+    {
+      "task": "batch-renames",
+      "task_fingerprint": "b8ff15f4534f16cb8193a325d4d96febd6cf8f51672802dbf9fa30c315a5dabb",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "case_id": "d90ce7c0b247a704e132",
+      "profile": {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": true,
+      "check_passed": true,
+      "check_output": "[independent check completed]\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "3a8b0b8b17af51f98bccd54f297ce638189ac067b7f84008623bb2adb95eae22",
+            "after": "3a8b0b8b17af51f98bccd54f297ce638189ac067b7f84008623bb2adb95eae22",
+            "ok": true,
+            "finished_seconds": 137.8284778749803,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "3a8b0b8b17af51f98bccd54f297ce638189ac067b7f84008623bb2adb95eae22"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 172.11,
+      "iterations": 5,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 19647,
+        "output_tokens": 1410,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 3333,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 5,
+            "input_tokens": 19647,
+            "output_tokens": 1410
+          }
+        }
+      },
+      "tools": {
+        "read_file": 4,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 172.0225,
+        "model_seconds": 171.2297,
+        "tool_seconds": 0.1155,
+        "approval_seconds": 0.0006,
+        "other_work_seconds": 0.6773,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.12882408301811665,
+            "seconds": 18.1658,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 18.301126042031683,
+            "seconds": 67.8718,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 86.29469258303288,
+            "seconds": 27.6647,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 114.08106829202734,
+            "seconds": 23.6432,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 137.9443310420029,
+            "seconds": 33.8842,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_gdnind2m",
+            "name": "read_file",
+            "started_seconds": 18.295030875015073,
+            "seconds": 0.0015,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_lvpqnq3n",
+            "name": "read_file",
+            "started_seconds": 18.296738042030483,
+            "seconds": 0.0011,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_5nxwv67d",
+            "name": "read_file",
+            "started_seconds": 18.297973833046854,
+            "seconds": 0.0009,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_0ehktx9s",
+            "name": "read_file",
+            "started_seconds": 18.298943666974083,
+            "seconds": 0.0006,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_h2z1oylv",
+            "name": "write_file",
+            "started_seconds": 86.17345112503972,
+            "seconds": 0.004,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_eqti2jjj",
+            "name": "write_file",
+            "started_seconds": 113.96010416699573,
+            "seconds": 0.0039,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_ymzdeont",
+            "name": "run_shell",
+            "started_seconds": 137.7249857080169,
+            "seconds": 0.1035,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0186,
+        "grading_and_cleanup_seconds": 0.0639
+      },
+      "evidence": "attempts/d90ce7c0b247a704e132-702ee74c",
+      "evidence_sha256": {
+        "events.jsonl": "2c8c4f0338c50ea997e804e7e4b8f54e06f9833e561815db2f27649d64bba054",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/renames/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/renames/operations.py": "6a3644ade19ae656168fe21014fad769c1ae995acc521440055bf6478fc28437",
+        "files/renames/validation.py": "18f9b151f0a6edaa64e44f00e76275d20e3f556a4167bab8471f4620e2416526",
+        "files/tests/test_project.py": "61aa5c80324ec348f2ef7b4c1e1e51801c836eb154ce10820da8d1882096b8bb",
+        "result.json": "3f61dd14ca916174de6f487889e093fe8418f6f3c80ae7ce00147e3675e724df",
+        "session.jsonl": "f0be2f5ec1c4549631c8d8a01e032cf92ed6af16ca0da49bb87e4d9882afc56e"
+      }
+    },
+    {
+      "task": "byte-windows",
+      "task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "case_id": "7db8c7250e846b5a7234",
+      "profile": {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 53, in <module>\n  File \"<string>\", line 9, in rejects\n  File \"<string>\", line 53, in <lambda>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-byte-windows-r4hythgj/windows/ranges.py\", line 14, in parse_range\n    if not header.startswith('bytes='):\n           ^^^^^^^^^^^^^^^^^\nAttributeError: 'NoneType' object has no attribute 'startswith'\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "648405ae36a608f83ae26e3f720e9bf573b3c9c884ac7baffe3505abdfe986b0",
+            "after": "648405ae36a608f83ae26e3f720e9bf573b3c9c884ac7baffe3505abdfe986b0",
+            "ok": true,
+            "finished_seconds": 113.68339549994562,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "648405ae36a608f83ae26e3f720e9bf573b3c9c884ac7baffe3505abdfe986b0"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 147.97,
+      "iterations": 5,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 18291,
+        "output_tokens": 1174,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 4363,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 5,
+            "input_tokens": 18291,
+            "output_tokens": 1174
+          }
+        }
+      },
+      "tools": {
+        "read_file": 3,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 147.8755,
+        "model_seconds": 147.0838,
+        "tool_seconds": 0.0962,
+        "approval_seconds": 0.0005,
+        "other_work_seconds": 0.6955,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.12933699996210635,
+            "seconds": 13.3424,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 13.4766962089343,
+            "seconds": 49.9009,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 63.49149749998469,
+            "seconds": 27.4406,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 91.06356091692578,
+            "seconds": 22.5327,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 113.80875858396757,
+            "seconds": 33.8672,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_dl535qrx",
+            "name": "read_file",
+            "started_seconds": 13.472356708953157,
+            "seconds": 0.0013,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_0c18m8ef",
+            "name": "read_file",
+            "started_seconds": 13.473745291936211,
+            "seconds": 0.0007,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_dv8a1zty",
+            "name": "read_file",
+            "started_seconds": 13.47450987494085,
+            "seconds": 0.0008,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_gsylxqix",
+            "name": "write_file",
+            "started_seconds": 63.378313999972306,
+            "seconds": 0.0034,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_dme06lja",
+            "name": "write_file",
+            "started_seconds": 90.93284945900086,
+            "seconds": 0.0034,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_0skbpx6a",
+            "name": "run_shell",
+            "started_seconds": 113.59678387490567,
+            "seconds": 0.0866,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0184,
+        "grading_and_cleanup_seconds": 0.0763
+      },
+      "evidence": "attempts/7db8c7250e846b5a7234-de9c188a",
+      "evidence_sha256": {
+        "events.jsonl": "bfbd17ad9c3c38c14969533b512e8f0068a60276d930858c2520fd25b75d5e50",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/tests/test_project.py": "95cf12728cecf3103b1884127cc3a6add40cae2b0b1ec1c3af7cf8006cfa0684",
+        "files/windows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/windows/ranges.py": "ed7d9f1d6cd0ecc8ea29456d0ff231211e8ab066ad52ce643a2db65b7cf1bc7a",
+        "files/windows/response.py": "13886a50fd31eb6f33b57bbee0f7224ed8e086091cccf836f8936394dd3e7f53",
+        "result.json": "adfa4eed3bde6b8aaa3b825a2621f99c38176b1cc780085a1db892a11df4f732",
+        "session.jsonl": "0a534dab45a462e8d9539e40883fd08032d4410c66669e34a8ac53dfeb8f37c1"
+      }
+    },
+    {
+      "task": "byte-windows",
+      "task_fingerprint": "c37959d5cc5f21a68985d23e42c2c2fde27b49bc5aba41377f2d98ca9aa85e4d",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "case_id": "707267885e8f94a6dbea",
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 53, in <module>\n  File \"<string>\", line 9, in rejects\n  File \"<string>\", line 53, in <lambda>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-byte-windows-bhjrc6mw/windows/ranges.py\", line 14, in parse_range\n    match = re.match(pattern, header)\n            ^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/Users/mpawlowski/.local/share/uv/python/cpython-3.12.14-macos-aarch64-none/lib/python3.12/re/__init__.py\", line 167, in match\n    return _compile(pattern, flags).match(string)\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nTypeError: expected string or bytes-like object, got 'NoneType'\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "29b16219fa9d3adbd00ee8420af02d2e166b4bd285edcd8d90ec62da2d0f4bb4",
+            "after": "29b16219fa9d3adbd00ee8420af02d2e166b4bd285edcd8d90ec62da2d0f4bb4",
+            "ok": false,
+            "finished_seconds": 34.20104591699783,
+            "matches_final_files": false
+          }
+        ],
+        "final_files_fingerprint": "110310de40248d7561c54b0c24dcc459ed4e8be18bb2974df7c535e168fd2c83"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 72.32,
+      "iterations": 8,
+      "usage": {
+        "requests": 8,
+        "input_tokens": 27410,
+        "output_tokens": 2070,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 2447,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 8,
+            "input_tokens": 27410,
+            "output_tokens": 2070
+          }
+        }
+      },
+      "tools": {
+        "read_file": 3,
+        "write_file": 1,
+        "edit_file": 2
+      },
+      "tool_errors": 1,
+      "denials": 0,
+      "self_checks": 3,
+      "timing": {
+        "work_seconds": 72.2241,
+        "model_seconds": 71.3083,
+        "tool_seconds": 0.1209,
+        "approval_seconds": 0.0008,
+        "other_work_seconds": 0.7949,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.1300541670061648,
+            "seconds": 4.1978,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 4.334069500095211,
+            "seconds": 1.934,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 6.271308292052709,
+            "seconds": 1.8236,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 8.09916158404667,
+            "seconds": 12.1163,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 20.339295917074196,
+            "seconds": 8.9671,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 29.430503167095594,
+            "seconds": 4.6665,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 34.310770542011596,
+            "seconds": 22.5176,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 8,
+            "purpose": "task",
+            "started_seconds": 56.9515115841059,
+            "seconds": 15.0854,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_30vrekxi",
+            "name": "read_file",
+            "started_seconds": 4.328425167012028,
+            "seconds": 0.0029,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_8ikzs4eq",
+            "name": "read_file",
+            "started_seconds": 6.268498417106457,
+            "seconds": 0.0014,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_c3dzt3xg",
+            "name": "read_file",
+            "started_seconds": 8.0952924170997,
+            "seconds": 0.0018,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_aswqii2b",
+            "name": "write_file",
+            "started_seconds": 20.2161733340472,
+            "seconds": 0.0041,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_x01x5vwm",
+            "name": "edit_file",
+            "started_seconds": 29.306959417066537,
+            "seconds": 0.0036,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_oczcl9hu",
+            "name": "run_shell",
+            "started_seconds": 34.097718625096604,
+            "seconds": 0.1033,
+            "outcome": "error"
+          },
+          {
+            "id": "call_zgd7lfb4",
+            "name": "edit_file",
+            "started_seconds": 56.82891279202886,
+            "seconds": 0.0038,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.018,
+        "grading_and_cleanup_seconds": 0.0805
+      },
+      "evidence": "attempts/707267885e8f94a6dbea-13ba3430",
+      "evidence_sha256": {
+        "events.jsonl": "bb51698357f034480e7ec6d0df97ca7ef98259bdd8ca152ab9baede87d43bbee",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/tests/test_project.py": "95cf12728cecf3103b1884127cc3a6add40cae2b0b1ec1c3af7cf8006cfa0684",
+        "files/windows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/windows/ranges.py": "b3ccbd3db6742963df2cc5435318ac140f73e2dc47f70eb45a547428e7595613",
+        "files/windows/response.py": "76fd70cbc29b5ffeaacfa6d672d17a96a06253ef5a82bff0bb298ee34a81838b",
+        "result.json": "5700f4c1e6e7101183d0f4516a2e48bc0e8c06618ae124f7eb7c05b2ff1e32d5",
+        "session.jsonl": "10f7b84e282ec577453a661bdcabe350eb2e751c5abfd61af5fa9e33bda1ae3b"
+      }
+    },
+    {
+      "task": "event-replay",
+      "task_fingerprint": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "case_id": "e3059ebddbc918b331e3",
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 42, in <module>\n  File \"<string>\", line 11, in rejects\n  File \"<string>\", line 42, in <lambda>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-event-replay-iu7qd5bl/events/replay.py\", line 13, in replay\n    for raw_event in events:\n                     ^^^^^^\nTypeError: 'NoneType' object is not iterable\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "c788214ea095e6d32d43745e80efcc33913035ebe1a6a74842ee0112faf87dce",
+            "after": "c788214ea095e6d32d43745e80efcc33913035ebe1a6a74842ee0112faf87dce",
+            "ok": true,
+            "finished_seconds": 37.087049749912694,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "c788214ea095e6d32d43745e80efcc33913035ebe1a6a74842ee0112faf87dce"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 51.77,
+      "iterations": 8,
+      "usage": {
+        "requests": 8,
+        "input_tokens": 25169,
+        "output_tokens": 1263,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 2776,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 8,
+            "input_tokens": 25169,
+            "output_tokens": 1263
+          }
+        }
+      },
+      "tools": {
+        "read_file": 4,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 51.6799,
+        "model_seconds": 50.895,
+        "tool_seconds": 0.1001,
+        "approval_seconds": 0.0005,
+        "other_work_seconds": 0.6848,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.13595766690559685,
+            "seconds": 1.1587,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 1.2985244169831276,
+            "seconds": 1.9776,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 3.279222291894257,
+            "seconds": 1.6851,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 4.968853874946944,
+            "seconds": 10.1939,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 15.276584499981254,
+            "seconds": 3.7456,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 6,
+            "purpose": "task",
+            "started_seconds": 19.02683187497314,
+            "seconds": 12.5186,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 7,
+            "purpose": "task",
+            "started_seconds": 31.676216374966316,
+            "seconds": 5.323,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 8,
+            "purpose": "task",
+            "started_seconds": 37.204049166990444,
+            "seconds": 14.2925,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_sz1tscau",
+            "name": "read_file",
+            "started_seconds": 1.295130749931559,
+            "seconds": 0.0012,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_e0h2puni",
+            "name": "read_file",
+            "started_seconds": 3.2764362919842824,
+            "seconds": 0.0011,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_fn8yiofn",
+            "name": "read_file",
+            "started_seconds": 4.964807166950777,
+            "seconds": 0.0015,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_3ivd2dxa",
+            "name": "write_file",
+            "started_seconds": 15.163326207897626,
+            "seconds": 0.0042,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_k2qo0d4i",
+            "name": "read_file",
+            "started_seconds": 19.02266041690018,
+            "seconds": 0.0016,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_whkgqv19",
+            "name": "write_file",
+            "started_seconds": 31.545999541995116,
+            "seconds": 0.0033,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_l5o2kr4c",
+            "name": "run_shell",
+            "started_seconds": 36.99986491689924,
+            "seconds": 0.0872,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0203,
+        "grading_and_cleanup_seconds": 0.0666
+      },
+      "evidence": "attempts/e3059ebddbc918b331e3-d6b0be2d",
+      "evidence_sha256": {
+        "events.jsonl": "20b37742138f30ad90a759d44a967f1fc7c3f58a44f165315c7049362fef6bae",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/events/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/events/replay.py": "a2e5213cb9cc48d537fa103525152b9763490badfdaef844ccc60a76e8bc2b2c",
+        "files/events/validation.py": "865c57f2d5f59a7df68eec46778724f6358b4a314a724937b1649c16c4d29f2c",
+        "files/tests/test_project.py": "f014ced64354fb75cfc3ee17a2da098e06c37327906f16eca18c368b3d069bd8",
+        "result.json": "728b062762b4b5c5b2de9d4c2eccea9805de530d8cecd7fa509fe2e8387a8bfb",
+        "session.jsonl": "38c0ce188c76fd08ea845bea286f75b2d1fb1a71c7b934383579eefdadeb642b"
+      }
+    },
+    {
+      "task": "event-replay",
+      "task_fingerprint": "118d3c41931a35a48cfebdccc93de9e8788425447bf35f2453aaaa2753f6903b",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "case_id": "7e17c3cb33b193360391",
+      "profile": {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": true,
+      "check_passed": true,
+      "check_output": "[independent check completed]\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "1559d11884f03b0c6cbbc7970b7346f96e4af44c41de0c37ac099ce9c620a93b",
+            "after": "1559d11884f03b0c6cbbc7970b7346f96e4af44c41de0c37ac099ce9c620a93b",
+            "ok": true,
+            "finished_seconds": 189.8173197080614,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "1559d11884f03b0c6cbbc7970b7346f96e4af44c41de0c37ac099ce9c620a93b"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 233.32,
+      "iterations": 5,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 21901,
+        "output_tokens": 2059,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 3328,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 5,
+            "input_tokens": 21901,
+            "output_tokens": 2059
+          }
+        }
+      },
+      "tools": {
+        "read_file": 3,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 233.2419,
+        "model_seconds": 232.4241,
+        "tool_seconds": 0.1139,
+        "approval_seconds": 0.0005,
+        "other_work_seconds": 0.7039,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.12905550003051758,
+            "seconds": 18.223,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 18.359061666065827,
+            "seconds": 96.1662,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 114.6601487910375,
+            "seconds": 44.9914,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 159.78345691598952,
+            "seconds": 29.9308,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 189.93063520803116,
+            "seconds": 43.1127,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_hmztj6ki",
+            "name": "read_file",
+            "started_seconds": 18.352647833060473,
+            "seconds": 0.002,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_zv5bheg7",
+            "name": "read_file",
+            "started_seconds": 18.354785540956073,
+            "seconds": 0.001,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_9os4uq84",
+            "name": "read_file",
+            "started_seconds": 18.355928333010525,
+            "seconds": 0.0009,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_49hfmg40",
+            "name": "write_file",
+            "started_seconds": 114.5273023750633,
+            "seconds": 0.0036,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_pg1yj9op",
+            "name": "write_file",
+            "started_seconds": 159.65237366606016,
+            "seconds": 0.004,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_hlzgih5h",
+            "name": "run_shell",
+            "started_seconds": 189.71490849996917,
+            "seconds": 0.1024,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.0165,
+        "grading_and_cleanup_seconds": 0.063
+      },
+      "evidence": "attempts/7e17c3cb33b193360391-d8bd1969",
+      "evidence_sha256": {
+        "events.jsonl": "69b0a6c7fda881e866d4b39882abf9ce9d511807aad2284008538c8ec039cc7b",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/events/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/events/replay.py": "79c88ac9c9c567f5fa9fcdcc7e5f0f26d17218d7bd638856eb9fa5f2798b6218",
+        "files/events/validation.py": "533deb0508276b24ae0660a00b33500118d21764198711756a54b4feca5f0aee",
+        "files/tests/test_project.py": "f014ced64354fb75cfc3ee17a2da098e06c37327906f16eca18c368b3d069bd8",
+        "result.json": "1e64ef048e41f53b2299b2585cb23f6fac609382d4475d0d15012738bd380764",
+        "session.jsonl": "cf7928fbfd7f053b3a42d146713f137bb7a0dcd32360cfd6797e58988cfd6d1d"
+      }
+    },
+    {
+      "task": "command-arguments",
+      "task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "case_id": "a5103da2bb5e57fdee8d",
+      "profile": {
+        "name": "ollama/qwen3.6:27b-mlx",
+        "model": "qwen3.6:27b-mlx",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', [], [''])\n",
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "868875f833f9bb31c67e9a1699ce7883d0dec075d589b6c31de6acf377c132a9",
+            "after": "868875f833f9bb31c67e9a1699ce7883d0dec075d589b6c31de6acf377c132a9",
+            "ok": true,
+            "finished_seconds": 140.12433137500193,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "868875f833f9bb31c67e9a1699ce7883d0dec075d589b6c31de6acf377c132a9"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "complete",
+      "seconds": 181.71,
+      "iterations": 5,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 20161,
+        "output_tokens": 1571,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 4365,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.6:27b-mlx": {
+            "requests": 5,
+            "input_tokens": 20161,
+            "output_tokens": 1571
+          }
+        }
+      },
+      "tools": {
+        "read_file": 3,
+        "write_file": 2,
+        "run_shell": 1
+      },
+      "tool_errors": 0,
+      "denials": 0,
+      "self_checks": 2,
+      "timing": {
+        "work_seconds": 181.6025,
+        "model_seconds": 180.7902,
+        "tool_seconds": 0.0841,
+        "approval_seconds": 0.0005,
+        "other_work_seconds": 0.7282,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.13116474996786565,
+            "seconds": 12.8192,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 12.956177499960177,
+            "seconds": 46.8682,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 59.937653540982865,
+            "seconds": 52.4514,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 112.50975566601846,
+            "seconds": 27.5386,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 140.25076216598973,
+            "seconds": 41.1128,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_8amdqp78",
+            "name": "read_file",
+            "started_seconds": 12.950772624928504,
+            "seconds": 0.0012,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_mc8i4062",
+            "name": "read_file",
+            "started_seconds": 12.952099291025661,
+            "seconds": 0.0008,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_xzfh137c",
+            "name": "read_file",
+            "started_seconds": 12.953020249959081,
+            "seconds": 0.0008,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_o1qtbx69",
+            "name": "write_file",
+            "started_seconds": 59.82484862499405,
+            "seconds": 0.0036,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_s0x8045u",
+            "name": "write_file",
+            "started_seconds": 112.38948916597292,
+            "seconds": 0.0021,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_p1nn1gz6",
+            "name": "run_shell",
+            "started_seconds": 140.0487372080097,
+            "seconds": 0.0756,
+            "outcome": "returned"
+          }
+        ],
+        "setup_seconds": 0.018,
+        "grading_and_cleanup_seconds": 0.0861
+      },
+      "evidence": "attempts/a5103da2bb5e57fdee8d-25324f77",
+      "evidence_sha256": {
+        "events.jsonl": "15e2de1c80d310518387036ed20c38934aeaf233c6c913c75982a4d68c27bd25",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "e648f7da0a1c572dbde2924d38986e065c3b6ef9ba359ab34c67e996c970ea73",
+        "files/arguments/options.py": "26562c4a7f94edffa75680f0840d131031d870cf44ead94cc17fd87ad99a691f",
+        "files/tests/test_project.py": "164df8c9699b908f5accdc0ccbf8bd582fc5fb5551f8c88e9cb6ed99ece53394",
+        "result.json": "686655c97150e8c0deb2191987efc966e98e854120a7fcc9561587871ef3306c",
+        "session.jsonl": "5cc3b388c888ce9f2387dc8b26b30791075a95b4237c75e9fa51cf43018171c5"
+      }
+    },
+    {
+      "task": "command-arguments",
+      "task_fingerprint": "d532b5e022c0d6e67a1743639654a77d66bfe7115eb2e3ec92fefbf9d6c5c58f",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "case_id": "3081c470852128c7553a",
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "passed": false,
+      "check_passed": false,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', ['\"\"'], [''])\n",
+      "scope": {
+        "passed": true,
+        "changed": [],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "fbef4a144c5d8414b5ff1ad120d12d8ea16fcee0b2a7256582b46b8a6147ac00",
+            "after": "fbef4a144c5d8414b5ff1ad120d12d8ea16fcee0b2a7256582b46b8a6147ac00",
+            "ok": false,
+            "finished_seconds": 10.065443207975477,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "fbef4a144c5d8414b5ff1ad120d12d8ea16fcee0b2a7256582b46b8a6147ac00"
+      },
+      "tool_checks_passed": true,
+      "stop_reason": "error",
+      "error": "Model stopped with length; pending tools were not executed.",
+      "seconds": 122.54,
+      "iterations": 5,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 9036,
+        "output_tokens": 4191,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 1228,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 5,
+            "input_tokens": 9036,
+            "output_tokens": 4191
+          }
+        }
+      },
+      "tools": {
+        "read_file": 3
+      },
+      "tool_errors": 1,
+      "denials": 0,
+      "self_checks": 0,
+      "timing": {
+        "work_seconds": 122.4628,
+        "model_seconds": 122.0289,
+        "tool_seconds": 0.1052,
+        "approval_seconds": 0.0001,
+        "other_work_seconds": 0.3287,
+        "model_requests": [
+          {
+            "iteration": 1,
+            "purpose": "task",
+            "started_seconds": 0.15141083300113678,
+            "seconds": 4.5023,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 2,
+            "purpose": "task",
+            "started_seconds": 4.657470582984388,
+            "seconds": 1.7371,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 3,
+            "purpose": "task",
+            "started_seconds": 6.39791691605933,
+            "seconds": 1.619,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 4,
+            "purpose": "task",
+            "started_seconds": 8.020741458050907,
+            "seconds": 1.9414,
+            "outcome": "returned"
+          },
+          {
+            "iteration": 5,
+            "purpose": "task",
+            "started_seconds": 10.151867625070736,
+            "seconds": 112.2291,
+            "outcome": "returned"
+          }
+        ],
+        "tool_calls": [
+          {
+            "id": "call_3ecn931h",
+            "name": "read_file",
+            "started_seconds": 4.654141916078515,
+            "seconds": 0.0016,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_rd7o0r7i",
+            "name": "read_file",
+            "started_seconds": 6.395020707976073,
+            "seconds": 0.0011,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_2bnp9cx1",
+            "name": "read_file",
+            "started_seconds": 8.017431000014767,
+            "seconds": 0.0012,
+            "outcome": "returned"
+          },
+          {
+            "id": "call_4675mdlk",
+            "name": "run_shell",
+            "started_seconds": 9.964128333027475,
+            "seconds": 0.1013,
+            "outcome": "error"
+          }
+        ],
+        "setup_seconds": 0.0193,
+        "grading_and_cleanup_seconds": 0.0531
+      },
+      "evidence": "attempts/3081c470852128c7553a-e15e6fde",
+      "evidence_sha256": {
+        "events.jsonl": "dcf4a9914cf4c017d55ad7607ecc3fccd7fa0e67e69503dba5f0072b184f735e",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "6ff5077d391f371483deb314f4fb07f1ba6018cbda70ac97db7185f1a045d5af",
+        "files/arguments/options.py": "1ecd09db8de304ca6a3dd2c910cc71225a08742dc86c4c247a0b20d7bb01a00a",
+        "files/tests/test_project.py": "164df8c9699b908f5accdc0ccbf8bd582fc5fb5551f8c88e9cb6ed99ece53394",
+        "result.json": "4eac7127bbce8b541f220c6118c1274d741523441edb954d622beb9b34f3ffaf",
+        "session.jsonl": "09d18b24c86ced449e94374362b18d8c03d0d5eb92175470234271bb7beff092"
+      }
+    }
+  ],
+  "grading_note": "These are the original frozen-run outcomes. A later contract audit corrects one false pass; use docs/phase12-contract-audit.json for audited correctness and complete-pass counts."
+}

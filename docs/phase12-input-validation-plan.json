@@ -1,0 +1,223 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "created_utc": "2026-10-21T05:43:03.110562+00:00",
+  "smok_version": "0.12.1",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "batch-renames": "fde955041c5e852ef638f90969058bee16243b07df26dc0d896a31fb4a3bebe3",
+      "byte-windows": "9ca4b28a9a7e22a5be0f6879d02a5a0c23c70343ed43aff6e50d2996db60c829",
+      "event-replay": "54c534d597c4140e5041ad84234d64a3d28bd9eea659fee61eae6bb14f4da6b3"
+    },
+    "task_splits": {
+      "batch-renames": "holdout",
+      "byte-windows": "holdout",
+      "event-replay": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "profile": {
+          "name": "ollama/gemma4:26b",
+          "model": "gemma4:26b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 32768,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "fb7b137f04a01c308f52fa4a0ed22e83de9af80145b5c097bb8c8dcc9504c0ce"
+    ],
+    "plan": [
+      {
+        "task": "batch-renames",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "ca944bab0b14a5e26651"
+      },
+      {
+        "task": "byte-windows",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "54987b88c914ef88c2b2"
+      },
+      {
+        "task": "event-replay",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "cd72995b5491af55267f"
+      },
+      {
+        "task": "batch-renames",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "dbd505951933732d7641"
+      },
+      {
+        "task": "byte-windows",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "707267885e8f94a6dbea"
+      },
+      {
+        "task": "event-replay",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "e3059ebddbc918b331e3"
+      }
+    ],
+    "limits": {
+      "max_iterations": 16,
+      "task_timeout": 300.0,
+      "max_requests": 96,
+      "budget_tokens": 1100000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "d9e7a5f66bf9350bcb80263a6818b0ed300b2188bd1f44b2130aac7aa2091e09",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/gemma4:26b",
+    "--variant",
+    "focused-repair",
+    "--repeats",
+    "2",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "300",
+    "--max-iterations",
+    "16",
+    "--max-requests",
+    "96",
+    "--budget-tokens",
+    "1100000",
+    "--task",
+    "batch-renames",
+    "--task",
+    "byte-windows",
+    "--task",
+    "event-replay"
+  ],
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase12-input-validation-freeze-20261021T054303.110562Z/source.tar.gz",
+    "sha256": "76ecb9110bf7273c1e1657aa189b511bf07bd3d25db3d9fa0d0bf5ed3c76545f",
+    "files": 167
+  },
+  "protocol": {
+    "nonadaptive_within_run": true,
+    "all_attempts_retained": true,
+    "fresh_holdout": false,
+    "success": "Every planned attempt completes, passes independent correctness, scope and final-file public verification.",
+    "runtime_matches_original_phase12": false,
+    "per_attempt_limits_unchanged_from_phase12": true,
+    "original_results_preserved": true,
+    "selection": "Fixed two repetitions of the three input-processing regressions. Earlier Gemma pilots passed these tasks separately; Qwen3.8 has not demonstrated broad reliability. Run serially after the existing Qwen3.8 eight-attempt plan finishes, retaining every result and changing no runtime or fixture within either run. No model-default change."
+  },
+  "deviations": []
+}

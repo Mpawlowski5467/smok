@@ -1,0 +1,233 @@
+{
+  "schema_version": 1,
+  "date": "2026-10-19",
+  "smok_version": "0.9.0",
+  "milestone": "Phase 9: setup and release readiness",
+  "platform": "Darwin arm64",
+  "runtime_source_fingerprint": "d578a8ff8567f37d891ada1f184ca741444731eac21ee371c335c3fdb7998e09",
+  "python_tests": {
+    "passed": 423,
+    "new_cases": 34,
+    "seconds": 27.96
+  },
+  "lint": {
+    "passed": true,
+    "formatted_python_files": 128
+  },
+  "browser_tests": {
+    "passed": 2,
+    "seconds": 5.0,
+    "model": "deterministic fixture",
+    "reviewed_screenshots": [
+      "docs/screenshots/setup-desktop.png",
+      "docs/screenshots/setup-mobile.png"
+    ]
+  },
+  "cli_diagnostics": {
+    "smok_version": "0.9.0",
+    "passed": true,
+    "workspace_unchanged": true,
+    "generation_requests": 0,
+    "reports": [
+      {
+        "schema_version": 1,
+        "smok_version": "0.9.0",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "ok": true,
+        "probe_requested": false,
+        "generation_requests": 0,
+        "checks": [
+          {
+            "id": "python",
+            "label": "Python runtime",
+            "status": "ok",
+            "detail": "Python 3.12.14",
+            "remedy": ""
+          },
+          {
+            "id": "git",
+            "label": "Git",
+            "status": "ok",
+            "detail": "Executable is on PATH.",
+            "remedy": ""
+          },
+          {
+            "id": "rg",
+            "label": "Ripgrep",
+            "status": "ok",
+            "detail": "Executable is on PATH.",
+            "remedy": ""
+          },
+          {
+            "id": "frontend",
+            "label": "Desktop and browser interface",
+            "status": "ok",
+            "detail": "Compiled assets are present.",
+            "remedy": ""
+          },
+          {
+            "id": "workspace",
+            "label": "Workspace",
+            "status": "ok",
+            "detail": "Permissions allow project metadata; no write was attempted.",
+            "remedy": ""
+          },
+          {
+            "id": "settings",
+            "label": "Project settings",
+            "status": "ok",
+            "detail": "Permissions: ask. Shell backend: host.",
+            "remedy": ""
+          },
+          {
+            "id": "model",
+            "label": "Model profile",
+            "status": "ok",
+            "detail": "ollama/qwen3.6:27b-mlx",
+            "remedy": ""
+          },
+          {
+            "id": "credentials",
+            "label": "API credentials",
+            "status": "ok",
+            "detail": "This profile does not require a key.",
+            "remedy": ""
+          },
+          {
+            "id": "connection",
+            "label": "Model connection",
+            "status": "skipped",
+            "detail": "Connection was not checked. No network request was sent.",
+            "remedy": "Use Check model connection or --doctor --probe-model to request a model list."
+          }
+        ]
+      },
+      {
+        "schema_version": 1,
+        "smok_version": "0.9.0",
+        "model": "ollama/qwen3.6:27b-mlx",
+        "ok": true,
+        "probe_requested": true,
+        "generation_requests": 0,
+        "checks": [
+          {
+            "id": "python",
+            "label": "Python runtime",
+            "status": "ok",
+            "detail": "Python 3.12.14",
+            "remedy": ""
+          },
+          {
+            "id": "git",
+            "label": "Git",
+            "status": "ok",
+            "detail": "Executable is on PATH.",
+            "remedy": ""
+          },
+          {
+            "id": "rg",
+            "label": "Ripgrep",
+            "status": "ok",
+            "detail": "Executable is on PATH.",
+            "remedy": ""
+          },
+          {
+            "id": "frontend",
+            "label": "Desktop and browser interface",
+            "status": "ok",
+            "detail": "Compiled assets are present.",
+            "remedy": ""
+          },
+          {
+            "id": "workspace",
+            "label": "Workspace",
+            "status": "ok",
+            "detail": "Permissions allow project metadata; no write was attempted.",
+            "remedy": ""
+          },
+          {
+            "id": "settings",
+            "label": "Project settings",
+            "status": "ok",
+            "detail": "Permissions: ask. Shell backend: host.",
+            "remedy": ""
+          },
+          {
+            "id": "model",
+            "label": "Model profile",
+            "status": "ok",
+            "detail": "ollama/qwen3.6:27b-mlx",
+            "remedy": ""
+          },
+          {
+            "id": "credentials",
+            "label": "API credentials",
+            "status": "ok",
+            "detail": "This profile does not require a key.",
+            "remedy": ""
+          },
+          {
+            "id": "connection",
+            "label": "Model connection",
+            "status": "ok",
+            "detail": "The endpoint lists the selected model. Generation and tool support have not been tested.",
+            "remedy": ""
+          }
+        ]
+      }
+    ]
+  },
+  "native_bundle": {
+    "smok_version": "0.9.0",
+    "passed": true,
+    "generation_requests": 0,
+    "checks": [
+      "bundle version",
+      "bundled server version",
+      "complete bundle signature",
+      "loopback readiness",
+      "authentication",
+      "workspace bootstrap",
+      "offline setup diagnostics without a session",
+      "compiled asset byte parity",
+      "deadline validation, save, resume, and clear",
+      "graceful shutdown",
+      "listener closed",
+      "session writer lock released"
+    ],
+    "executables": {
+      "smok-server": "7408c8505ad670014cdd1e55176644f64f91eafa64ebbdb21dfb16b8e0f3ab4c",
+      "smok-desktop": "cc5671204c50c346287a6580b182effd72676a33fe7e7704ca1476f6de4fd68c"
+    }
+  },
+  "archive_verification": {
+    "passed": true,
+    "command": "uv run python scripts/check_release.py",
+    "wheel_files_matched": 61,
+    "graders": 20,
+    "sha256_output": "Emitted by the verification command; omitted here to avoid hashing an archive that contains its own hash."
+  },
+  "source_sha256": {
+    "src/smok/diagnostics.py": "157c6271e2b5e7907cc0e743f753f898f6e5ae5a324a5303bd2bd80452c9187e",
+    "src/smok/cli.py": "f2943c92214f00f810190b59b3ae8c8457b4aef7671ad4e209f1ad6680e6b607",
+    "src/smok/gui/config.py": "f13c0359cb4952992f524501e5c09c89465b671bdbd99f79fcc2b2041a79a32c",
+    "src/smok/gui/server.py": "9ebfead70f3d1dba89c948910439827f38d9b2ed357f9d5ae0fb4af6d355f484",
+    "scripts/check_release.py": "a2fc7cdb042b03df065d281daa426f9c31181cb547d0f7e657868f4e9c979c6b",
+    "scripts/check_desktop.py": "4be469f49e908727d46f68683408e1bf58e9c2888dbc144d7655a47363a62c56",
+    "web/src/components/Setup.tsx": "9d63a82b58591fbd86d699ace437ef207abd0ed26add9e850d01bf767d935b4e",
+    "web/src/App.tsx": "fe462d4290df9ff3d4427e0891fa6115a7c94145ee1ec56cc5c5ba8c41a0323a",
+    "web/src/index.css": "dfc6fef0eaab6954d390579dbb0ec1d3f90a1b5509952b799d7c5afc5557f776",
+    "tests/test_phase9_setup.py": "72de3372a4b5bc2a8ef7602c643630ea685205cb1f242f97cc41029122dc712a",
+    "tests/test_phase9_release.py": "12f878b11efbc702a79e9641836568925861bab0ccf05aef6919ed839401ac2b",
+    "web/tests/workspace.spec.ts": "f95dd2c165ebc6f99d31a420c663f7ef1d69d741ee3135ae021e16fc9081eb4e"
+  },
+  "screenshot_sha256": {
+    "docs/screenshots/setup-desktop.png": "ca43e4599ac9c32ef4ad675cffc1611989887de8e0d4a6b98e8b1abfe3bb1ee0",
+    "docs/screenshots/setup-mobile.png": "9288922a2a4de34af9e9afbdd5f66d6abc0f47f9db234e43a2e4804058cd8759"
+  },
+  "limitations": [
+    "The new connection check verifies model catalog availability, not generation or tool support.",
+    "No generation, model download, paid provider request, registry publication, or remote CI run was performed for this milestone.",
+    "Native checks cover the local Apple Silicon bundle and server; public signing/notarization and other platforms remain unverified."
+  ]
+}

@@ -1,0 +1,84 @@
+{
+  "schema_version": 1,
+  "kind": "source_publication_checks",
+  "date": "2026-10-21",
+  "created_utc": "2026-10-21T14:16:32.573907+00:00",
+  "smok_version": "0.12.1",
+  "runtime_source_fingerprint": "93490ea653fe7ec201beb378b16f2246c3395846595e82284bfa564f3b37f719",
+  "platform": {
+    "system": "Darwin",
+    "machine": "arm64",
+    "python": "3.12.14"
+  },
+  "python": {
+    "passed": 580,
+    "seconds": 25.0,
+    "command": "python -m pytest -q"
+  },
+  "ruff": {
+    "lint": "passed",
+    "format": "passed",
+    "python_files": 160
+  },
+  "lock_check": "passed offline",
+  "frontend": {
+    "typescript": "passed",
+    "production_build": "passed",
+    "warning": "Vite warns that the main JavaScript chunk exceeds 500 kB; build succeeds."
+  },
+  "browser": {
+    "passed": 2,
+    "seconds": 4.2,
+    "model": "deterministic local fixture"
+  },
+  "native": {
+    "smok_version": "0.12.1",
+    "passed": true,
+    "generation_requests": 0,
+    "checks": [
+      "bundle version",
+      "bundled server version",
+      "complete bundle signature",
+      "loopback readiness",
+      "authentication",
+      "workspace bootstrap",
+      "offline setup diagnostics without a session",
+      "compiled asset byte parity",
+      "deadline validation, save, resume, and clear",
+      "graceful shutdown",
+      "listener closed",
+      "session writer lock released"
+    ],
+    "executables": {
+      "smok-server": "d1f4d7432637f1449a7174419eac2c62ea202c7feecc9da4906bf6e39923eb27",
+      "smok-desktop": "6c8a1a2f4410fee336e3215e627c1ba44c5abb730f52de41612cd56c72ad88b2"
+    }
+  },
+  "logs_sha256": {
+    "pytest-final": "173bc84193bd515f31d3434ce9bda4d527b6b8c6f8253265d73e8524ad43f99c",
+    "frontend": "de4c9bda2120a9d033d724841246364c1beddbd7250a213e5bcb5fde04fd1ec4",
+    "browser": "7fcf48490bafa0bf878269eaaa10efd3413bca6bd9da3a7d4e144d25ef5ba531",
+    "desktop-build": "f942cedc41f85f0320e5a68581c5c0ce23f77b0c27b8f5c8f72ad919efb7ab40",
+    "native": "e3e4fe2e2eb575ae7815c9e76da23b2081e38e0f3c3f9b6db04b97309da71d11"
+  },
+  "live_model_requests_during_publication_checks": 0,
+  "latest_review_timing_live_qualified": false,
+  "limitations": [
+    "Known command-parser failures remain unresolved.",
+    "Historical live results do not measure the latest review timing.",
+    "Raw eval traces and frozen archives remain local, outside Git.",
+    "Native checks cover local Apple Silicon builds, not notarized public installers."
+  ],
+  "package": {
+    "passed": true,
+    "checker": "scripts/check_release.py",
+    "source_and_asset_parity": true,
+    "private_and_generated_state_excluded": true,
+    "grader_count": 34,
+    "artifact_hashes": "Retained locally in dist/release-check-0.12.1.json; hashes are not embedded here to avoid a self-referential source archive."
+  },
+  "documentation": {
+    "local_links": "passed",
+    "screenshots": "refreshed from passing deterministic browser scenarios"
+  }
+}

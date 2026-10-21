@@ -1,0 +1,169 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T04:49:27.246071+00:00",
+  "plan": "docs/phase12-guidance-pilot-plan.json",
+  "plan_sha256": "451a2f23ac934ddf34f3f6c720c41652d53923f94f2dc6acf7cb00aad1fb2f9b",
+  "report": "evals/results/20261021T044617.063114Z-phase12/report.json",
+  "report_sha256": "e4d8455272af7db9e16a50f179c9bc877d6d3f86268630379899bed7dc09e5d7",
+  "run_fingerprint": "030668e75c51a62969b8c101d696989311d7ca69499468745bfa84e3b5a1e4cf",
+  "source_fingerprint": "db56c78f36e6b703c221cd8874f2cc41f1f99061dbe17ad28e22af116f54a480",
+  "source_snapshot": {
+    "path": "evals/results/phase12-guidance-pilot-freeze-20261021T044613.982035Z/source.tar.gz",
+    "sha256": "3f2d86c0670d4eeb9fbf4e15b72964ab98f050b10a53e619457f30ae1e1ba294",
+    "files": 166
+  },
+  "status": "complete",
+  "planned_cases": 1,
+  "finished_cases": 1,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 12,
+      "input_tokens": 100677,
+      "output_tokens": 2968,
+      "estimated_requests": 0,
+      "cache_read_input_tokens": 4637,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/gemma4:26b": {
+          "requests": 12,
+          "input_tokens": 100677,
+          "output_tokens": 2968
+        }
+      }
+    },
+    "requests": 12,
+    "turns": 1
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 1,
+      "correct": 1,
+      "verified": 1,
+      "completed": 1,
+      "seconds": [
+        176.38
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "2491cabdda62c825de12",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": true,
+      "stop_reason": "complete",
+      "seconds": 176.38,
+      "iterations": 12,
+      "check_passed": true,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "21832dc1488d548bcdd349f5d2dc02e45211ea58bac5f38d2a778579d8bbc1c6",
+            "after": "21832dc1488d548bcdd349f5d2dc02e45211ea58bac5f38d2a778579d8bbc1c6",
+            "ok": false,
+            "finished_seconds": 12.013388124993071,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "f597929bdecae93deb1bf441fb7b86268bf476766d16aec91e171558b7a8f233",
+            "after": "f597929bdecae93deb1bf441fb7b86268bf476766d16aec91e171558b7a8f233",
+            "ok": true,
+            "finished_seconds": 152.16784045798704,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "f597929bdecae93deb1bf441fb7b86268bf476766d16aec91e171558b7a8f233"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 12,
+        "input_tokens": 100677,
+        "output_tokens": 2968,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 4637,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 12,
+            "input_tokens": 100677,
+            "output_tokens": 2968
+          }
+        }
+      },
+      "evidence": "attempts/2491cabdda62c825de12-aa6fd2e2",
+      "error": null,
+      "check_output": "[independent check completed]\n",
+      "evidence_sha256": {
+        "result.json": "70a3e94adbc13ba6a95b3fd170cb8d6d9d676bdc1d04e2c704d280dd34bfb7b7",
+        "events.jsonl": "366e4da133998bcf8fc204342cd45246ab0830508072d792380ed032d9e1a569",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "2b78f2d9a1885257ed47127abd82598ba829ec18123139ead798b7662f1a54a4",
+        "files/arguments/options.py": "521cff332147534e39ae1259f674e219c81805eeb2cfa3d834105024bb88283a",
+        "files/tests/test_project.py": "0e50f8e4d128cd9f56719cb54c1a3969d2ed7dc442ff009c9b7203b875a96147"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ]
+}

@@ -1,0 +1,155 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T06:06:22.525815+00:00",
+  "plan": "docs/phase12-parser-deliberate-pilot-plan.json",
+  "plan_sha256": "e725054c9b917825b539f18ea2b5205f8adfa68b693a2cd7ec10b10fb20e716b",
+  "report": "evals/results/20261021T055548.251898Z-phase12/report.json",
+  "report_sha256": "c0acc1507ef7910ac01b4ba43ddc4efb229b9d100554dd1f79dcd102fadd680c",
+  "run_fingerprint": "4d73cc0e37fff35b024385d7bade84fc3d5e353cb042d1968847112b6c9e4064",
+  "source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-deliberate-pilot-freeze-20261021T054752.429792Z/source.tar.gz",
+    "sha256": "a89407b125b3ede7d29a63b78c359e7839faf7990393346c9ca4d1e11c644aa0",
+    "files": 167
+  },
+  "status": "complete",
+  "planned_cases": 1,
+  "finished_cases": 1,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "qwen3.8:27b": {
+        "digest": "47951e4a666180bc2aedfc93c169472f2de783696fe196efbf063f5730ecf163",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            "low",
+            "medium",
+            "xhigh"
+          ],
+          "default": "medium"
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "qwen3_5",
+          "families": null,
+          "parameter_size": "27.8B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "top_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1\ntemperature                    1\ntop_k                          20"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 2,
+      "input_tokens": 5640,
+      "output_tokens": 8299,
+      "estimated_requests": 1,
+      "cache_read_input_tokens": 0,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/qwen3.8:27b": {
+          "requests": 2,
+          "input_tokens": 5640,
+          "output_tokens": 8299
+        }
+      }
+    },
+    "requests": 2,
+    "turns": 1
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        600.18
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "fb1797fa8eec84a8201b",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.8:27b",
+      "variant": "baseline",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "time_limit",
+      "seconds": 600.18,
+      "iterations": 2,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [],
+        "final_files_fingerprint": "abb86627b3414c1f689a94aadbf1a1b47b233ccab89c1183f6bb33133492a113"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 2,
+        "input_tokens": 5640,
+        "output_tokens": 8299,
+        "estimated_requests": 1,
+        "cache_read_input_tokens": 0,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/qwen3.8:27b": {
+            "requests": 2,
+            "input_tokens": 5640,
+            "output_tokens": 8299
+          }
+        }
+      },
+      "evidence": "attempts/fb1797fa8eec84a8201b-c386ac3d",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', ['\"\"'], [''])\n",
+      "evidence_sha256": {
+        "result.json": "2f0531ed2a6d121094eaf3aa96ec31dc69ffd45a2d3c5cbc1706fdd3d146878c",
+        "events.jsonl": "1648ec58f9a4a9aba25fd853e6c8bb3371062fca6e84f00d9108bcb32d19a662",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "6ff5077d391f371483deb314f4fb07f1ba6018cbda70ac97db7185f1a045d5af",
+        "files/arguments/options.py": "1ecd09db8de304ca6a3dd2c910cc71225a08742dc86c4c247a0b20d7bb01a00a",
+        "files/tests/test_project.py": "a47f3272eb0b8a2767ac0e5f9da4e7215218b460c21d4a0e75aaafa6887c08ec"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ],
+  "config_snapshot": {
+    "path": "evals/results/phase12-parser-deliberate-pilot-freeze-20261021T054752.429792Z/profile.yaml",
+    "sha256": "cf906fb2b03cc6e99964f3f62b748d7aa913b6df819e8c4a9c4a402fbdfcff75"
+  }
+}

@@ -1,0 +1,20 @@
+{
+  "permissions": "ask",
+  "team": {
+    "routes": {
+      "explore": "ollama/qwen3.6:27b-mlx",
+      "plan": "ollama/qwen3.6:27b-mlx",
+      "edit": "ollama/qwen3.6:27b-mlx",
+      "review": "ollama/qwen3.6:27b-mlx",
+      "oracle": "ollama/qwen3.6:27b-mlx"
+    },
+    "ladder": [],
+    "shadow_model": null,
+    "max_workers": 3,
+    "worker_iterations": 8,
+    "max_requests": 48,
+    "timeout_seconds": 600,
+    "stall_threshold": 3,
+    "remote_runners": {}
+  }
+}

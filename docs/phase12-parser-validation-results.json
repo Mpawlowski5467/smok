@@ -1,0 +1,330 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T04:59:26.984481+00:00",
+  "plan": "docs/phase12-parser-validation-plan.json",
+  "plan_sha256": "02f985e7512a60ac5093f1d8796190c2a7283aab4eccaa7bf952e456301878cf",
+  "report": "evals/results/20261021T044930.784611Z-phase12/report.json",
+  "report_sha256": "f6960a1ac4d8c7750daea486137aeefbcc76897d4f45574d588da4f0f2e74575",
+  "run_fingerprint": "4f2435d1763d2160aec1a5da8cbcf93171af24a72ef9ebb3122083683ace0233",
+  "source_fingerprint": "db56c78f36e6b703c221cd8874f2cc41f1f99061dbe17ad28e22af116f54a480",
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-validation-freeze-20261021T044927.826343Z/source.tar.gz",
+    "sha256": "de4aa2a2e37a39e82d181674999ad4cc71391cd55c7a8e9cd3fb7e5da4c44f45",
+    "files": 166
+  },
+  "status": "complete",
+  "planned_cases": 3,
+  "finished_cases": 3,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 33,
+      "input_tokens": 260826,
+      "output_tokens": 12312,
+      "estimated_requests": 0,
+      "cache_read_input_tokens": 26197,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/gemma4:26b": {
+          "requests": 33,
+          "input_tokens": 260826,
+          "output_tokens": 12312
+        }
+      }
+    },
+    "requests": 33,
+    "turns": 3
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 3,
+      "passed": 1,
+      "correct": 2,
+      "verified": 1,
+      "completed": 2,
+      "seconds": [
+        223.19,
+        150.35,
+        207.89
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "2491cabdda62c825de12",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "error",
+      "seconds": 223.19,
+      "iterations": 8,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "21832dc1488d548bcdd349f5d2dc02e45211ea58bac5f38d2a778579d8bbc1c6",
+            "after": "21832dc1488d548bcdd349f5d2dc02e45211ea58bac5f38d2a778579d8bbc1c6",
+            "ok": false,
+            "finished_seconds": 7.529766541090794,
+            "matches_final_files": false
+          }
+        ],
+        "final_files_fingerprint": "e1b3b67398cf452263391d20ca688e7d29735caa68536914d6aef78d415c8680"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 8,
+        "input_tokens": 51833,
+        "output_tokens": 6214,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 3715,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 8,
+            "input_tokens": 51833,
+            "output_tokens": 6214
+          }
+        }
+      },
+      "evidence": "attempts/2491cabdda62c825de12-64ac274f",
+      "error": "Model stopped with length; pending tools were not executed.",
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', [], [''])\n",
+      "evidence_sha256": {
+        "result.json": "bacf243cfa71f87aa8aa7599f4e5145a10f1ce148f6cf9d3d0dd7cb172d4d82f",
+        "events.jsonl": "f55870dca268ffdc5485848819a64bdbb11c7c058ac3259eb9834f7444779833",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "5c8ffd2dfaceb5e7b305a5a72f075468012790a564a9c9e0f0a5e8991fd326b9",
+        "files/arguments/options.py": "1ecd09db8de304ca6a3dd2c910cc71225a08742dc86c4c247a0b20d7bb01a00a",
+        "files/tests/test_project.py": "0e50f8e4d128cd9f56719cb54c1a3969d2ed7dc442ff009c9b7203b875a96147"
+      }
+    },
+    {
+      "case_id": "3081c470852128c7553a",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 2,
+      "passed": true,
+      "stop_reason": "complete",
+      "seconds": 150.35,
+      "iterations": 10,
+      "check_passed": true,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "21832dc1488d548bcdd349f5d2dc02e45211ea58bac5f38d2a778579d8bbc1c6",
+            "after": "21832dc1488d548bcdd349f5d2dc02e45211ea58bac5f38d2a778579d8bbc1c6",
+            "ok": false,
+            "finished_seconds": 4.265963915968314,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "0c52dfb96b4972a36386d5ba40adbb4a66ffd56ba554837cd5ab7b6bd60cdf04",
+            "after": "0c52dfb96b4972a36386d5ba40adbb4a66ffd56ba554837cd5ab7b6bd60cdf04",
+            "ok": true,
+            "finished_seconds": 127.34504000004381,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "0c52dfb96b4972a36386d5ba40adbb4a66ffd56ba554837cd5ab7b6bd60cdf04"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 10,
+        "input_tokens": 65984,
+        "output_tokens": 3122,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 11158,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 10,
+            "input_tokens": 65984,
+            "output_tokens": 3122
+          }
+        }
+      },
+      "evidence": "attempts/3081c470852128c7553a-d97dbd5b",
+      "error": null,
+      "check_output": "[independent check completed]\n",
+      "evidence_sha256": {
+        "result.json": "9ec812b84abe6be6ebb9f3a2ea3f76f34ce9c9fa17dca14f9b1a88c94538c9c7",
+        "events.jsonl": "f1d7d38abfaafdb0e45523ae8bd5477f10f9353158592fa239587b2c867da64b",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "ad534f6941c289fde959f63018b7463d103c5f769e31c2deee63f00116f7f4df",
+        "files/arguments/options.py": "57a96f09d9287dad676f6e1eeb238f87a0dbf54a2edccc7448388971a3442df3",
+        "files/tests/test_project.py": "0e50f8e4d128cd9f56719cb54c1a3969d2ed7dc442ff009c9b7203b875a96147"
+      }
+    },
+    {
+      "case_id": "7578dabb4788750c6da4",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 3,
+      "passed": false,
+      "stop_reason": "complete",
+      "seconds": 207.89,
+      "iterations": 15,
+      "check_passed": true,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "21832dc1488d548bcdd349f5d2dc02e45211ea58bac5f38d2a778579d8bbc1c6",
+            "after": "21832dc1488d548bcdd349f5d2dc02e45211ea58bac5f38d2a778579d8bbc1c6",
+            "ok": false,
+            "finished_seconds": 3.8908860000083223,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "11fac41ab97cea1e9ac2ac784252a8dc7e971baaa733cb24b9947643ec0603b7",
+            "after": "11fac41ab97cea1e9ac2ac784252a8dc7e971baaa733cb24b9947643ec0603b7",
+            "ok": false,
+            "finished_seconds": 53.378488790942356,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "ea6b23f085d9e3da4d512cc73f36a07c6841aa6509cc8eefea3dbe3129afbbdb",
+            "after": "ea6b23f085d9e3da4d512cc73f36a07c6841aa6509cc8eefea3dbe3129afbbdb",
+            "ok": false,
+            "finished_seconds": 115.09935199993197,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "dc60fd45370c0a42f8a72d79ac765cc7c7d03f31e634a02ff834ab9047da4057",
+            "after": "dc60fd45370c0a42f8a72d79ac765cc7c7d03f31e634a02ff834ab9047da4057",
+            "ok": false,
+            "finished_seconds": 154.4959012910258,
+            "matches_final_files": false
+          }
+        ],
+        "final_files_fingerprint": "065c5109534d27ff124b6083f97c17f5dbc0baba4f8b325ee382bfab1cc69907"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 15,
+        "input_tokens": 143009,
+        "output_tokens": 2976,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 11324,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 15,
+            "input_tokens": 143009,
+            "output_tokens": 2976
+          }
+        }
+      },
+      "evidence": "attempts/7578dabb4788750c6da4-bd52fae5",
+      "error": null,
+      "check_output": "[independent check completed]\n",
+      "evidence_sha256": {
+        "result.json": "f8d7feb6e9682d995f5c17e3e36f99b8b56086833eedeefc1ea9b1607078607f",
+        "events.jsonl": "516ca51385bc2e19fc7215f382e966335ae365438a334fa65d4bf1112bb7d846",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "9fc3fd042e2c65657a6074dd4444ae42da78751464b6fd0bb470c1b02b28865b",
+        "files/arguments/options.py": "2c4db9cdece57f93d0fd62c64c0b9b10ccfec7145e672c68d394792e22496be6",
+        "files/tests/test_project.py": "0e50f8e4d128cd9f56719cb54c1a3969d2ed7dc442ff009c9b7203b875a96147"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ]
+}

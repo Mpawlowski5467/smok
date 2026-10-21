@@ -1,0 +1,253 @@
+{
+  "schema_version": 1,
+  "model": "ollama/qwen3.6:27b-mlx",
+  "baseline": "baseline",
+  "candidate": "no-thinking",
+  "run_status": "complete",
+  "source_fingerprint": "c6aa1f5ff58b013cde36cebc3206aeddd1eeb865e8a019b92ad088ab4a1da8f5",
+  "run_fingerprint": "2b5d60a93c4bbffb036e6ee7ed46f74f815993d808723abe7fab4a5d33e04a5c",
+  "smok_version": "0.11.0",
+  "suite": "phase11",
+  "split": "holdout",
+  "limits": {
+    "max_iterations": 16,
+    "task_timeout": 300.0,
+    "max_requests": 256,
+    "budget_tokens": 2000000,
+    "budget_usd": null,
+    "allow_shell": true,
+    "allow_lsp": false
+  },
+  "task_fingerprints": {
+    "stock-reservations": "2726a5f0cd288859a314fccb0aabe997a6400c8b5ab2a9ce7a57f26215eb68b8",
+    "document-splices": "824205d3b9f35374044ddec161deaae334fee140ebbe4de925371a21777cc1ac",
+    "release-selection": "d01ce0c6aa2f5ab9654f217e400d63d16056ba266e1452a71445bd0d93ccf2ed",
+    "table-joins": "d64e17187290fe18b4ec00d7e893270ed09b099e2c3031e315b8b008d17217c2"
+  },
+  "profiles": {
+    "baseline": {
+      "token_parameter": "max_tokens",
+      "max_output_tokens": 4096,
+      "timeout_seconds": 180,
+      "context_window": 32768,
+      "compact_at": 0.8,
+      "keep_recent": 4,
+      "chars_per_token": 3.0,
+      "repo_map_tokens": 1500,
+      "prompt_cache": false,
+      "count_tokens": false,
+      "local": true,
+      "vision": false,
+      "prompt_style": "full",
+      "tool_set": "full",
+      "edit_format": "both",
+      "reasoning_effort": null
+    },
+    "no-thinking": {
+      "token_parameter": "max_tokens",
+      "max_output_tokens": 4096,
+      "timeout_seconds": 180,
+      "context_window": 32768,
+      "compact_at": 0.8,
+      "keep_recent": 4,
+      "chars_per_token": 3.0,
+      "repo_map_tokens": 1500,
+      "prompt_cache": false,
+      "count_tokens": false,
+      "local": true,
+      "vision": false,
+      "prompt_style": "full",
+      "tool_set": "full",
+      "edit_format": "both",
+      "reasoning_effort": "none"
+    }
+  },
+  "changed_controls": {
+    "reasoning_effort": {
+      "baseline": null,
+      "candidate": "none"
+    }
+  },
+  "planned_pairs": 8,
+  "paired_cases": 8,
+  "missing_pairs": [],
+  "distinct_tasks": 4,
+  "repeated_coverage": true,
+  "counts": {
+    "both_pass": 2,
+    "win": 3,
+    "both_fail": 3
+  },
+  "pairs": [
+    {
+      "task": "stock-reservations",
+      "repeat": 1,
+      "split": "holdout",
+      "outcome": "both_pass",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_stop": "complete",
+      "candidate_stop": "complete",
+      "baseline_seconds": 127.89,
+      "candidate_seconds": 158.08,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "document-splices",
+      "repeat": 1,
+      "split": "holdout",
+      "outcome": "win",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_stop": "time_limit",
+      "candidate_stop": "complete",
+      "baseline_seconds": 300.57,
+      "candidate_seconds": 274.12,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "release-selection",
+      "repeat": 1,
+      "split": "holdout",
+      "outcome": "both_fail",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_stop": "time_limit",
+      "candidate_stop": "time_limit",
+      "baseline_seconds": 300.61,
+      "candidate_seconds": 300.31,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "table-joins",
+      "repeat": 1,
+      "split": "holdout",
+      "outcome": "both_fail",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_stop": "error",
+      "candidate_stop": "time_limit",
+      "baseline_seconds": 39.35,
+      "candidate_seconds": 300.16,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "stock-reservations",
+      "repeat": 2,
+      "split": "holdout",
+      "outcome": "both_pass",
+      "baseline_passed": true,
+      "candidate_passed": true,
+      "baseline_stop": "complete",
+      "candidate_stop": "complete",
+      "baseline_seconds": 127.19,
+      "candidate_seconds": 118.5,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "document-splices",
+      "repeat": 2,
+      "split": "holdout",
+      "outcome": "win",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_stop": "complete",
+      "candidate_stop": "complete",
+      "baseline_seconds": 294.39,
+      "candidate_seconds": 267.29,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "release-selection",
+      "repeat": 2,
+      "split": "holdout",
+      "outcome": "both_fail",
+      "baseline_passed": false,
+      "candidate_passed": false,
+      "baseline_stop": "time_limit",
+      "candidate_stop": "complete",
+      "baseline_seconds": 300.24,
+      "candidate_seconds": 167.58,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    },
+    {
+      "task": "table-joins",
+      "repeat": 2,
+      "split": "holdout",
+      "outcome": "win",
+      "baseline_passed": false,
+      "candidate_passed": true,
+      "baseline_stop": "time_limit",
+      "candidate_stop": "complete",
+      "baseline_seconds": 300.33,
+      "candidate_seconds": 149.19,
+      "code_regression": false,
+      "verification_regression": false,
+      "scope_regression": false
+    }
+  ],
+  "shared_pass_latency": {
+    "pairs": 2,
+    "median_candidate_minus_baseline_seconds": 10.75,
+    "median_candidate_time_reduction_percent": -8.39
+  },
+  "summary": {
+    "baseline": {
+      "planned": 8,
+      "recorded": 8,
+      "passed": 2,
+      "correct": 3,
+      "verified": 5,
+      "completed": 3,
+      "stops": {
+        "complete": 3,
+        "time_limit": 4,
+        "error": 1
+      },
+      "total_seconds": 1790.57,
+      "requests": 37,
+      "tokens": 183219,
+      "estimated_requests": 4
+    },
+    "no-thinking": {
+      "planned": 8,
+      "recorded": 8,
+      "passed": 5,
+      "correct": 5,
+      "verified": 6,
+      "completed": 6,
+      "stops": {
+        "complete": 6,
+        "time_limit": 2
+      },
+      "total_seconds": 1735.23,
+      "requests": 45,
+      "tokens": 221981,
+      "estimated_requests": 2
+    }
+  },
+  "verdict": "candidate_supported",
+  "reason": "Candidate gains complete passes without an observed paired regression.",
+  "limitations": [
+    "The verdict describes this recorded sample, not general model quality or statistical significance.",
+    "Freshness is an evaluation protocol, not something this report can infer. Inspected tasks become known regressions.",
+    "Elapsed times include client work and cleanup. Only pairs passing both profiles enter latency comparison; timeouts are never treated as successful speedups.",
+    "Order, caches, sampler state, and local load can affect results. Repeats are not independent new tasks.",
+    "Report hashes detect accidental changes, not fabricated evidence. No network calls or workspace preference changes occur."
+  ],
+  "report_sha256": "937eeb94f7edc7feb44e3d49dd921dafe75f3b3b98bda0ad6a45b9f0a9b4b77d"
+}

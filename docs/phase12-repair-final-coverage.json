@@ -1,0 +1,247 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_public_coverage",
+  "created_utc": "2026-10-21T04:33:54.565708+00:00",
+  "report": "evals/results/20261021T033242.646266Z-phase12/report.json",
+  "report_sha256": "22aba3633d36d8ea3ebff37a0bc2a174747d134751adaa5f40277355c23a68c8",
+  "task_fingerprints": {
+    "batch-renames": "fde955041c5e852ef638f90969058bee16243b07df26dc0d896a31fb4a3bebe3",
+    "byte-windows": "9ca4b28a9a7e22a5be0f6879d02a5a0c23c70343ed43aff6e50d2996db60c829",
+    "event-replay": "54c534d597c4140e5041ad84234d64a3d28bd9eea659fee61eae6bb14f4da6b3",
+    "command-arguments": "1684aab4ae855f48e0e82c99169fd4919f22c8b5e64c7a71a71236a7aa0dcd47"
+  },
+  "contracts_seeds_references_and_audited_graders_unchanged": true,
+  "original_repairs_unchanged": true,
+  "new_generation_requests": 0,
+  "attempts": [
+    {
+      "case_id": "c36cc27702209aaa0728",
+      "task": "batch-renames",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "repeat": 1,
+      "evidence": "attempts/c36cc27702209aaa0728-69657731",
+      "audited_correct": true,
+      "expanded_public_passed": true,
+      "public_output": "----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n",
+      "repair_sha256": {
+        "renames/validation.py": "aaf2946a941f8c4edcc8406f435ca1099969f21d0ab5093707d0d0239fc5a786",
+        "renames/operations.py": "df8ca4811b1179d2100b3c56737e09bca5513f493106ba7fa5b1f427f9883bbc"
+      }
+    },
+    {
+      "case_id": "ca944bab0b14a5e26651",
+      "task": "batch-renames",
+      "model": "ollama/gemma4:26b",
+      "repeat": 1,
+      "evidence": "attempts/ca944bab0b14a5e26651-fba3aabf",
+      "audited_correct": true,
+      "expanded_public_passed": true,
+      "public_output": "----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n",
+      "repair_sha256": {
+        "renames/validation.py": "d8cb673a364f6b0c1c733157acab8cce0e567ead852e15df9e558f145414698f",
+        "renames/operations.py": "ba63f4281cf7334735b73cc0c220db6174326ee6baa11329e8af60421750c865"
+      }
+    },
+    {
+      "case_id": "54987b88c914ef88c2b2",
+      "task": "byte-windows",
+      "model": "ollama/gemma4:26b",
+      "repeat": 1,
+      "evidence": "attempts/54987b88c914ef88c2b2-68927317",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nERROR: test_ranges (test_project.ProjectTests.test_ranges)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-lg371973/tests/test_project.py\", line 9, in test_ranges\n    self.assertEqual(parse_range('bytes=-2', 6), (4, 5))\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-lg371973/windows/ranges.py\", line 25, in parse_range\n    raise ValueError(\"Invalid range\")\nValueError: Invalid range\n\n======================================================================\nFAIL: test_header_and_size_types (test_project.ProjectTests.test_header_and_size_types)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-lg371973/tests/test_project.py\", line 23, in test_header_and_size_types\n    self.assert_invalid(parse_range, header, 6)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-lg371973/tests/test_project.py\", line 46, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: parse_range(None, 6): expected ValueError, got TypeError\n\n======================================================================\nFAIL: test_range_grammar_is_ascii_and_exact (test_project.ProjectTests.test_range_grammar_is_ascii_and_exact)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-lg371973/tests/test_project.py\", line 37, in test_range_grammar_is_ascii_and_exact\n    self.assert_invalid(parse_range, header, 6)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-lg371973/tests/test_project.py\", line 47, in assert_invalid\n    self.fail(f'{fn.__name__}{args!r}: accepted {result!r}; expected ValueError')\nAssertionError: parse_range('bytes=\u0661-3', 6): accepted (1, 3); expected ValueError\n\n======================================================================\nFAIL: test_response_input_types (test_project.ProjectTests.test_response_input_types)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-lg371973/tests/test_project.py\", line 32, in test_response_input_types\n    self.assert_invalid(serve, b'abcdef', header)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-lg371973/tests/test_project.py\", line 46, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: serve(b'abcdef', 1): expected ValueError, got TypeError\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (failures=3, errors=1)\n",
+      "repair_sha256": {
+        "windows/ranges.py": "d9f9a6b56b166288602c0fe823a864657a4a7603617aee16675236e84de367ac",
+        "windows/response.py": "44243feb57e389beeeaca8dfda4206e8037ab7a5c91d7a136fd3e0c3a4667aa3"
+      }
+    },
+    {
+      "case_id": "6cf6568d574e4b48fb30",
+      "task": "byte-windows",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "repeat": 1,
+      "evidence": "attempts/6cf6568d574e4b48fb30-54d0a104",
+      "audited_correct": true,
+      "expanded_public_passed": true,
+      "public_output": "----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n",
+      "repair_sha256": {
+        "windows/ranges.py": "247f5248dfaaab8a6838aaa4a3fab859bcb23d63daaf860132c593b467924a57",
+        "windows/response.py": "0bfbf36f06c762cd79d9bc106d07712e7762fb06a1e13396e31efff1fa0c4df0"
+      }
+    },
+    {
+      "case_id": "a1c7b9817581e43e7a07",
+      "task": "event-replay",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "repeat": 1,
+      "evidence": "attempts/a1c7b9817581e43e7a07-3c2e02ea",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nFAIL: test_normalized_delete_has_no_value_or_extra_fields (test_project.ProjectTests.test_normalized_delete_has_no_value_or_extra_fields)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-m6xqinep/tests/test_project.py\", line 34, in test_normalized_delete_has_no_value_or_extra_fields\n    self.assertEqual(result, delete)\nAssertionError: {'id': 'd', 'key': 'a', 'version': 5, 'action': 'delete', 'value': None} != {'id': 'd', 'key': 'a', 'version': 5, 'action': 'delete'}\n- {'action': 'delete', 'id': 'd', 'key': 'a', 'value': None, 'version': 5}\n?                                            ---------------\n\n+ {'action': 'delete', 'id': 'd', 'key': 'a', 'version': 5}\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (failures=1)\n",
+      "repair_sha256": {
+        "events/validation.py": "033c25798ec3ba5bbc352d7dc23bca88f0716ce58f1efaefe0a916d74f84e105",
+        "events/replay.py": "e80918432ddcc440cbe6fe4c9e832c5c8671964654654bdd15a71002804dab1a"
+      }
+    },
+    {
+      "case_id": "cd72995b5491af55267f",
+      "task": "event-replay",
+      "model": "ollama/gemma4:26b",
+      "repeat": 1,
+      "evidence": "attempts/cd72995b5491af55267f-e87b3b55",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nFAIL: test_normalized_delete_has_no_value_or_extra_fields (test_project.ProjectTests.test_normalized_delete_has_no_value_or_extra_fields)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-egocsi47/tests/test_project.py\", line 34, in test_normalized_delete_has_no_value_or_extra_fields\n    self.assertEqual(result, delete)\nAssertionError: {'id': 'd', 'key': 'a', 'version': 5, 'action': 'delete', 'value': None} != {'id': 'd', 'key': 'a', 'version': 5, 'action': 'delete'}\n- {'action': 'delete', 'id': 'd', 'key': 'a', 'value': None, 'version': 5}\n?                                            ---------------\n\n+ {'action': 'delete', 'id': 'd', 'key': 'a', 'version': 5}\n\n======================================================================\nFAIL: test_stream_requires_list (test_project.ProjectTests.test_stream_requires_list)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-egocsi47/tests/test_project.py\", line 28, in test_stream_requires_list\n    self.assert_invalid(replay, stream)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-egocsi47/tests/test_project.py\", line 51, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: replay(None,): expected ValueError, got TypeError\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (failures=2)\n",
+      "repair_sha256": {
+        "events/validation.py": "736dd24e57c114514be6a414be2875e86d70c08a1726fc4508819996f19d5c1f",
+        "events/replay.py": "64b571c438249f24dd6a28e15305e9403e35ecf8c714db41eb32f30b8661efaa"
+      }
+    },
+    {
+      "case_id": "2491cabdda62c825de12",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "repeat": 1,
+      "evidence": "attempts/2491cabdda62c825de12-cfa0b39b",
+      "audited_correct": true,
+      "expanded_public_passed": true,
+      "public_output": "----------------------------------------------------------------------\nRan 8 tests in 0.000s\n\nOK\n",
+      "repair_sha256": {
+        "arguments/lexing.py": "59ebc01111ab3b06e00c21924dc461ae592ad0e5485406a160608bdff104dc54",
+        "arguments/options.py": "816ee2e838f6087e75f933a1d2a7782f2f10d04a0fcde5448b326e8426b0c6f4"
+      }
+    },
+    {
+      "case_id": "233042c7fece06f2601c",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "repeat": 1,
+      "evidence": "attempts/233042c7fece06f2601c-da2542c8",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='\"\"')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: [] != ['']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n''\n\n- []\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text=\"''\")\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: [] != ['']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n''\n\n- []\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='left \"\" right')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: ['left', 'right'] != ['left', '', 'right']\n\nFirst differing element 1:\n'right'\n''\n\nSecond list contains 1 additional elements.\nFirst extra element 2:\n'right'\n\n- ['left', 'right']\n+ ['left', '', 'right']\n?          ++++\n\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='\"\"\"\"')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: [] != ['']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n''\n\n- []\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 27, in test_empty_words_and_adjacent_fragments\n    self.assert_invalid(parse_assignments, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 57, in assert_invalid\n    self.fail(f'{fn.__name__}{args!r}: accepted {result!r}; expected ValueError')\nAssertionError: parse_assignments('\"\"',): accepted {}; expected ValueError\n\n======================================================================\nFAIL: test_input_types_raise_value_error (test_project.ProjectTests.test_input_types_raise_value_error)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 32, in test_input_types_raise_value_error\n    self.assert_invalid(fn, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 56, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: split_words(None,): expected ValueError, got TypeError\n\n======================================================================\nFAIL: test_key_cannot_end_with_newline (test_project.ProjectTests.test_key_cannot_end_with_newline)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 48, in test_key_cannot_end_with_newline\n    self.assert_invalid(parse_assignments, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-38h9d0sv/tests/test_project.py\", line 57, in assert_invalid\n    self.fail(f'{fn.__name__}{args!r}: accepted {result!r}; expected ValueError')\nAssertionError: parse_assignments('A\\\\\\n=x',): accepted {'A\\n': 'x'}; expected ValueError\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nFAILED (failures=7)\n",
+      "repair_sha256": {
+        "arguments/lexing.py": "e267324832160d4b4bee671f9ad29332f2a6034803ad169544a60f8813c7194b",
+        "arguments/options.py": "9f51ccc7d79278987f8ecf4762596e07e1654b9a0afecc69246929597eaeec7b"
+      }
+    },
+    {
+      "case_id": "dbd505951933732d7641",
+      "task": "batch-renames",
+      "model": "ollama/gemma4:26b",
+      "repeat": 2,
+      "evidence": "attempts/dbd505951933732d7641-4274935c",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nFAIL: test_container_types_even_when_empty (test_project.ProjectTests.test_container_types_even_when_empty)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-q2_4egqx/tests/test_project.py\", line 27, in test_container_types_even_when_empty\n    self.assert_invalid(fn, {'a': 1}, changes)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-q2_4egqx/tests/test_project.py\", line 40, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: rename_map({'a': 1}, None): expected ValueError, got TypeError\n\n----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nFAILED (failures=1)\n",
+      "repair_sha256": {
+        "renames/validation.py": "168df8b11648a157a098a1bafa08b8f126d0ccca6bdf49032f22c124375f5c6b",
+        "renames/operations.py": "03367fcb228170b580d00e9646a84d7186850d3773f09513a87f55221894b57d"
+      }
+    },
+    {
+      "case_id": "d90ce7c0b247a704e132",
+      "task": "batch-renames",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "repeat": 2,
+      "evidence": "attempts/d90ce7c0b247a704e132-702ee74c",
+      "audited_correct": true,
+      "expanded_public_passed": true,
+      "public_output": "----------------------------------------------------------------------\nRan 5 tests in 0.000s\n\nOK\n",
+      "repair_sha256": {
+        "renames/validation.py": "18f9b151f0a6edaa64e44f00e76275d20e3f556a4167bab8471f4620e2416526",
+        "renames/operations.py": "6a3644ade19ae656168fe21014fad769c1ae995acc521440055bf6478fc28437"
+      }
+    },
+    {
+      "case_id": "7db8c7250e846b5a7234",
+      "task": "byte-windows",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "repeat": 2,
+      "evidence": "attempts/7db8c7250e846b5a7234-de9c188a",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nFAIL: test_header_and_size_types (test_project.ProjectTests.test_header_and_size_types)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-hpchelxh/tests/test_project.py\", line 23, in test_header_and_size_types\n    self.assert_invalid(parse_range, header, 6)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-hpchelxh/tests/test_project.py\", line 46, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: parse_range(None, 6): expected ValueError, got AttributeError\n\n======================================================================\nFAIL: test_response_input_types (test_project.ProjectTests.test_response_input_types)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-hpchelxh/tests/test_project.py\", line 32, in test_response_input_types\n    self.assert_invalid(serve, b'abcdef', header)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-hpchelxh/tests/test_project.py\", line 46, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: serve(b'abcdef', 1): expected ValueError, got AttributeError\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (failures=2)\n",
+      "repair_sha256": {
+        "windows/ranges.py": "ed7d9f1d6cd0ecc8ea29456d0ff231211e8ab066ad52ce643a2db65b7cf1bc7a",
+        "windows/response.py": "13886a50fd31eb6f33b57bbee0f7224ed8e086091cccf836f8936394dd3e7f53"
+      }
+    },
+    {
+      "case_id": "707267885e8f94a6dbea",
+      "task": "byte-windows",
+      "model": "ollama/gemma4:26b",
+      "repeat": 2,
+      "evidence": "attempts/707267885e8f94a6dbea-13ba3430",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nFAIL: test_header_and_size_types (test_project.ProjectTests.test_header_and_size_types)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-y6bpgm0k/tests/test_project.py\", line 23, in test_header_and_size_types\n    self.assert_invalid(parse_range, header, 6)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-y6bpgm0k/tests/test_project.py\", line 46, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: parse_range(None, 6): expected ValueError, got TypeError\n\n======================================================================\nFAIL: test_range_grammar_is_ascii_and_exact (test_project.ProjectTests.test_range_grammar_is_ascii_and_exact)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-y6bpgm0k/tests/test_project.py\", line 37, in test_range_grammar_is_ascii_and_exact\n    self.assert_invalid(parse_range, header, 6)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-y6bpgm0k/tests/test_project.py\", line 47, in assert_invalid\n    self.fail(f'{fn.__name__}{args!r}: accepted {result!r}; expected ValueError')\nAssertionError: parse_range('bytes=\u0661-3', 6): accepted (1, 3); expected ValueError\n\n======================================================================\nFAIL: test_response_input_types (test_project.ProjectTests.test_response_input_types)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-y6bpgm0k/tests/test_project.py\", line 32, in test_response_input_types\n    self.assert_invalid(serve, b'abcdef', header)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-y6bpgm0k/tests/test_project.py\", line 46, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: serve(b'abcdef', 1): expected ValueError, got TypeError\n\n----------------------------------------------------------------------\nRan 6 tests in 0.001s\n\nFAILED (failures=3)\n",
+      "repair_sha256": {
+        "windows/ranges.py": "b3ccbd3db6742963df2cc5435318ac140f73e2dc47f70eb45a547428e7595613",
+        "windows/response.py": "76fd70cbc29b5ffeaacfa6d672d17a96a06253ef5a82bff0bb298ee34a81838b"
+      }
+    },
+    {
+      "case_id": "e3059ebddbc918b331e3",
+      "task": "event-replay",
+      "model": "ollama/gemma4:26b",
+      "repeat": 2,
+      "evidence": "attempts/e3059ebddbc918b331e3-d6b0be2d",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nFAIL: test_stream_requires_list (test_project.ProjectTests.test_stream_requires_list)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-2d4kkcvz/tests/test_project.py\", line 28, in test_stream_requires_list\n    self.assert_invalid(replay, stream)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-2d4kkcvz/tests/test_project.py\", line 51, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: replay(None,): expected ValueError, got TypeError\n\n----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nFAILED (failures=1)\n",
+      "repair_sha256": {
+        "events/validation.py": "865c57f2d5f59a7df68eec46778724f6358b4a314a724937b1649c16c4d29f2c",
+        "events/replay.py": "a2e5213cb9cc48d537fa103525152b9763490badfdaef844ccc60a76e8bc2b2c"
+      }
+    },
+    {
+      "case_id": "7e17c3cb33b193360391",
+      "task": "event-replay",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "repeat": 2,
+      "evidence": "attempts/7e17c3cb33b193360391-d8bd1969",
+      "audited_correct": true,
+      "expanded_public_passed": true,
+      "public_output": "----------------------------------------------------------------------\nRan 6 tests in 0.000s\n\nOK\n",
+      "repair_sha256": {
+        "events/validation.py": "533deb0508276b24ae0660a00b33500118d21764198711756a54b4feca5f0aee",
+        "events/replay.py": "79c88ac9c9c567f5fa9fcdcc7e5f0f26d17218d7bd638856eb9fa5f2798b6218"
+      }
+    },
+    {
+      "case_id": "a5103da2bb5e57fdee8d",
+      "task": "command-arguments",
+      "model": "ollama/qwen3.6:27b-mlx",
+      "repeat": 2,
+      "evidence": "attempts/a5103da2bb5e57fdee8d-25324f77",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='\"\"')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: [] != ['']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n''\n\n- []\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text=\"''\")\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: [] != ['']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n''\n\n- []\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='left \"\" right')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: ['left', 'right'] != ['left', '', 'right']\n\nFirst differing element 1:\n'right'\n''\n\nSecond list contains 1 additional elements.\nFirst extra element 2:\n'right'\n\n- ['left', 'right']\n+ ['left', '', 'right']\n?          ++++\n\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='\"\"\"\"')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: [] != ['']\n\nSecond list contains 1 additional elements.\nFirst extra element 0:\n''\n\n- []\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 27, in test_empty_words_and_adjacent_fragments\n    self.assert_invalid(parse_assignments, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 57, in assert_invalid\n    self.fail(f'{fn.__name__}{args!r}: accepted {result!r}; expected ValueError')\nAssertionError: parse_assignments('\"\"',): accepted {}; expected ValueError\n\n======================================================================\nFAIL: test_input_types_raise_value_error (test_project.ProjectTests.test_input_types_raise_value_error)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 32, in test_input_types_raise_value_error\n    self.assert_invalid(fn, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 56, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: split_words(None,): expected ValueError, got TypeError\n\n======================================================================\nFAIL: test_key_cannot_end_with_newline (test_project.ProjectTests.test_key_cannot_end_with_newline)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 48, in test_key_cannot_end_with_newline\n    self.assert_invalid(parse_assignments, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-34mbax88/tests/test_project.py\", line 57, in assert_invalid\n    self.fail(f'{fn.__name__}{args!r}: accepted {result!r}; expected ValueError')\nAssertionError: parse_assignments('A\\\\\\n=x',): accepted {'A\\n': 'x'}; expected ValueError\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nFAILED (failures=7)\n",
+      "repair_sha256": {
+        "arguments/lexing.py": "e648f7da0a1c572dbde2924d38986e065c3b6ef9ba359ab34c67e996c970ea73",
+        "arguments/options.py": "26562c4a7f94edffa75680f0840d131031d870cf44ead94cc17fd87ad99a691f"
+      }
+    },
+    {
+      "case_id": "3081c470852128c7553a",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "repeat": 2,
+      "evidence": "attempts/3081c470852128c7553a-e15e6fde",
+      "audited_correct": false,
+      "expanded_public_passed": false,
+      "public_output": "======================================================================\nERROR: test_assignments (test_project.ProjectTests.test_assignments)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 12, in test_assignments\n    self.assertEqual(parse_assignments('A=one B=\"two three\" EQ=x=y A=last'), {'A': 'last', 'B': 'two three', 'EQ': 'x=y'})\n                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/arguments/options.py\", line 4, in parse_assignments\n    return dict(word.split('=') for word in split_words(text))\n           ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nValueError: dictionary update sequence element #2 has length 1; 2 is required\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='\"\"')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: ['\"\"'] != ['']\n\nFirst differing element 0:\n'\"\"'\n''\n\n- ['\"\"']\n?   --\n\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text=\"''\")\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: [\"''\"] != ['']\n\nFirst differing element 0:\n\"''\"\n''\n\n- [\"''\"]\n?  -  -\n\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='left \"\" right')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: ['left', '\"\"', 'right'] != ['left', '', 'right']\n\nFirst differing element 1:\n'\"\"'\n''\n\n- ['left', '\"\"', 'right']\n?           --\n\n+ ['left', '', 'right']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='\"\"\"\"')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: ['\"\"\"\"'] != ['']\n\nFirst differing element 0:\n'\"\"\"\"'\n''\n\n- ['\"\"\"\"']\n+ ['']\n\n======================================================================\nFAIL: test_empty_words_and_adjacent_fragments (test_project.ProjectTests.test_empty_words_and_adjacent_fragments) (text='a\"\"b')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 25, in test_empty_words_and_adjacent_fragments\n    self.assertEqual(split_words(text), expected)\nAssertionError: Lists differ: ['a\"\"b'] != ['ab']\n\nFirst differing element 0:\n'a\"\"b'\n'ab'\n\n- ['a\"\"b']\n?    --\n\n+ ['ab']\n\n======================================================================\nFAIL: test_escape_and_quote_errors (test_project.ProjectTests.test_escape_and_quote_errors)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 36, in test_escape_and_quote_errors\n    self.assert_invalid(split_words, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 57, in assert_invalid\n    self.fail(f'{fn.__name__}{args!r}: accepted {result!r}; expected ValueError')\nAssertionError: split_words('\"open',): accepted ['\"open']; expected ValueError\n\n======================================================================\nFAIL: test_input_types_raise_value_error (test_project.ProjectTests.test_input_types_raise_value_error)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 32, in test_input_types_raise_value_error\n    self.assert_invalid(fn, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 56, in assert_invalid\n    raise AssertionError(f'{fn.__name__}{args!r}: expected ValueError, got {type(error).__name__}') from None\nAssertionError: split_words(None,): expected ValueError, got AttributeError\n\n======================================================================\nFAIL: test_invalid (test_project.ProjectTests.test_invalid) (text='=x')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 17, in test_invalid\n    with self.subTest(text=text), self.assertRaises(ValueError):\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_invalid (test_project.ProjectTests.test_invalid) (text='1A=x')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 17, in test_invalid\n    with self.subTest(text=text), self.assertRaises(ValueError):\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_invalid (test_project.ProjectTests.test_invalid) (text='A=\"unfinished')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 17, in test_invalid\n    with self.subTest(text=text), self.assertRaises(ValueError):\n                                  ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_key_cannot_end_with_newline (test_project.ProjectTests.test_key_cannot_end_with_newline)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 47, in test_key_cannot_end_with_newline\n    self.assertEqual(split_words(text), ['A\\n=x'])\nAssertionError: Lists differ: ['A\\\\', '=x'] != ['A\\n=x']\n\nFirst differing element 0:\n'A\\\\'\n'A\\n=x'\n\nFirst list contains 1 additional elements.\nFirst extra element 1:\n'=x'\n\n- ['A\\\\', '=x']\n+ ['A\\n=x']\n\n======================================================================\nFAIL: test_key_requires_full_ascii_match (test_project.ProjectTests.test_key_requires_full_ascii_match)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 42, in test_key_requires_full_ascii_match\n    self.assert_invalid(parse_assignments, text)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 57, in assert_invalid\n    self.fail(f'{fn.__name__}{args!r}: accepted {result!r}; expected ValueError')\nAssertionError: parse_assignments('\u00e9=x',): accepted {'\u00e9': 'x'}; expected ValueError\n\n======================================================================\nFAIL: test_quotes_and_escapes (test_project.ProjectTests.test_quotes_and_escapes)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-phase12-coverage-nnl1y07l/tests/test_project.py\", line 7, in test_quotes_and_escapes\n    self.assertEqual(split_words('one \"two three\" four\\\\ five'), ['one', 'two three', 'four five'])\nAssertionError: Lists differ: ['one', '\"two', 'three\"', 'four\\\\', 'five'] != ['one', 'two three', 'four five']\n\nFirst differing element 1:\n'\"two'\n'two three'\n\nFirst list contains 2 additional elements.\nFirst extra element 3:\n'four\\\\'\n\n- ['one', '\"two', 'three\"', 'four\\\\', 'five']\n?          -   ^^^^     -        ^^^^^^\n\n+ ['one', 'two three', 'four five']\n?             ^             ^\n\n\n----------------------------------------------------------------------\nRan 8 tests in 0.001s\n\nFAILED (failures=13, errors=1)\n",
+      "repair_sha256": {
+        "arguments/lexing.py": "6ff5077d391f371483deb314f4fb07f1ba6018cbda70ac97db7185f1a045d5af",
+        "arguments/options.py": "1ecd09db8de304ca6a3dd2c910cc71225a08742dc86c4c247a0b20d7bb01a00a"
+      }
+    }
+  ],
+  "summary": {
+    "checked": 16,
+    "incorrect_repairs_rejected": 10,
+    "correct_repairs_retained": 6
+  }
+}

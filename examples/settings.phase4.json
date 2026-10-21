@@ -1,0 +1,19 @@
+{
+  "permissions": "ask",
+  "mcp_servers": {
+    "playwright": {
+      "command": "./.smok/browser/node_modules/.bin/playwright-mcp",
+      "args": [
+        "--headless", "--isolated", "--block-service-workers", "--no-webmcp",
+        "--browser", "chrome", "--output-dir", ".smok/browser-output"
+      ],
+      "timeout_seconds": 60,
+      "read_only": []
+    }
+  },
+  "web": {
+    "search_provider": "brave",
+    "api_key_env": "BRAVE_SEARCH_API_KEY",
+    "allow_hosts": []
+  }
+}

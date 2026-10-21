@@ -1,0 +1,136 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-20T23:27:58.610076+00:00",
+  "smok_version": "0.11.1",
+  "source_fingerprint": "b9c0729051341a38a801ef5e29de67906d7dbc8a197af5a5287af50a302d833b",
+  "suite": "phase11",
+  "split": "holdout",
+  "freshness": "Known regression tasks; release public coverage expanded again after the first fixed follow-up. Adaptive between runs; no changes permitted within this six-case run.",
+  "tasks": {
+    "release-selection": "e7ef9b02cdd4a29312f42f85779ef06331025121fbce5ba6dd3e357be621248b",
+    "table-joins": "efe7a2c97c82970bd6a626821b0fbccdca5b41617eae0136c9954737aa9b20f5"
+  },
+  "original_task_fingerprints": {
+    "release-selection": "d01ce0c6aa2f5ab9654f217e400d63d16056ba266e1452a71445bd0d93ccf2ed",
+    "table-joins": "d64e17187290fe18b4ec00d7e893270ed09b099e2c3031e315b8b008d17217c2"
+  },
+  "variants": [
+    "focused-repair"
+  ],
+  "profile": {
+    "name": "ollama/qwen3.6:27b-mlx",
+    "model": "qwen3.6:27b-mlx",
+    "adapter": "openai_compat",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "OLLAMA_API_KEY",
+    "key_required": false,
+    "token_parameter": "max_tokens",
+    "max_output_tokens": 4096,
+    "timeout_seconds": 180,
+    "context_window": 32768,
+    "compact_at": 0.8,
+    "keep_recent": 4,
+    "chars_per_token": 3.0,
+    "repo_map_tokens": 1500,
+    "prompt_cache": false,
+    "count_tokens": false,
+    "local": true,
+    "vision": false,
+    "prompt_style": "lean",
+    "tool_set": "minimal",
+    "edit_format": "both",
+    "reasoning_effort": "none",
+    "prices": {}
+  },
+  "repeats": 3,
+  "planned_cases": 6,
+  "limits": {
+    "task_timeout": 300,
+    "max_iterations": 16,
+    "max_requests": 96,
+    "budget_tokens": 1000000,
+    "allow_shell": true,
+    "allow_lsp": false,
+    "budget_usd": null
+  },
+  "model_metadata": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "model": "qwen3.6:27b-mlx",
+    "model_digest": "d49fd9e0da45e486918c87318b866e5924e37ad5841db58763900297d9616ee7",
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ],
+    "thinking": {
+      "values": [
+        false,
+        true
+      ],
+      "default": true
+    },
+    "details": {
+      "parent_model": "",
+      "format": "safetensors",
+      "family": "qwen3_5",
+      "families": null,
+      "parameter_size": "27.8B",
+      "quantization_level": "nvfp4"
+    },
+    "parameters": "temperature                    1\ntop_k                          20\ntop_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1",
+    "generation_requests": 0
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase11-followup-final-freeze-20261020T232758Z/source.tar.gz",
+    "sha256": "89f59cb438f9f63c7dcd163f3bbb9e6d78020767f450948ad6c6bae5a70e037f",
+    "files": 152
+  },
+  "protocol_guide_sha256": "3672d3cbfbdccc9b22d6253ed243881cb42e027c5643222d5597dcea8c8ae9a4",
+  "example_profile_sha256": "c0695709b959c7006d8713f8d8517e4f10d65ec97389102087c0288cea956ce9",
+  "original_defects_reproduced": [
+    {
+      "task": "release-selection",
+      "repeat": 1,
+      "original_attempt": "evals/results/20261020T230315.268146Z-phase11/attempts/80f55a6582e446a95f5e-782e301c",
+      "new_public_tests_exit_code": 1,
+      "output": "======================================================================\nFAIL: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=())\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-7h1wr7c1/tests/test_project.py\", line 38, in test_catalog_validates_all_records_before_filtering\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_leading_zeros_in_every_component (test_project.ReleaseTests.test_leading_zeros_in_every_component) (value='1.2.3-rc.01')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-7h1wr7c1/tests/test_project.py\", line 28, in test_leading_zeros_in_every_component\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_stable_beats_rc_and_first_equal_release_wins (test_project.ReleaseTests.test_stable_beats_rc_and_first_equal_release_wins)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-7h1wr7c1/tests/test_project.py\", line 50, in test_stable_beats_rc_and_first_equal_release_wins\n    self.assertEqual(selected, records[1])\nAssertionError: {'version': '4.2.0-rc.99', 'label': 'candidate'} != {'version': '4.2.0', 'label': 'first', 'metadata': []}\n- {'label': 'candidate', 'version': '4.2.0-rc.99'}\n+ {'label': 'first', 'metadata': [], 'version': '4.2.0'}\n\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nFAILED (failures=3)\n"
+    },
+    {
+      "task": "release-selection",
+      "repeat": 2,
+      "original_attempt": "evals/results/20261020T230315.268146Z-phase11/attempts/674f2c81fb5d9c99b556-3123c2f3",
+      "new_public_tests_exit_code": 1,
+      "output": "======================================================================\nERROR: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=[{}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-qvh7gu2c/tests/test_project.py\", line 39, in test_catalog_validates_all_records_before_filtering\n    choose(records)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-qvh7gu2c/releases/catalog.py\", line 24, in choose\n    v_str = row['version']\n            ~~~^^^^^^^^^^^\nKeyError: 'version'\n\n======================================================================\nFAIL: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=[{'version': '4.2.0', 'yanked': 0}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-qvh7gu2c/tests/test_project.py\", line 38, in test_catalog_validates_all_records_before_filtering\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=[{'version': '4.2.0', 'yanked': 1}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-qvh7gu2c/tests/test_project.py\", line 38, in test_catalog_validates_all_records_before_filtering\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=[{'version': '4.2.0-rc.1', 'yanked': None}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-qvh7gu2c/tests/test_project.py\", line 38, in test_catalog_validates_all_records_before_filtering\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nFAILED (failures=3, errors=1)\n"
+    },
+    {
+      "task": "release-selection",
+      "repeat": 3,
+      "original_attempt": "evals/results/20261020T230315.268146Z-phase11/attempts/c8ee10de22f0851e181e-12e44cff",
+      "new_public_tests_exit_code": 1,
+      "output": "======================================================================\nERROR: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=None)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/tests/test_project.py\", line 39, in test_catalog_validates_all_records_before_filtering\n    choose(records)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/releases/catalog.py\", line 19, in choose\n    for rec in records:\n               ^^^^^^^\nTypeError: 'NoneType' object is not iterable\n\n======================================================================\nERROR: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=[None])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/tests/test_project.py\", line 39, in test_catalog_validates_all_records_before_filtering\n    choose(records)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/releases/catalog.py\", line 20, in choose\n    v = rec[\"version\"]\n        ~~~^^^^^^^^^^^\nTypeError: 'NoneType' object is not subscriptable\n\n======================================================================\nERROR: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=[{}])\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/tests/test_project.py\", line 39, in test_catalog_validates_all_records_before_filtering\n    choose(records)\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/releases/catalog.py\", line 20, in choose\n    v = rec[\"version\"]\n        ~~~^^^^^^^^^^^\nKeyError: 'version'\n\n======================================================================\nFAIL: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records={})\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/tests/test_project.py\", line 38, in test_catalog_validates_all_records_before_filtering\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_catalog_validates_all_records_before_filtering (test_project.ReleaseTests.test_catalog_validates_all_records_before_filtering) (records=())\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/tests/test_project.py\", line 38, in test_catalog_validates_all_records_before_filtering\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_stable_beats_rc_and_first_equal_release_wins (test_project.ReleaseTests.test_stable_beats_rc_and_first_equal_release_wins)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-release-defects-ibwkpyf0/tests/test_project.py\", line 50, in test_stable_beats_rc_and_first_equal_release_wins\n    self.assertEqual(selected, records[1])\nAssertionError: {'version': '4.2.0-rc.99', 'label': 'candidate'} != {'version': '4.2.0', 'label': 'first', 'metadata': []}\n- {'label': 'candidate', 'version': '4.2.0-rc.99'}\n+ {'label': 'first', 'metadata': [], 'version': '4.2.0'}\n\n----------------------------------------------------------------------\nRan 7 tests in 0.001s\n\nFAILED (failures=3, errors=3)\n"
+    }
+  ],
+  "within_run_changes_allowed": false,
+  "all_attempts_retained": true,
+  "defaults_changed": false,
+  "previous_plan": "docs/phase11-followup-plan.json",
+  "previous_run": "evals/results/20261020T230315.268146Z-phase11/report.json",
+  "previous_report_sha256": "407c035f5af13df62c5baeef30703cad8cdf67fc9f16107651e0b1a1097de237",
+  "preflight": {
+    "passed_tests": 533,
+    "seconds": 30.55,
+    "final_guidance_focused_tests": 2,
+    "lint_and_format": "passed",
+    "earlier_failed_snapshot": {
+      "path": "evals/results/phase11-followup-final-freeze-20261020T232620Z/source.tar.gz",
+      "sha256": "d22f3891fb06645cab556d761877fd010831308585a151c1504a4ac456b087a7",
+      "files": 152
+    },
+    "resolved_failures": [
+      "Updated checkpoint test to inspect the earlier delivered review and the single current review.",
+      "Condensed workflow guidance to preserve small-context automatic-compaction behavior."
+    ]
+  }
+}

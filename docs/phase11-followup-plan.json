@@ -1,0 +1,113 @@
+{
+  "schema_version": 1,
+  "created_utc": "2026-10-20T23:03:06.462734+00:00",
+  "smok_version": "0.11.1",
+  "source_fingerprint": "652ab1fd489f8424dbd1c5771cde2023632f6f449e611340934107102d15e329",
+  "suite": "phase11",
+  "split": "holdout",
+  "freshness": "Known regression tasks; two public test files expanded. Not a fresh qualification or a controlled profile comparison.",
+  "tasks": {
+    "release-selection": "abcca3ed042caea26af8f8344925cebbc29cd5a1cd32db6c528f8f85727244e3",
+    "table-joins": "efe7a2c97c82970bd6a626821b0fbccdca5b41617eae0136c9954737aa9b20f5"
+  },
+  "original_task_fingerprints": {
+    "release-selection": "d01ce0c6aa2f5ab9654f217e400d63d16056ba266e1452a71445bd0d93ccf2ed",
+    "table-joins": "d64e17187290fe18b4ec00d7e893270ed09b099e2c3031e315b8b008d17217c2"
+  },
+  "variants": [
+    "focused-repair"
+  ],
+  "profile": {
+    "name": "ollama/qwen3.6:27b-mlx",
+    "model": "qwen3.6:27b-mlx",
+    "adapter": "openai_compat",
+    "base_url": "http://127.0.0.1:11434/v1",
+    "api_key_env": "OLLAMA_API_KEY",
+    "key_required": false,
+    "token_parameter": "max_tokens",
+    "max_output_tokens": 4096,
+    "timeout_seconds": 180,
+    "context_window": 32768,
+    "compact_at": 0.8,
+    "keep_recent": 4,
+    "chars_per_token": 3.0,
+    "repo_map_tokens": 1500,
+    "prompt_cache": false,
+    "count_tokens": false,
+    "local": true,
+    "vision": false,
+    "prompt_style": "lean",
+    "tool_set": "minimal",
+    "edit_format": "both",
+    "reasoning_effort": "none",
+    "prices": {}
+  },
+  "repeats": 3,
+  "planned_cases": 6,
+  "limits": {
+    "task_timeout": 300,
+    "max_iterations": 16,
+    "max_requests": 96,
+    "budget_tokens": 1000000,
+    "allow_shell": true,
+    "allow_lsp": false,
+    "budget_usd": null
+  },
+  "model_metadata": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "model": "qwen3.6:27b-mlx",
+    "model_digest": "d49fd9e0da45e486918c87318b866e5924e37ad5841db58763900297d9616ee7",
+    "capabilities": [
+      "completion",
+      "vision",
+      "tools",
+      "thinking"
+    ],
+    "thinking": {
+      "values": [
+        false,
+        true
+      ],
+      "default": true
+    },
+    "details": {
+      "parent_model": "",
+      "format": "safetensors",
+      "family": "qwen3_5",
+      "families": null,
+      "parameter_size": "27.8B",
+      "quantization_level": "nvfp4"
+    },
+    "parameters": "temperature                    1\ntop_k                          20\ntop_p                          0.95\nmin_p                          0\npresence_penalty               0\nrepeat_penalty                 1",
+    "generation_requests": 0
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase11-followup-freeze-20261020T230306Z/source.tar.gz",
+    "sha256": "511a4cc1868fd5fcb0cfe83f1fabd5ccaae9172b8e3baa257124615b0f4c556a",
+    "files": 152
+  },
+  "protocol_guide_sha256": "8b61919534df715866f57526048086c4ecbf7e0a72cec09bad37d30121d94a75",
+  "example_profile_sha256": "c0695709b959c7006d8713f8d8517e4f10d65ec97389102087c0288cea956ce9",
+  "original_defects_reproduced": [
+    {
+      "task": "release-selection",
+      "original_attempt": "attempts/4b41d4d35f4b641fd1af-1738438d",
+      "original_variant": "no-thinking",
+      "repeat": 2,
+      "new_public_tests_exit_code": 1,
+      "output": "======================================================================\nFAIL: test_rejects_whitespace_and_non_ascii_digits (test_project.ReleaseTests.test_rejects_whitespace_and_non_ascii_digits) (value='1.2.3\\n')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-known-defect-b54bz1oc/tests/test_project.py\", line 21, in test_rejects_whitespace_and_non_ascii_digits\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_whitespace_and_non_ascii_digits (test_project.ReleaseTests.test_rejects_whitespace_and_non_ascii_digits) (value='1.2.3-rc.4\\n')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-known-defect-b54bz1oc/tests/test_project.py\", line 21, in test_rejects_whitespace_and_non_ascii_digits\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_whitespace_and_non_ascii_digits (test_project.ReleaseTests.test_rejects_whitespace_and_non_ascii_digits) (value='1\u0661.2.3')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-known-defect-b54bz1oc/tests/test_project.py\", line 21, in test_rejects_whitespace_and_non_ascii_digits\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_whitespace_and_non_ascii_digits (test_project.ReleaseTests.test_rejects_whitespace_and_non_ascii_digits) (value='1.2\u0662.3')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-known-defect-b54bz1oc/tests/test_project.py\", line 21, in test_rejects_whitespace_and_non_ascii_digits\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_whitespace_and_non_ascii_digits (test_project.ReleaseTests.test_rejects_whitespace_and_non_ascii_digits) (value='1.2.3\u0663')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-known-defect-b54bz1oc/tests/test_project.py\", line 21, in test_rejects_whitespace_and_non_ascii_digits\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n======================================================================\nFAIL: test_rejects_whitespace_and_non_ascii_digits (test_project.ReleaseTests.test_rejects_whitespace_and_non_ascii_digits) (value='1.2.3-rc.4\u0664')\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-known-defect-b54bz1oc/tests/test_project.py\", line 21, in test_rejects_whitespace_and_non_ascii_digits\n    with self.assertRaises(ValueError):\n         ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\nAssertionError: ValueError not raised\n\n----------------------------------------------------------------------\nRan 4 tests in 0.001s\n\nFAILED (failures=6)\n"
+    },
+    {
+      "task": "table-joins",
+      "original_attempt": "attempts/ec4026d189750298df35-0c2c346f",
+      "original_variant": "baseline",
+      "repeat": 2,
+      "new_public_tests_exit_code": 1,
+      "output": "======================================================================\nFAIL: test_nested_rows_are_independent_for_every_pair (test_project.JoinTests.test_nested_rows_are_independent_for_every_pair)\n----------------------------------------------------------------------\nTraceback (most recent call last):\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-known-defect-s6fra7b0/tests/test_project.py\", line 26, in test_nested_rows_are_independent_for_every_pair\n    self.assertEqual(joined[2]['right']['meta']['tags'], ['a'])\nAssertionError: Lists differ: ['a', 'right change'] != ['a']\n\nFirst list contains 1 additional elements.\nFirst extra element 1:\n'right change'\n\n- ['a', 'right change']\n+ ['a']\n\n----------------------------------------------------------------------\nRan 3 tests in 0.000s\n\nFAILED (failures=1)\n"
+    }
+  ],
+  "within_run_changes_allowed": false,
+  "all_attempts_retained": true,
+  "defaults_changed": false
+}

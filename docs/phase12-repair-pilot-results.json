@@ -1,0 +1,446 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T04:32:55.608763+00:00",
+  "plan": "docs/phase12-repair-pilot-plan.json",
+  "plan_sha256": "4a4517a82dc6288026ea3e69c783d6fb45c3fd407d547017f61819f5039dd8b0",
+  "report": "evals/results/20261021T042408.244792Z-phase12/report.json",
+  "report_sha256": "e36d37dbda6bd0b3893afa1df3ad6b299a2d2ecdfbf579d18e2e364fb2bed272",
+  "run_fingerprint": "1f885571ff9a1cca7d8e8237a7ed02506aa8ec43bc4c33f1dbfd67f76c08d833",
+  "source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+  "source_snapshot": {
+    "path": "evals/results/phase12-repair-pilot-freeze-20261021T042400.590993Z/source.tar.gz",
+    "sha256": "7047fa61822f75f6680bafe3a9e0dbafdd20d0577a220a2872836817998052da",
+    "files": 159
+  },
+  "status": "complete",
+  "planned_cases": 4,
+  "finished_cases": 4,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 44,
+      "input_tokens": 337540,
+      "output_tokens": 7504,
+      "estimated_requests": 0,
+      "cache_read_input_tokens": 15621,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/gemma4:26b": {
+          "requests": 44,
+          "input_tokens": 337540,
+          "output_tokens": 7504
+        }
+      }
+    },
+    "requests": 44,
+    "turns": 4
+  },
+  "summary": [
+    {
+      "task": "batch-renames",
+      "attempts": 1,
+      "passed": 1,
+      "correct": 1,
+      "verified": 1,
+      "completed": 1,
+      "seconds": [
+        83.4
+      ]
+    },
+    {
+      "task": "byte-windows",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 1,
+      "completed": 1,
+      "seconds": [
+        139.88
+      ]
+    },
+    {
+      "task": "event-replay",
+      "attempts": 1,
+      "passed": 1,
+      "correct": 1,
+      "verified": 1,
+      "completed": 1,
+      "seconds": [
+        43.13
+      ]
+    },
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        250.64
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "ca944bab0b14a5e26651",
+      "task": "batch-renames",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": true,
+      "stop_reason": "complete",
+      "seconds": 83.4,
+      "iterations": 9,
+      "check_passed": true,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "fd9e39c71ba4d72892ebe3f9a975edaaa8c596db8372181af32be313bcb4fc20",
+            "after": "fd9e39c71ba4d72892ebe3f9a975edaaa8c596db8372181af32be313bcb4fc20",
+            "ok": false,
+            "finished_seconds": 11.089085582992993,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "0a63fd2c1f7262e33e4e7d415bbe7ca8c55b22a769d3ad3a45080285df5b4c5b",
+            "after": "0a63fd2c1f7262e33e4e7d415bbe7ca8c55b22a769d3ad3a45080285df5b4c5b",
+            "ok": true,
+            "finished_seconds": 63.32165195804555,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "0a63fd2c1f7262e33e4e7d415bbe7ca8c55b22a769d3ad3a45080285df5b4c5b"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "renames/operations.py",
+          "renames/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 9,
+        "input_tokens": 61625,
+        "output_tokens": 921,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 2868,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 9,
+            "input_tokens": 61625,
+            "output_tokens": 921
+          }
+        }
+      },
+      "evidence": "attempts/ca944bab0b14a5e26651-4a497806",
+      "error": null,
+      "check_output": "[independent check completed]\n",
+      "evidence_sha256": {
+        "result.json": "85588d0c6c7c7b42f1a81024aab7ef252f7abc3cdc7fc57c94404358685d73a5",
+        "events.jsonl": "6d19833ac286f65c46d9cb12bb0ee315cad217990cecf3e83f91802af8268a91",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/renames/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/renames/validation.py": "2bc1541d9c2b50885dcf41ed234c2abbe0d0ce9276d261c962e1eb42788fc73d",
+        "files/renames/operations.py": "d0f28cb11e56daa4e4a4a0021241fb3e22d95c2eab620762be1f13fae1fa6d83",
+        "files/tests/test_project.py": "d60613e69d549876d8f666a6358bd68d53253f678fe358ca5039b78fc8dd5431"
+      }
+    },
+    {
+      "case_id": "54987b88c914ef88c2b2",
+      "task": "byte-windows",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "complete",
+      "seconds": 139.88,
+      "iterations": 12,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "e69a52ca6fccda00fd616024bc0ef099defa4da04e6ec46cad5e0d05309f295e",
+            "after": "e69a52ca6fccda00fd616024bc0ef099defa4da04e6ec46cad5e0d05309f295e",
+            "ok": false,
+            "finished_seconds": 7.319016250083223,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "7ee8f81cc00661467fafa3dade10c5aa55112c0e7855cd089b7c791c2bc35ea3",
+            "after": "7ee8f81cc00661467fafa3dade10c5aa55112c0e7855cd089b7c791c2bc35ea3",
+            "ok": false,
+            "finished_seconds": 75.09070770803373,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "f1ee73e0dbde351455702d7510681986f2702344dd94f0c1d25e8028c164c757",
+            "after": "f1ee73e0dbde351455702d7510681986f2702344dd94f0c1d25e8028c164c757",
+            "ok": true,
+            "finished_seconds": 116.99468450003769,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "f1ee73e0dbde351455702d7510681986f2702344dd94f0c1d25e8028c164c757"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 12,
+        "input_tokens": 101783,
+        "output_tokens": 1638,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 4408,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 12,
+            "input_tokens": 101783,
+            "output_tokens": 1638
+          }
+        }
+      },
+      "evidence": "attempts/54987b88c914ef88c2b2-585603c2",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 53, in <module>\n  File \"<string>\", line 12, in rejects\nAssertionError: invalid byte window accepted\n",
+      "evidence_sha256": {
+        "result.json": "deead99083e7ec9547097a286ab7e16c946a9dca2c323cea5f3896c3ecfc02bf",
+        "events.jsonl": "b9a5fc30d67f4cfa3c8858231facf58f10e8183f4124d7c12de09e652451291b",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/windows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/windows/ranges.py": "4d8822f2ab7e67443c4ea95fc67d450adc9fc1a6f4d2d2a9da46c9884cdc470a",
+        "files/windows/response.py": "5cfae22394d91e2324228f91eda3a963b615fa05c2bbe8ad80b604cbd0be09bb",
+        "files/tests/test_project.py": "c3811d2dd03526d16646983dccec7e6618acdee62a5612bed815a269fb6ac054"
+      }
+    },
+    {
+      "case_id": "cd72995b5491af55267f",
+      "task": "event-replay",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": true,
+      "stop_reason": "complete",
+      "seconds": 43.13,
+      "iterations": 7,
+      "check_passed": true,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "c9d2dc1ff60cdf0a29f3462adfd8e1aa1d752e6318d951e810406451047cce98",
+            "after": "c9d2dc1ff60cdf0a29f3462adfd8e1aa1d752e6318d951e810406451047cce98",
+            "ok": true,
+            "finished_seconds": 31.45483345806133,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "c9d2dc1ff60cdf0a29f3462adfd8e1aa1d752e6318d951e810406451047cce98"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "events/replay.py",
+          "events/validation.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 7,
+        "input_tokens": 22339,
+        "output_tokens": 1002,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 2369,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 7,
+            "input_tokens": 22339,
+            "output_tokens": 1002
+          }
+        }
+      },
+      "evidence": "attempts/cd72995b5491af55267f-28eb6ce3",
+      "error": null,
+      "check_output": "[independent check completed]\n",
+      "evidence_sha256": {
+        "result.json": "eaea6fa495be427e2f467d7056ef23634b70ba66340721cb687cc4fe70a3486f",
+        "events.jsonl": "c48e40ab714d99bac23cd739c6ec3629e0e26421e231c0a19f965d37094282a4",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/events/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/events/validation.py": "dc7e94bd508a6f7c89b01135c39e9a96e0d643a60a8619abddfd60176b2c87d9",
+        "files/events/replay.py": "aac4951ad213f7c2cc9a32db8ece850e249fb983c2cd61741fca75a3945b2c17",
+        "files/tests/test_project.py": "16cf63f7c680782631cffb058ad9a6cbd4b2c8e920a3c01772d46e4312d5c743"
+      }
+    },
+    {
+      "case_id": "2491cabdda62c825de12",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "iteration_limit",
+      "seconds": 250.64,
+      "iterations": 16,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "19d2b24e839f74fe6f83e506e8f07ca78193459a7d91ca0a4b263c10a5f598bc",
+            "after": "19d2b24e839f74fe6f83e506e8f07ca78193459a7d91ca0a4b263c10a5f598bc",
+            "ok": false,
+            "finished_seconds": 6.89656937494874,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "c37ed66ee38f154807c44588d3336fcb343ccf9ee5d82a2a4ad3b468481d8cc9",
+            "after": "c37ed66ee38f154807c44588d3336fcb343ccf9ee5d82a2a4ad3b468481d8cc9",
+            "ok": false,
+            "finished_seconds": 132.4169721249491,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "8cae3430d08257522d098348db0c7672dcea28e2949966ddc2519e735ccb2e56",
+            "after": "8cae3430d08257522d098348db0c7672dcea28e2949966ddc2519e735ccb2e56",
+            "ok": false,
+            "finished_seconds": 178.5952919999836,
+            "matches_final_files": true
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "8cae3430d08257522d098348db0c7672dcea28e2949966ddc2519e735ccb2e56",
+            "after": "8cae3430d08257522d098348db0c7672dcea28e2949966ddc2519e735ccb2e56",
+            "ok": false,
+            "finished_seconds": 250.46768195799086,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "8cae3430d08257522d098348db0c7672dcea28e2949966ddc2519e735ccb2e56"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 16,
+        "input_tokens": 151793,
+        "output_tokens": 3943,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 5976,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 16,
+            "input_tokens": 151793,
+            "output_tokens": 3943
+          }
+        }
+      },
+      "evidence": "attempts/2491cabdda62c825de12-ad62372b",
+      "error": null,
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 54, in <module>\n  File \"<string>\", line 12, in rejects\nAssertionError: invalid argument input accepted\n",
+      "evidence_sha256": {
+        "result.json": "a562bf102296d8c84f9314e5bc92b321b8f446bbaec99a13f37121d74cc714a2",
+        "events.jsonl": "93fa20e941124bccbc6466ec290ca2bc2994fcc56a3a9842a376deaea58b29c6",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "6543606e7563f375a0ba3ba47c37bf1dd49a63656c3d003484eeb7d4449f2ee9",
+        "files/arguments/options.py": "03d5cf85cab83da3357b2a57f6575d42c388c884aeaf50d97e7958dc4fdb9d3e",
+        "files/tests/test_project.py": "244f975cdd0fc77c40df251bbc86cde4ffd0a10ac5c1a46e7500af593b94ed71"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ]
+}

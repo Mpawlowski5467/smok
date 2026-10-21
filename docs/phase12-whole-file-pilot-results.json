@@ -1,0 +1,243 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T06:12:44.964059+00:00",
+  "plan": "docs/phase12-whole-file-pilot-plan.json",
+  "plan_sha256": "4a349e1e8a9bea5a5dd2ccc4ec6af653f7fc723748046d003a762ce6a3a50668",
+  "report": "evals/results/20261021T060726.006172Z-phase12/report.json",
+  "report_sha256": "1b358577a18e732071ef3e4e10804f19adce0d3466a37f17325625fa71438b2b",
+  "run_fingerprint": "110205e5de0f9ee94a5dbe97bc215695163e7def7febf908af030a8b1cf4ca99",
+  "source_fingerprint": "93da1a300ef38062b8abc714d0b5805f5c2e40123754dfbb07700e3a5b771c5b",
+  "source_snapshot": {
+    "path": "evals/results/phase12-whole-file-pilot-freeze-20261021T060721.945277Z/source.tar.gz",
+    "sha256": "f21616dbfbb569a739304453be2652e6c1c0468a120394418b2fd210fb45e305",
+    "files": 167
+  },
+  "status": "complete",
+  "planned_cases": 2,
+  "finished_cases": 2,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 18,
+      "input_tokens": 115314,
+      "output_tokens": 6031,
+      "estimated_requests": 0,
+      "cache_read_input_tokens": 49714,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/gemma4:26b": {
+          "requests": 18,
+          "input_tokens": 115314,
+          "output_tokens": 6031
+        }
+      }
+    },
+    "requests": 18,
+    "turns": 2
+  },
+  "summary": [
+    {
+      "task": "byte-windows",
+      "attempts": 1,
+      "passed": 1,
+      "correct": 1,
+      "verified": 1,
+      "completed": 1,
+      "seconds": [
+        53.16
+      ]
+    },
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        194.04
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "013c42c3a72b98fcbb39",
+      "task": "byte-windows",
+      "model": "ollama/gemma4:26b",
+      "variant": "whole-file",
+      "repeat": 1,
+      "passed": true,
+      "stop_reason": "complete",
+      "seconds": 53.16,
+      "iterations": 8,
+      "check_passed": true,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "97fb9b20689d8edad856c3249cc5cba4146f2767976e333a9dc0531abb6a9528",
+            "after": "97fb9b20689d8edad856c3249cc5cba4146f2767976e333a9dc0531abb6a9528",
+            "ok": true,
+            "finished_seconds": 45.210275499965064,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "97fb9b20689d8edad856c3249cc5cba4146f2767976e333a9dc0531abb6a9528"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "windows/ranges.py",
+          "windows/response.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 8,
+        "input_tokens": 30444,
+        "output_tokens": 1441,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 15306,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 8,
+            "input_tokens": 30444,
+            "output_tokens": 1441
+          }
+        }
+      },
+      "evidence": "attempts/013c42c3a72b98fcbb39-83041b2f",
+      "error": null,
+      "check_output": "[independent check completed]\n",
+      "evidence_sha256": {
+        "result.json": "906ef87d21f10a17b1857aba40afdb7ee34201e7f5a5b3694743316ab747337a",
+        "events.jsonl": "be74381f4b0257b0f4a63e3a9bbd4f6097d1e35059c48d6cf1a9581fc86c1a16",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/windows/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/windows/ranges.py": "682d0671b09a13d93534e4131e180d9a3e35b2050292a2b5b917991ad5d4c738",
+        "files/windows/response.py": "d824551a7c477a28ba4ce991028407dfd75984ca313518df925e82732eb75a8e",
+        "files/tests/test_project.py": "a18c5097a73515f34233f049240feafcae6ed5e8f3391ff0f6204299912c07c5"
+      }
+    },
+    {
+      "case_id": "2fbe6bceb1ef7c65f987",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "whole-file",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "error",
+      "seconds": 194.04,
+      "iterations": 10,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "abb86627b3414c1f689a94aadbf1a1b47b233ccab89c1183f6bb33133492a113",
+            "after": "abb86627b3414c1f689a94aadbf1a1b47b233ccab89c1183f6bb33133492a113",
+            "ok": false,
+            "finished_seconds": 6.123002375010401,
+            "matches_final_files": false
+          }
+        ],
+        "final_files_fingerprint": "fc0f50467c360f00d78cf66825b7a55d596b892bc41b69ee3e5db5f8502c068b"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 10,
+        "input_tokens": 84870,
+        "output_tokens": 4590,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 34408,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 10,
+            "input_tokens": 84870,
+            "output_tokens": 4590
+          }
+        }
+      },
+      "evidence": "attempts/2fbe6bceb1ef7c65f987-931c6dc2",
+      "error": "Compaction returned an invalid summary; original history retained.",
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\n  File \"/private/var/folders/kc/m14jpkms6yb4322n4mvlj0sc0000gn/T/smok-eval-command-arguments-fs2ink38/arguments/lexing.py\", line 42, in split_words\n    raise ValueError(\"Unterminated quote\")\nValueError: Unterminated quote\n",
+      "evidence_sha256": {
+        "result.json": "7ea1a13244d600bab8dba7209f7ac8a41f4c36669992e53cd57af6faafa0b5c2",
+        "events.jsonl": "e70ef05e411091ad47ac1d648a34b3d9e73b764887ccaa20b5782218985a76c0",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "57534319917408aeb5cc3eadee030494899c28466c106384d0359dc816a5c61e",
+        "files/arguments/options.py": "1ecd09db8de304ca6a3dd2c910cc71225a08742dc86c4c247a0b20d7bb01a00a",
+        "files/tests/test_project.py": "a47f3272eb0b8a2767ac0e5f9da4e7215218b460c21d4a0e75aaafa6887c08ec"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ],
+  "config_snapshot": {
+    "path": "evals/results/phase12-whole-file-pilot-freeze-20261021T060721.945277Z/profile.yaml",
+    "sha256": "9d656fc2388d818c22f963780fdf5b8bf4b4331a808ccca708fda70d5d14b8a2"
+  }
+}

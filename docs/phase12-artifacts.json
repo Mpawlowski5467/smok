@@ -1,0 +1,62 @@
+{
+  "smok_version": "0.12.0",
+  "runtime_source_fingerprint": "4d3f65606405befb5d96bec54142ebe55ae57731ced928a76e90a0c939deba2b",
+  "python": {
+    "passed": 554,
+    "seconds": 33.0
+  },
+  "ruff": {
+    "lint": "pass",
+    "format": "pass"
+  },
+  "frontend": {
+    "typescript": "pass",
+    "production_build": "pass"
+  },
+  "browser": {
+    "passed": 2,
+    "seconds": 5.7
+  },
+  "native": {
+    "smok_version": "0.12.0",
+    "passed": true,
+    "generation_requests": 0,
+    "checks": [
+      "bundle version",
+      "bundled server version",
+      "complete bundle signature",
+      "loopback readiness",
+      "authentication",
+      "workspace bootstrap",
+      "offline setup diagnostics without a session",
+      "compiled asset byte parity",
+      "deadline validation, save, resume, and clear",
+      "graceful shutdown",
+      "listener closed",
+      "session writer lock released"
+    ],
+    "executables": {
+      "smok-server": "a297273d37ff525830bf296c743c36fa4f15e3321ebb8c6a75a47b4cb90fed02",
+      "smok-desktop": "634bde8d1a81d36974da48f2bba5c2d4aa70b031072b0c355dd4512a137e9133"
+    }
+  },
+  "logs_sha256": {
+    "python": "e0b52ddf47faa19c76c97b81702051ceb33e7d4d5ce3829af2997ea9b87ec97b",
+    "browser": "3513af5788beb829cdafbb63782c271a9c42e97bb33690d2ad411e8a1f2e0e58",
+    "build": "4bf54f329244883b5066671051eb9ceb321109d97f1522338a691204f18a7fad"
+  },
+  "distribution": "Local ad-hoc-signed Apple Silicon app; no public publishing or notarization.",
+  "package_receipt": "dist/release-check-0.12.0.json",
+  "package": {
+    "passed": true,
+    "wheel_files_matched": 61,
+    "source_files_matched": 278,
+    "graders": 34,
+    "suites": {
+      "phase7_tasks.json": 20,
+      "phase10_tasks.json": 6,
+      "phase11_tasks.json": 4,
+      "phase12_tasks.json": 4
+    }
+  }
+}

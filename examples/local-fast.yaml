@@ -1,0 +1,4 @@
+# Opt-in profile for the locally tested Ollama model; no model is downloaded.
+models:
+  ollama/qwen3.6:27b-mlx:
+    reasoning_effort: "none"
