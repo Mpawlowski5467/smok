@@ -7,8 +7,9 @@ new YAML file. It does not apply settings, change the default model, or run infe
 This guide preserves the original fresh-task protocol. After inspection, these cases
 became known regressions. Use the [contract audit](phase12-contract-audit.md) for the
 corrected original scores and the [0.12.1 repair follow-up](phase12-repair.md) for later
-public-test changes and failures. The latest review sequence has automated coverage
-but no live model qualification yet.
+public-test changes and failures. The [0.12.2 parser follow-up](phase12-parser-resolution.md)
+records subsequent live trials separately; these inspected tasks do not supply fresh
+model qualification.
 
 ## Fresh project contracts
 
@@ -35,8 +36,11 @@ Baseline is the installed `ollama/qwen3.6:27b-mlx`; candidate is the installed
 no-thinking. Runtime controls are the same: 4,096 output tokens, 300 seconds per turn,
 16 model calls, and the existing 180-second individual request timeout. A shared
 256-request/2,000,000-token cap bounds the run. Provider model digests, capabilities,
-thinking support, and sampler defaults are recorded before and after the run.
-Model-specific server sampler defaults remain in effect and differ between models.
+thinking support, and installed sampler metadata are recorded before and after the run.
+The client omitted sampling fields. A later [sampling audit](phase12-parser-resolution.md#sampling-audit)
+found that Ollama's compatibility endpoint supplies temperature/top-p 1.0 for omitted
+values; installed sampler metadata alone does not establish effective request settings.
+The original requests and results remain unchanged.
 
 The runner reverses the complete model/variant order on alternate task/repeat pairs.
 With these two models and two repeats, each model runs first once per project.

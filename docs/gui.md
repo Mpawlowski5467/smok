@@ -61,6 +61,9 @@ external distribution. Apple Silicon macOS is the verified native target.
   leaves server behavior unchanged; choose another value only when the model supports
   it. The [local workflow guide](project-workflows.md#reasoning-control-for-the-local-model)
   documents the tested `none` option and its quality/completion measurements.
+- Version 0.12.2 adds optional **Temperature** and **Top-p** for compatible models.
+  Empty fields use endpoint defaults; zero remains an explicit value. These settings
+  are recorded in evaluation profiles. See the [sampling audit](phase12-parser-resolution.md#sampling-audit).
 - Submit text with Enter; Shift+Enter adds a line. Command/Ctrl+Enter creates a new
   session, and Command/Ctrl+, opens Settings. Turns continue when a browser reloads
   or disconnects. **Stop turn** cancels the active work and settles reserved usage.
@@ -80,6 +83,11 @@ There can be separate active workspaces for branches. Shared checkpoint locks al
 protect against overlapping Smok turns in other processes. A browser displays the
 latest 400 coalesced events; the full bounded JSONL journal stays on disk.
 
+![Model settings with explicit temperature and top-p](screenshots/settings-tuning.png)
+
+*Captured with the deterministic browser test model. The shown values verify saved
+controls; they are not a model-quality recommendation.*
+
 ## Context, work, and checkpoints
 
 The right panel shows estimated token shares, pinned files, history groups, routing,
@@ -97,6 +105,8 @@ Pin a relative file path to retain its fresh contents. Drop a pin or a complete
 history group to remove it from the model context. **Compact context** uses the core's
 validated summary workflow. Vision bytes are not included in text summaries; an explicit
 marker tells the next turn to ask for the image again when necessary.
+Compaction clears earlier file-read records and adds a notice requiring fresh
+`read_file` calls before editing existing files. Saved summaries do not grant edits.
 
 **Restore** returns files to the end of a completed checkpoint. It checks later file
 changes first and records the restoration as a new checkpoint, so it can be undone.

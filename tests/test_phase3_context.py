@@ -7,7 +7,7 @@ import pytest
 from test_loop import DONE, STOP, call
 from test_phase3_sessions import configured
 
-from smok.context import SUMMARY_PREFIX, SUMMARY_PROMPT, Context, groups
+from smok.context import COMPACTION_NOTICE, SUMMARY_PREFIX, SUMMARY_PROMPT, Context, groups
 from smok.journal import Journal
 from smok.loop import Agent
 from smok.models.base import ModelError
@@ -51,12 +51,15 @@ async def test_compaction_retains_complete_recent_groups_and_constraints(tmp_pat
     tail = agent.messages[-2:]
     events = [e async for e in agent.compact()]
     assert events[-1].type == "compaction_finished"
-    assert agent.messages[1:] == tail
+    assert agent.messages[1:-1] == tail
+    assert agent.messages[-1] == Message("user", [Text(COMPACTION_NOTICE)])
     assert "Keep all existing public names" in agent.messages[0].content[0].text
     transcript = json.loads(agent.model.histories[0][0].content[0].text)["transcript"]
     assert transcript[-2]["content"][0]["type"] == "tool_call"
     assert transcript[-1]["content"][0]["type"] == "tool_result"
     assert not agent.tools.workspace.read_hashes
+    with pytest.raises(ToolError, match="read_file"):
+        agent.tools.workspace.prepare_edit("api.py", "1", "2")
     assert agent.usage.requests == agent.budget.usage.requests == 1
     assert agent.usage.input_tokens == 700
 
@@ -72,10 +75,14 @@ async def test_compaction_retains_complete_recent_groups_and_constraints(tmp_pat
 )
 async def test_bad_compaction_keeps_original_history_and_runs_no_tools(tmp_path, response):
     agent = agent_with_history(tmp_path, [response], keep_recent=2)
+    (tmp_path / "api.py").write_text("api = 1")
+    agent.tools.workspace.read_file("api.py")
+    reads = dict(agent.tools.workspace.read_hashes)
     before = list(agent.messages)
     with pytest.raises(ModelError):
         _ = [e async for e in agent.compact()]
     assert agent.messages == before
+    assert agent.tools.workspace.read_hashes == reads
     assert not (tmp_path / "bad").exists()
     assert agent.usage.requests == 1
 

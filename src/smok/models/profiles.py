@@ -36,9 +36,24 @@ class ModelConfig:
     tool_set: str = "full"
     edit_format: str = "both"
     reasoning_effort: str | None = None
+    temperature: float | None = None
+    top_p: float | None = None
     prices: dict[str, float] = field(default_factory=dict)
 
     def __post_init__(self):
+        for name, upper in (("temperature", 2), ("top_p", 1)):
+            value = getattr(self, name)
+            if value is not None and (
+                self.adapter != "openai_compat"
+                or isinstance(value, bool)
+                or not isinstance(value, (int, float))
+                or not 0 <= value <= upper
+                or not math.isfinite(value)
+            ):
+                raise ValueError(
+                    f"{name} requires an OpenAI-compatible adapter and a finite number "
+                    f"from 0 to {upper}, or null to omit it. Model support varies."
+                )
         if self.reasoning_effort is not None and (
             not isinstance(self.reasoning_effort, str)
             or self.reasoning_effort not in REASONING_EFFORTS
@@ -185,6 +200,8 @@ def resolve_model(
                 "tool_set",
                 "edit_format",
                 "reasoning_effort",
+                "temperature",
+                "top_p",
                 "prices",
             )
             if key in profile

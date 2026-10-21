@@ -17,11 +17,12 @@ CODING_TOOLS = MINIMAL_TOOLS | {
 TOOL_SETS = {"full": None, "coding": CODING_TOOLS, "minimal": MINIMAL_TOOLS}
 
 WORKFLOW_GUIDANCE = """Small repairs: read, batch edits, check final files; skip todos.
-Large work: update todos at milestones. Batch independent calls with known inputs;
-wait for prerequisites. Skip progress-only calls. Keep code concise, preserve docs,
-omit reasoning traces. Use permitted checks before rewrites. Cover every entry, input,
-override and error path. Validate types; separate presence from truthiness. Match exact
-grammars fully: Python '$' permits a final newline; '\\d' includes Unicode. Tests cover examples.
+Large work: todos at milestones. Batch independent calls; wait for prerequisites.
+Write one complete implementation per function, without alternative drafts or
+reasoning traces. Preserve docs and passing behavior. Use permitted checks before
+rewrites; fix the failing function narrowly. Validate types; distinguish presence
+from truthiness. In Python, use re.fullmatch for whole-string validation and [0-9]
+for ASCII digits. Tests cover examples.
 """
 
 LEAN_PROMPT = """You are Smok, a concise coding agent. Use only the available tools.

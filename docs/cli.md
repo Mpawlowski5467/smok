@@ -317,6 +317,12 @@ input requires an explicitly vision-capable profile. These adapter paths have lo
 protocol tests; live frontier reasoning, vision, and cache billing remain unverified.
 Gemini/OpenRouter/LM Studio routes have not been verified against live endpoints.
 
+Since 0.12.2, compatible profiles also accept optional `temperature` (0–2) and
+`top_p` (0–1). Set these under the model's YAML entry or in Settings → Models.
+Null omits a field; zero is sent explicitly. CLI session resume retains the selected
+values. Omitting a field uses endpoint behavior, which may override installed model
+parameters. See [evaluation controls and the sampling audit](evaluation.md).
+
 ## One task or JSON events
 
 ```sh

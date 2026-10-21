@@ -16,6 +16,8 @@ Model YAML profiles and **Settings → Models** accept these controls:
 | `tool_set` | `full` (default), `coding`, `minimal` | Choose the tools advertised to the model and accepted by the core. |
 | `edit_format` | `both` (default), `exact`, `whole_file` | Offer both edit tools, require exact replacements for existing files, or use full-file writes. |
 | `reasoning_effort` | `null` (provider default), `none`, `minimal`, `low`, `medium`, `high`, `xhigh`, `max`, `ultra` | Explicit thinking control for compatible endpoints; actual supported values depend on the model. Added in 0.10.1. |
+| `temperature` | `null` (omit), number from 0 to 2 | Explicit sampling temperature for compatible endpoints. Added in 0.12.2. |
+| `top_p` | `null` (omit), number from 0 to 1 | Explicit nucleus sampling for compatible endpoints. Added in 0.12.2. |
 
 `minimal` includes read_file, list_dir, read_output, write_file, edit_file, and
 run_shell. `coding` adds grep, glob, repo_map, write_todos, and the three LSP tools.
@@ -198,8 +200,14 @@ uv run python evals/run.py --compare \
 Comparisons reject changed task fingerprints. Source revisions and run completion
 states remain visible; compare equal task sets and repeats before drawing conclusions.
 Fingerprints identify harness code, tasks, and client configuration, not the provider's
-model weights or server settings. Sampling uses provider defaults, so replay does not
-promise identical generated output.
+model weights or server settings. Unset sampling fields use endpoint behavior, which
+can differ from installed model metadata. For example, Ollama 0.40.4's compatibility
+API supplies temperature and top-p 1.0 when omitted. Set `temperature` and `top_p`
+explicitly in model YAML or Settings to record and send them; zero is retained and
+null omits the field. These controls persist on CLI resume and in exported evaluation
+profiles. Unsupported adapters/settings fail rather than silently dropping an override.
+Neither explicit sampling controls nor a repeated command promise identical output.
+See the [sampling audit](phase12-parser-resolution.md#sampling-audit).
 For live results measured on this machine, see [validation](validation.md) and the
 [compact results artifact](evaluation-results.json). In this single local trial,
 lean-coding reduced accounted tokens by 32.8% on tuning and 17.6% on holdout. Both

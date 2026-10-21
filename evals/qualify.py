@@ -7,6 +7,7 @@ import math
 import re
 import sys
 from collections import Counter
+from dataclasses import asdict
 from pathlib import Path
 from statistics import median
 
@@ -39,6 +40,8 @@ PROFILE_FIELDS = (
     "tool_set",
     "edit_format",
     "reasoning_effort",
+    "temperature",
+    "top_p",
 )
 
 
@@ -191,7 +194,10 @@ def qualify(
     require(
         all(key in profiles for key in selectors.values()), "Both profiles must be in this report."
     )
-    before, after = (profiles[key] for key in selectors.values())
+    # Older reports omit optional controls added later. Normalize only after
+    # validating the original recorded profiles and fingerprints, without edits.
+    controls = {v: asdict(ModelConfig(**profiles[key])) for v, key in selectors.items()}
+    before, after = controls.values()
     changed = {
         k: {"baseline": before[k], "candidate": after[k]} for k in before if before[k] != after[k]
     }
@@ -328,7 +334,7 @@ def qualify(
         "split": split,
         "limits": report["spec"]["limits"],
         "task_fingerprints": {task: report["spec"]["tasks"][task] for task in task_repeats},
-        "profiles": {v: {k: profiles[selectors[v]][k] for k in PROFILE_FIELDS} for v in variants},
+        "profiles": {v: {k: controls[v][k] for k in PROFILE_FIELDS} for v in variants},
         "changed_controls": {k: value for k, value in changed.items() if k in PROFILE_FIELDS},
         "planned_pairs": len(selected["baseline"]),
         "paired_cases": len(pairs),

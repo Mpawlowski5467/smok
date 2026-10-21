@@ -130,7 +130,9 @@ async def test_iteration_cap_stops_looping(tmp_path):
 )
 async def test_failed_or_truncated_generation_cannot_execute_tools(tmp_path, ending):
     model_agent = agent(
-        tmp_path, [[call("write_file", {"path": "bad", "content": "no"}), ending]], approver=allow
+        tmp_path,
+        [[call("write_file", {"path": "bad", "content": "no"}), ending]] * 2,
+        approver=allow,
     )
     events = [e async for e in model_agent.run("Do something")]
     assert not (tmp_path / "bad").exists()

@@ -1,0 +1,181 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T22:44:00.915508+00:00",
+  "plan": "docs/phase12-parser-recovery-pilot-plan.json",
+  "plan_sha256": "68d7c761c761b91453581c708cbf476b1299bfbde52373dc05f1c847fed7c3e4",
+  "report": "evals/results/20261021T224048.418198Z-phase12/report.json",
+  "report_sha256": "74dfadd58c452615f83c861b591af7f65ac8a1039c08e5f0a38ef04b5952c556",
+  "run_fingerprint": "78c43bcee658ec9267bc407dd5a145451577aac4985fba10c90c60a0093f523d",
+  "source_fingerprint": "e47c1bc3b733684e6cae50c7844ef0c36e6b3a3d228e36489214f921b6983d15",
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-recovery-pilot-freeze-20261021T224041.632528Z/source.tar.gz",
+    "sha256": "f1ba4834dadc1a55e5ab16f8d85f27dda8be3e637207f0d95f22ec9a8ab24be8",
+    "files": 168
+  },
+  "status": "complete",
+  "planned_cases": 1,
+  "finished_cases": 1,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 13,
+      "input_tokens": 96162,
+      "output_tokens": 5171,
+      "estimated_requests": 0,
+      "cache_read_input_tokens": 67414,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/gemma4:26b": {
+          "requests": 13,
+          "input_tokens": 96162,
+          "output_tokens": 5171
+        }
+      }
+    },
+    "requests": 13,
+    "turns": 1
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 1,
+      "correct": 1,
+      "verified": 1,
+      "completed": 1,
+      "seconds": [
+        176.87
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "2491cabdda62c825de12",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": true,
+      "stop_reason": "complete",
+      "seconds": 176.87,
+      "iterations": 13,
+      "check_passed": true,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": true,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "b0029dda4213fa4e1f0cbc102f6a41d493ae463879ac08820f89f8d22668f0c9",
+            "after": "b0029dda4213fa4e1f0cbc102f6a41d493ae463879ac08820f89f8d22668f0c9",
+            "ok": false,
+            "finished_seconds": 107.6396890420001,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "41f8ca2589248f3eab07ecfc3d97d7c7ab6d3d5ab163e4fdc58f5ffd1c65c2fb",
+            "after": "41f8ca2589248f3eab07ecfc3d97d7c7ab6d3d5ab163e4fdc58f5ffd1c65c2fb",
+            "ok": false,
+            "finished_seconds": 124.13084887503646,
+            "matches_final_files": false
+          },
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "1d3ee173ce3d631e2b1d4c04e2a90975a16dcc9eb83fc3ad96c00d7c80f7e602",
+            "after": "1d3ee173ce3d631e2b1d4c04e2a90975a16dcc9eb83fc3ad96c00d7c80f7e602",
+            "ok": true,
+            "finished_seconds": 159.46524595899973,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "1d3ee173ce3d631e2b1d4c04e2a90975a16dcc9eb83fc3ad96c00d7c80f7e602"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [
+          "arguments/lexing.py",
+          "arguments/options.py"
+        ],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 13,
+        "input_tokens": 96162,
+        "output_tokens": 5171,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 67414,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 13,
+            "input_tokens": 96162,
+            "output_tokens": 5171
+          }
+        }
+      },
+      "evidence": "attempts/2491cabdda62c825de12-ee10c81c",
+      "error": null,
+      "check_output": "[independent check completed]\n",
+      "evidence_sha256": {
+        "result.json": "59ed171dbc6ac7a79219e6b6a18f0e0e4ce24997699a505e6f1e3d571abbaeed",
+        "events.jsonl": "d9747405edcdd77c73f25edf4405f07e1c02f709a0357e73ed5c186045c8499b",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "f838a9d52a46ae76b6b9584b1301b6f03ca066a9ca4cea3f8389fd17ba8607e6",
+        "files/arguments/options.py": "2e9480237f7d0a0254ac9231641c2864a5d9138d46541f17550840766ac0ae08",
+        "files/tests/test_project.py": "a47f3272eb0b8a2767ac0e5f9da4e7215218b460c21d4a0e75aaafa6887c08ec"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ],
+  "config_snapshot": {
+    "path": "evals/results/phase12-parser-recovery-pilot-freeze-20261021T224041.632528Z/profile.yaml",
+    "sha256": "4b6850153f53576c9dd2ac855ded33351f6094f0252c1c64fb8a7fe0c6d1fb19"
+  }
+}

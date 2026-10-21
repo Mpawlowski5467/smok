@@ -4,9 +4,10 @@ from dataclasses import replace
 
 import pytest
 from test_loop import DONE, STOP, ScriptedModel, call
+from test_phase3_context import SUMMARIZED, agent_with_history
 
 from smok.checkpoints import Checkpoints
-from smok.context import SUMMARY_PROMPT, message_tokens
+from smok.context import COMPACTION_NOTICE, SUMMARY_PROMPT, message_tokens
 from smok.loop import Agent
 from smok.models.anthropic import AnthropicAdapter, serialize_messages
 from smok.models.base import ModelError
@@ -17,6 +18,7 @@ from smok.reliability import within_deadline
 from smok.tools.files import Workspace
 from smok.tools.registry import ToolRegistry
 from smok.types import Event, Message, RuntimeHint, Text, ToolCall, ToolResult, messages_to_data
+from smok.usage import RunBudget
 
 
 @pytest.mark.parametrize("count_tokens", [False, True])
@@ -37,7 +39,7 @@ async def test_countdown_only_changes_request_tail_and_is_counted_once(tmp_path,
                 yield event
 
     model = Recording()
-    agent = Agent(model, ToolRegistry(Workspace(tmp_path)))
+    agent = Agent(model, ToolRegistry(Workspace(tmp_path)), max_iterations=16)
     agent.context.map_text = "Stable repository context"
     agent.messages = [
         Message("user", [Text("Repair this module")]),
@@ -73,6 +75,8 @@ async def test_countdown_only_changes_request_tail_and_is_counted_once(tmp_path,
     first, second = [history[-1].content[-1] for history in model.histories]
     assert isinstance(first, RuntimeHint) and first != second
     assert "30 seconds" in first.text and "10 seconds" in second.text
+    assert "16 calls remain" in first.text and "15 calls remain" in second.text
+    assert "MODEL CALL BUDGET" not in json.dumps(agent.state())
     serialized = [
         openai_messages(system, messages)
         for system, messages in zip(model.systems, model.histories, strict=True)
@@ -228,3 +232,136 @@ async def test_no_check_tool_keeps_immediate_review(tmp_path):
     assert events[-1].data == {"reason": "complete", "iterations": 2}
     assert model.histories[1][-1].content[0].text.startswith("Review this diff")
     assert sum(e.type == "self_check_started" for e in events) == 1
+
+
+async def test_compacted_turn_can_reread_and_edit_without_restoring_stale_grants(tmp_path):
+    agent = agent_with_history(
+        tmp_path,
+        [
+            SUMMARIZED,
+            [call("read_file", {"path": "api.py"}), STOP],
+            [call("edit_file", {"path": "api.py", "old_text": "1", "new_text": "2"}), STOP],
+            DONE,
+        ],
+        keep_recent=2,
+    )
+    file = tmp_path / "api.py"
+    file.write_text("api = 1")
+    agent.tools.workspace.read_file("api.py")
+    agent.approver = allow
+    _ = [e async for e in agent.compact()]
+    assert not agent.tools.workspace.read_hashes
+    events = [e async for e in agent.run("Continue")]
+    assert COMPACTION_NOTICE in str(agent.model.histories[1])
+    assert file.read_text() == "api = 2"
+    assert events[-1].data == {"reason": "complete", "iterations": 3}
+    assert not any(e.type == "tool_result" and e.data["is_error"] for e in events)
+
+
+async def test_review_prioritizes_latest_check_when_earlier_output_fills_preview(tmp_path):
+    class Checks(ScriptedModel):
+        async def stream(self, system, messages, tools):
+            if len(self.histories) == 1:
+                registry.shell_evidence.extend(
+                    [{"command": "old", "ok": False, "output": "old failure " * 1000}]
+                    + [{"command": "latest", "ok": True, "output": "final checks passed"}]
+                )
+            async for event in super().stream(system, messages, tools):
+                yield event
+
+    # The final-response guard asks for review even without another tool call.
+    registry = ToolRegistry(Workspace(tmp_path))
+    model = Checks([[call("write_file", {"path": "a", "content": "new"}), STOP], DONE, DONE])
+    agent = Agent(model, registry, approver=allow)
+    events = [e async for e in agent.run("Repair")]
+    assert events[-1].data["reason"] == "complete"
+    review = model.histories[-1][-1].content[0].text
+    assert "Recorded commands (newest first)" in review
+    assert "final checks passed" in review and "old failure" in review
+    assert review.index("final checks passed") < review.index("old failure")
+    assert registry.shell_evidence[0]["command"] == "old"
+
+
+async def test_truncation_retry_discards_pending_tools_and_retains_completed_edits(tmp_path):
+    model = ScriptedModel(
+        [
+            [call("write_file", {"path": "kept", "content": "complete"}), STOP],
+            [
+                call("write_file", {"path": "discarded", "content": "partial"}),
+                Event("stop", {"reason": "length"}),
+            ],
+            DONE,
+        ]
+    )
+    agent = Agent(model, ToolRegistry(Workspace(tmp_path)), approver=allow, self_check=False)
+    events = [e async for e in agent.run("Implement")]
+    assert events[-1].data == {"reason": "complete", "iterations": 3}
+    assert (tmp_path / "kept").read_text() == "complete"
+    assert not (tmp_path / "discarded").exists()
+    assert agent.tools.revision == 1 and agent.budget.requests == 3
+    assert "discarded" not in json.dumps(agent.state())
+    assert "None of its proposed tool calls were executed" in str(model.histories[-1])
+    assert [e.data["reason"] for e in events if e.type == "model_retry"] == ["truncated_response"]
+
+
+@pytest.mark.parametrize("limit", [1, 2, 3])
+async def test_truncation_retry_is_once_only_and_within_call_limit(tmp_path, limit):
+    response = [
+        call("write_file", {"path": "bad", "content": "incomplete"}),
+        Event("stop", {"reason": "length"}),
+    ]
+    model = ScriptedModel([response, response, DONE])
+    agent = Agent(model, ToolRegistry(Workspace(tmp_path)), approver=allow, max_iterations=limit)
+    events = [e async for e in agent.run("Implement")]
+    assert events[-1].data["reason"] == "error"
+    assert agent.turn_requests == agent.budget.requests == min(limit, 2)
+    assert sum(e.type == "model_retry" for e in events) == (1 if limit > 1 else 0)
+    assert not (tmp_path / "bad").exists()
+    assert not any(e.type == "permission_requested" for e in events)
+
+
+async def test_truncation_retry_retains_original_deadline(tmp_path):
+    class Slow(ScriptedModel):
+        async def stream(self, system, messages, tools):
+            if self.histories:
+                await asyncio.sleep(0.2)
+            async for event in super().stream(system, messages, tools):
+                yield event
+
+    model = Slow([[Event("stop", {"reason": "length"})], DONE])
+    agent = Agent(model, ToolRegistry(Workspace(tmp_path)), turn_timeout=0.1)
+    events = [e async for e in agent.run("Repair")]
+    assert events[-1].data["reason"] == "time_limit"
+    assert agent.turn_requests == agent.budget.requests == 2
+    assert sum(e.type == "model_retry" for e in events) == 1
+
+
+async def test_impossible_compaction_skips_summary_call_without_relaxing_context_limit(tmp_path):
+    model = ScriptedModel([DONE])
+    model.config = replace(resolve_model("local/fixture"), keep_recent=2, max_output_tokens=512)
+    agent = Agent(model, ToolRegistry(Workspace(tmp_path)), self_check=False)
+    agent.messages = [
+        Message("user", [Text("Short goal")]),
+        Message("assistant", [Text("x" * 1000)]),
+    ]
+    used = agent.context_report()["input_tokens"]
+    model.config = replace(model.config, context_window=used + 712)
+    events = [e async for e in agent.run("Continue")]
+    assert events[-1].data == {"reason": "complete", "iterations": 1}
+    assert any(e.type == "compaction_skipped" for e in events)
+    assert not any(e.type == "compaction_started" for e in events)
+    assert agent.budget.requests == 1 and agent.context.summary is None
+
+
+@pytest.mark.parametrize("limit", ["requests", "tokens"])
+async def test_truncation_retry_cannot_extend_shared_request_or_token_budget(tmp_path, limit):
+    model = ScriptedModel([[Event("stop", {"reason": "length"})], DONE])
+    budget = RunBudget(max_requests=1) if limit == "requests" else RunBudget()
+    agent = Agent(model, ToolRegistry(Workspace(tmp_path)), budget=budget)
+    events = []
+    async for event in agent.run("Repair"):
+        events.append(event)
+        if limit == "tokens" and event.type == "model_retry":
+            budget.tokens = agent.usage.input_tokens + agent.usage.output_tokens
+    assert events[-1].data["reason"] == "budget_limit"
+    assert len(model.histories) == agent.turn_requests == budget.requests == 1

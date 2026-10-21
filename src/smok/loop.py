@@ -156,6 +156,8 @@ class Agent:
                     "tool_set",
                     "edit_format",
                     "reasoning_effort",
+                    "temperature",
+                    "top_p",
                 )
             },
         }
@@ -241,6 +243,13 @@ class Agent:
             + self.tools.extensions.prompt()
         )
 
+    def runtime_hint(self):
+        remaining = max(0, self.max_iterations - self.turn_requests)
+        return deadline_guidance() + (
+            f"\nMODEL CALL BUDGET: {remaining} calls remain, including this reply and "
+            "compaction. Reserve final checks/review.\n"
+        )
+
     def context_report(self, config=None):
         config = config or self.config
         return self.context.report(
@@ -249,6 +258,7 @@ class Agent:
             self.messages,
             self.tools.specs_for(config),
             self.tools.todos,
+            hint=self.runtime_hint(),
         )
 
     def cost_preview(self, config=None):
@@ -293,7 +303,7 @@ class Agent:
         if self.turn_requests >= self.max_iterations:
             raise BudgetExceeded("Model-call limit reached, including compaction and review.")
         config = self.config
-        hint = deadline_guidance() if purpose == "task" else ""
+        hint = self.runtime_hint() if purpose == "task" else ""
         hint_tokens = runtime_hint_tokens(messages, hint, config.chars_per_token)
         # A changing system prefix prevents reuse of the unchanged conversation.
         # Append the countdown only to this request, never to saved history.
@@ -475,6 +485,15 @@ class Agent:
         if not prefix:
             yield Event("compaction_skipped", {"reason": "No older complete exchanges to compact."})
             return
+        minimum = {"goal": "", "files_touched": [], "decisions": [], "open_todos": [], "notes": []}
+        if automatic and message_tokens(
+            self.context.compacted_messages(minimum, tail), self.config.chars_per_token
+        ) >= message_tokens(self.messages, self.config.chars_per_token):
+            # A short old prefix cannot pay for even an empty summary and the
+            # read-reset notice. Keep it; the normal request still enforces the
+            # hard context limit, and no summary call consumes the turn budget.
+            yield Event("compaction_skipped", {"reason": "Older context is too small to shrink."})
+            return
         # Fold only as much old history as the selected model can accept. Further passes can
         # fold more groups after a switch to a smaller context window, without losing any suffix.
         selected = self.summary_prefix(prefix)
@@ -492,13 +511,7 @@ class Agent:
                     summary = event.data
                 else:
                     yield event
-        candidate = [
-            Message(
-                "user",
-                [Text(SUMMARY_PREFIX + json.dumps(summary, ensure_ascii=False))],
-            ),
-            *tail,
-        ]
+        candidate = self.context.compacted_messages(summary, tail)
         after = estimate(
             json.dumps(messages_to_data(candidate, images=False)), self.config.chars_per_token
         )
@@ -687,6 +700,7 @@ class Agent:
         repeats = {}
         failed_commands = 0
         empty_retries = 0
+        truncated_retries = 0
 
         async def review_changes():
             nonlocal reviewed, observed, review_message
@@ -723,8 +737,8 @@ class Agent:
                             + bounded(self.current_prompt, 4000)
                             + "\nChanges:\n"
                             + diff
-                            + "\nRecorded commands:\n"
-                            + bounded(json.dumps(evidence), 6000)
+                            + "\nRecorded commands (newest first):\n"
+                            + bounded(json.dumps(list(reversed(evidence))), 6000)
                             + f"\nActions denied this turn: {len(denied)}.\n"
                         )
                     ],
@@ -753,10 +767,13 @@ class Agent:
             ):
                 prefix, _ = self.context.partition(self.messages, self.config.keep_recent)
                 if prefix:
+                    compacted = False
                     async with aclosing(self.compact(automatic=True)) as stream:
                         async for event in stream:
+                            compacted |= event.type == "compaction_finished"
                             yield event
-                    continue
+                    if compacted:
+                        continue
             system = self.context.system(self.base_system(), self.tools.todos)
             blocks: list[Text | ToolCall | ToolResult] = []
             calls = []
@@ -789,6 +806,25 @@ class Agent:
                         reason = event.data["reason"]
                     else:
                         yield event
+            if (
+                reason == "length"
+                and not truncated_retries
+                and self.turn_requests < self.max_iterations
+            ):
+                # Nothing from this response has executed. Discard its pending
+                # calls and retry once, charged to the original limits/deadline.
+                truncated_retries += 1
+                message = (
+                    "The previous response reached its output-token limit. None of its "
+                    "proposed tool calls were executed. Retry concisely: supply one complete "
+                    "implementation without alternative drafts or reasoning comments in code. "
+                    "Preserve work from earlier successful tool calls. The original limits "
+                    "still apply; leave time and calls to check final files and finish."
+                )
+                self.messages.append(Message("user", [Text(message)]))
+                self.save()
+                yield Event("model_retry", {"reason": "truncated_response", "message": message})
+                continue
             if reason not in {"stop", "tool_calls", "end_turn", "tool_use"}:
                 raise ModelError(
                     f"Model stopped with {reason or 'no completion marker'}; "

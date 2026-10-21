@@ -1,0 +1,618 @@
+{
+  "schema_version": 1,
+  "kind": "known_parser_followup_evidence_index",
+  "created_utc": "2026-10-21T23:20:59.627990+00:00",
+  "previous_trials": {
+    "path": "docs/phase12-repair-evidence.json",
+    "sha256": "76ee2d2c2ca601f48296a9c1432525be8b0b3a1b5a60a89a1fa426486aa78864"
+  },
+  "runs": [
+    {
+      "label": "phase12-review-parser-pilot",
+      "phase": "adaptive_pilot",
+      "plan": "docs/phase12-review-parser-pilot-plan.json",
+      "plan_sha256": "b866744936a28137f5183aab087933036a2f482ba478b4d43834c54e03d40541",
+      "results": "docs/phase12-review-parser-pilot-results.json",
+      "results_sha256": "81d7a06d5f59b4e5a33691df56af2ceeb539290b195ea8ac9e058c7a2683e625",
+      "smok_version": "0.12.1",
+      "source_fingerprint": "93490ea653fe7ec201beb378b16f2246c3395846595e82284bfa564f3b37f719",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 16,
+        "budget_tokens": 300000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 1,
+      "finished": 1,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            220.3
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    },
+    {
+      "label": "phase12-review-parser-validation",
+      "phase": "fixed_validation",
+      "plan": "docs/phase12-review-parser-validation-plan.json",
+      "plan_sha256": "4739a1c23f8b5335f489523f07650450e5e14ee2a7ea56fde701d4ae8b1d0403",
+      "results": "docs/phase12-review-parser-validation-results.json",
+      "results_sha256": "efa6c660d377bf3c26f4c733e983eb047a78fab7d37e447b9cf11f7ff53af830",
+      "smok_version": "0.12.1",
+      "source_fingerprint": "93490ea653fe7ec201beb378b16f2246c3395846595e82284bfa564f3b37f719",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 48,
+        "budget_tokens": 800000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 3,
+      "finished": 3,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 3,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            206.19,
+            281.55,
+            106.44
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    },
+    {
+      "label": "phase12-parser-recovery-pilot",
+      "phase": "adaptive_pilot",
+      "plan": "docs/phase12-parser-recovery-pilot-plan.json",
+      "plan_sha256": "68d7c761c761b91453581c708cbf476b1299bfbde52373dc05f1c847fed7c3e4",
+      "results": "docs/phase12-parser-recovery-pilot-results.json",
+      "results_sha256": "d79f153ab4457fba1d577bfda883fcc613836ad13753e4d248fa698f0fa41547",
+      "smok_version": "0.12.2",
+      "source_fingerprint": "e47c1bc3b733684e6cae50c7844ef0c36e6b3a3d228e36489214f921b6983d15",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 16,
+        "budget_tokens": 300000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 1,
+      "finished": 1,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            176.87
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    },
+    {
+      "label": "phase12-parser-recovery-validation",
+      "phase": "fixed_validation",
+      "plan": "docs/phase12-parser-recovery-validation-plan.json",
+      "plan_sha256": "575889a691e8484ce488c8f163c4c213bd650b286bf910d721ad0f3ea1da6ef5",
+      "results": "docs/phase12-parser-recovery-validation-results.json",
+      "results_sha256": "d71541a0c387e7fed689e49566cc22498e42c02be8ca6c1b909e4c58ef372424",
+      "smok_version": "0.12.2",
+      "source_fingerprint": "e47c1bc3b733684e6cae50c7844ef0c36e6b3a3d228e36489214f921b6983d15",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 48,
+        "budget_tokens": 800000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 3,
+      "finished": 3,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 3,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            115.54,
+            129.65,
+            200.5
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    },
+    {
+      "label": "phase12-parser-greedy-pilot",
+      "phase": "adaptive_pilot",
+      "plan": "docs/phase12-parser-greedy-pilot-plan.json",
+      "plan_sha256": "ec7721cfdcb552f908e1c22e089ab241e7a6726f1695f45a05d688ea29b590df",
+      "results": "docs/phase12-parser-greedy-pilot-results.json",
+      "results_sha256": "8f88df2c747193ae6be86c35ce8480d4af13d3d80e21ce078f13475fecea91c8",
+      "smok_version": "0.12.2",
+      "source_fingerprint": "e47c1bc3b733684e6cae50c7844ef0c36e6b3a3d228e36489214f921b6983d15",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "temperature": 0.0,
+        "top_p": 0.95,
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 16,
+        "budget_tokens": 300000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 1,
+      "finished": 1,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            88.27
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    },
+    {
+      "label": "phase12-parser-budget-pilot",
+      "phase": "adaptive_pilot",
+      "plan": "docs/phase12-parser-budget-pilot-plan.json",
+      "plan_sha256": "f385155c4d461ea6f5923571344c1711eb0ef91e47171633f428537acf14206f",
+      "results": "docs/phase12-parser-budget-pilot-results.json",
+      "results_sha256": "a58e2807b62775933db9c5556ae49d22fc0d1b048fe6526a1017a47f996ddd9f",
+      "smok_version": "0.12.2",
+      "source_fingerprint": "861136e6aa02b3db08264b219b15ab8ddab06eb91d2f0910350873049a6e0074",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 16,
+        "budget_tokens": 300000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 1,
+      "finished": 1,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 0,
+          "correct": 0,
+          "verified": 0,
+          "completed": 0,
+          "seconds": [
+            75.42
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    },
+    {
+      "label": "phase12-parser-focused-pilot",
+      "phase": "adaptive_pilot",
+      "plan": "docs/phase12-parser-focused-pilot-plan.json",
+      "plan_sha256": "b87c133d4cdbb5241fc68aebed6d2d9176b5f86c95c40f5cb670fd5a3a787402",
+      "results": "docs/phase12-parser-focused-pilot-results.json",
+      "results_sha256": "3b2719047f528547c2f040c7118fb0424f211cf04f26bea5c809b5d370849b48",
+      "smok_version": "0.12.2",
+      "source_fingerprint": "6cf2e1f2493da7be98ebf543c20117162a030927ceeef0ee8a27c578caa9e389",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 16,
+        "budget_tokens": 300000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 1,
+      "finished": 1,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 1,
+          "passed": 1,
+          "correct": 1,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            90.55
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    },
+    {
+      "label": "phase12-parser-focused-validation",
+      "phase": "fixed_validation",
+      "plan": "docs/phase12-parser-focused-validation-plan.json",
+      "plan_sha256": "0b1047ca4252856c2345d294751dd77276e9d05be9dbc1b07a10401cd3c34247",
+      "results": "docs/phase12-parser-focused-validation-results.json",
+      "results_sha256": "cd0127ea19f39ad3f1502bce47c720b87ae7729ede5db2c11f6cb5c7007eeeba",
+      "smok_version": "0.12.2",
+      "source_fingerprint": "6cf2e1f2493da7be98ebf543c20117162a030927ceeef0ee8a27c578caa9e389",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 32768,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 48,
+        "budget_tokens": 800000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 3,
+      "finished": 3,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 3,
+          "passed": 1,
+          "correct": 2,
+          "verified": 1,
+          "completed": 1,
+          "seconds": [
+            133.79,
+            167.22,
+            148.37
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    },
+    {
+      "label": "phase12-parser-context-validation",
+      "phase": "fixed_validation",
+      "plan": "docs/phase12-parser-context-validation-plan.json",
+      "plan_sha256": "3263fc3d5c99a79ff04a3df35ede4ce7b5d00f3e048503d2e9cfcc3ccb53cfef",
+      "results": "docs/phase12-parser-context-validation-results.json",
+      "results_sha256": "a61d10203aceddf92a357b1abd304c6f32206400eb1d5ea33c186c5da7de7cb0",
+      "smok_version": "0.12.2",
+      "source_fingerprint": "6cf2e1f2493da7be98ebf543c20117162a030927ceeef0ee8a27c578caa9e389",
+      "task_fingerprints": {
+        "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+      },
+      "profile": {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 65536,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "prices": {}
+      },
+      "limits": {
+        "max_iterations": 16,
+        "task_timeout": 300.0,
+        "max_requests": 48,
+        "budget_tokens": 800000,
+        "budget_usd": null,
+        "allow_shell": true,
+        "allow_lsp": false
+      },
+      "planned": 3,
+      "finished": 3,
+      "summary": [
+        {
+          "task": "command-arguments",
+          "attempts": 3,
+          "passed": 3,
+          "correct": 3,
+          "verified": 3,
+          "completed": 3,
+          "seconds": [
+            89.16,
+            87.88,
+            98.68
+          ]
+        }
+      ],
+      "all_attempts_retained": true,
+      "frozen_archive_and_metadata_verified_at_completion": true
+    }
+  ],
+  "finished_attempts": 17,
+  "original_task_contract_and_checks_unchanged_in_this_followup": true,
+  "limitations": [
+    "Known inspected regression; not fresh qualification or a general model ranking.",
+    "Pilots and fixed validations remain separate; do not pool heterogeneous outcomes.",
+    "Runtime and sampling changes are combined; no isolated causal effect is measured.",
+    "Raw reports, code, traces, and archives remain local under ignored evals/results.",
+    "Historical omitted sampler values use endpoint defaults, not necessarily model metadata."
+  ]
+}

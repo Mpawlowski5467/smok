@@ -1,0 +1,14 @@
+# Experimental known-parser regression profile; no default model is changed.
+# Same recovery runtime and limits as the temperature-1 trials, with temperature 0.
+# Repetition of one known task does not establish fresh-project model quality.
+models:
+  ollama/gemma4:26b:
+    max_output_tokens: 4096
+    timeout_seconds: 180
+    context_window: 32768
+    prompt_style: lean
+    tool_set: minimal
+    edit_format: both
+    reasoning_effort: none
+    temperature: 0.0
+    top_p: 0.95

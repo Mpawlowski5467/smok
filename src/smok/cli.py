@@ -573,6 +573,8 @@ async def run_cli(args):
                 "tool_set",
                 "edit_format",
                 "reasoning_effort",
+                "temperature",
+                "top_p",
             }
             saved_context = saved.get("context_settings", {})
             if not isinstance(saved_context, dict) or set(saved_context) - allowed:

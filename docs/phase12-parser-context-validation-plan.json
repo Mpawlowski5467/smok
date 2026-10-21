@@ -1,0 +1,215 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "created_utc": "2026-10-21T23:15:32.841676+00:00",
+  "smok_version": "0.12.2",
+  "spec": {
+    "suite": "phase12",
+    "tasks": {
+      "command-arguments": "e703ad0ba013c6637fd4cd41e10ccec03b2631b31c1c566100d01334370753ec"
+    },
+    "task_splits": {
+      "command-arguments": "holdout"
+    },
+    "profiles": [
+      {
+        "name": "ollama/gemma4:26b",
+        "model": "gemma4:26b",
+        "adapter": "openai_compat",
+        "base_url": "http://127.0.0.1:11434/v1",
+        "api_key_env": "OLLAMA_API_KEY",
+        "key_required": false,
+        "token_parameter": "max_tokens",
+        "max_output_tokens": 4096,
+        "timeout_seconds": 180,
+        "context_window": 65536,
+        "compact_at": 0.8,
+        "keep_recent": 4,
+        "chars_per_token": 3.0,
+        "repo_map_tokens": 1500,
+        "prompt_cache": false,
+        "count_tokens": false,
+        "local": true,
+        "vision": false,
+        "prompt_style": "lean",
+        "tool_set": "minimal",
+        "edit_format": "both",
+        "reasoning_effort": "none",
+        "temperature": 1.0,
+        "top_p": 0.95,
+        "prices": {}
+      }
+    ],
+    "profile_matrix": [
+      {
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "profile": {
+          "name": "ollama/gemma4:26b",
+          "model": "gemma4:26b",
+          "adapter": "openai_compat",
+          "base_url": "http://127.0.0.1:11434/v1",
+          "api_key_env": "OLLAMA_API_KEY",
+          "key_required": false,
+          "token_parameter": "max_tokens",
+          "max_output_tokens": 4096,
+          "timeout_seconds": 180,
+          "context_window": 65536,
+          "compact_at": 0.8,
+          "keep_recent": 4,
+          "chars_per_token": 3.0,
+          "repo_map_tokens": 1500,
+          "prompt_cache": false,
+          "count_tokens": false,
+          "local": true,
+          "vision": false,
+          "prompt_style": "lean",
+          "tool_set": "minimal",
+          "edit_format": "both",
+          "reasoning_effort": "none",
+          "temperature": 1.0,
+          "top_p": 0.95,
+          "prices": {}
+        }
+      }
+    ],
+    "profile_fingerprints": [
+      "118b0779c86f6562bd523297725a2ecddb82f0794f9a70d45be5e63063442ba0"
+    ],
+    "plan": [
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 1,
+        "id": "2491cabdda62c825de12"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 2,
+        "id": "3081c470852128c7553a"
+      },
+      {
+        "task": "command-arguments",
+        "model": "ollama/gemma4:26b",
+        "variant": "focused-repair",
+        "repeat": 3,
+        "id": "7578dabb4788750c6da4"
+      }
+    ],
+    "limits": {
+      "max_iterations": 16,
+      "task_timeout": 300.0,
+      "max_requests": 48,
+      "budget_tokens": 800000,
+      "budget_usd": null,
+      "allow_shell": true,
+      "allow_lsp": false
+    },
+    "source": "6cf2e1f2493da7be98ebf543c20117162a030927ceeef0ee8a27c578caa9e389",
+    "available_tools": [
+      "edit_file",
+      "glob",
+      "grep",
+      "list_dir",
+      "read_file",
+      "read_output",
+      "repo_map",
+      "run_shell",
+      "write_file",
+      "write_todos"
+    ]
+  },
+  "fingerprint": "921a8b90f9588338bf5080a004cf1f2048925453b3833b61b68d825dd7edcfdc",
+  "runner_flags": [
+    "--suite",
+    "phase12",
+    "--split",
+    "holdout",
+    "--model",
+    "ollama/gemma4:26b",
+    "--variant",
+    "focused-repair",
+    "--repeats",
+    "3",
+    "--allow-tools",
+    "--allow-shell",
+    "--task-timeout",
+    "300",
+    "--max-iterations",
+    "16",
+    "--max-requests",
+    "48",
+    "--budget-tokens",
+    "800000",
+    "--config",
+    "examples/models/phase12-parser-gemma-context.yaml",
+    "--task",
+    "command-arguments"
+  ],
+  "model_metadata_before": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-context-validation-freeze-20261021T231532.841676Z/source.tar.gz",
+    "sha256": "0f9404731d4092b4ae7da6d9ffd2853841bf989f6b3a41f1861f9d43d8af8c10",
+    "files": 168
+  },
+  "protocol": {
+    "nonadaptive_within_run": true,
+    "all_attempts_retained": true,
+    "fresh_holdout": false,
+    "success": "Every planned attempt completes, passes independent correctness, scope and final-file public verification.",
+    "runtime_matches_original_phase12": false,
+    "per_attempt_limits_unchanged_from_phase12": false,
+    "original_results_preserved": true,
+    "selection": "Predeclared three-repeat known-parser validation; change only working context from 32768 to 65536 relative to the focused validation to reduce observed compaction and read-reset overhead. Installed metadata reports 262144 capacity. All outcomes retained; no within-run adaptation, no new default, no fresh qualification claim."
+  },
+  "deviations": [
+    {
+      "setting": "context_window",
+      "original": 32768,
+      "tested": 65536,
+      "reason": "Reduce repeated compaction and read resets on the observed verbose repair; output/time/call limits unchanged."
+    }
+  ],
+  "context_capacity_metadata": {
+    "gemma4.context_length": 262144,
+    "general.architecture": "gemma4"
+  },
+  "config_snapshot": {
+    "path": "evals/results/phase12-parser-context-validation-freeze-20261021T231532.841676Z/profile.yaml",
+    "sha256": "a05603bb1203aef60c24c587028961e0e549201b5ae68c17cb2e3a05636f938a"
+  }
+}

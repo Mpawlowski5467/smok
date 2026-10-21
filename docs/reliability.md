@@ -69,9 +69,34 @@ or coding tool sets. No default profile or workspace setting changes automatical
 Version 0.11.1 retries one clean empty completion per turn. The retry uses the same
 conversation, remaining request/token budget, and original deadline. It adds no
 empty assistant message and replays no tool action. CLI, GUI, and event logs report
-the recovery attempt. A second empty completion fails; transport errors, truncation,
-and malformed tool stops are not silently retried. Usage still includes empty and
+the recovery attempt. A second empty completion fails; transport errors and malformed
+tool stops are not silently retried. Usage still includes empty and
 interrupted requests, with estimates clearly labeled when provider counts are absent.
+
+Version 0.12.2 also permits one concise retry after an output-token truncation in a
+task response, provided a model call remains. No proposed tool action from the
+truncated response executes. Earlier successful actions remain in the conversation;
+the retry consumes the original call/token budget and deadline. A second truncation
+fails. Structured compaction and handoff responses keep their existing failure path.
+This bounded recovery does not raise the output allowance or guarantee completion.
+
+## Context recovery and call budgeting
+
+Version 0.12.2 includes the remaining model-call count alongside the time hint in
+task requests. Both hints are transient, counted in context and budget estimates,
+and excluded from the stable system prefix and saved history. Compaction and review
+consume the same call cap. Neither hint changes permission or completion checks.
+
+Successful compaction clears file-read records and appends an explicit instruction
+to reread existing files before editing. The notice is included in the context-size
+calculation. Failed compaction preserves history and read records. Automatic
+compaction skips its model call when even an empty valid summary plus the retained
+history and notice could not shrink the conversation; normal hard context limits
+remain enforced.
+
+The bounded review preview now lists commands newest first, keeping recent check
+evidence ahead of long earlier failures. Full command logs keep their original order.
+See the [parser follow-up](phase12-parser-resolution.md) for tests and live results.
 
 ## Denials within a turn
 

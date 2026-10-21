@@ -1,7 +1,7 @@
 # Setup and local release checks
 
 Smok provides first-run diagnostics and repeatable artifact checks, introduced in
-0.9. The current source preview is 0.12.1. Start with the [quick start](../README.md#quick-start)
+0.9. The current source preview is 0.12.2. Start with the [quick start](../README.md#quick-start)
 or the [documentation index](README.md). External signing, licensing, and package
 distribution remain separate from publishing the source repository.
 

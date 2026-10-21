@@ -1,10 +1,11 @@
 # Coding evals
 
 Start with the [model results overview](../docs/model-results.md) for recorded
-outcomes and their limits. Version 0.12.1 strengthens the Phase 12 public regressions
-and updates deadline hints and review sequencing. These tasks are now known
-regressions; [follow-up results](../docs/phase12-repair.md) remain separate from the
-original comparison. The latest review sequence has not been live-qualified.
+outcomes and their limits. Version 0.12.2 adds bounded recovery and explicit sampling
+controls. The [parser follow-up](../docs/phase12-parser-resolution.md) records **3/3**
+complete passes with an explicit 64K-context Gemma profile; its 32K-context validation
+remains **1/3**. These are known regressions, separate from the original comparison
+and from fresh-project qualification. Failed pilots and fixed validations are retained.
 
 Version 0.12 adds `--suite phase12`: four original projects and alternating complete
 model/variant execution order. `qualify.py --candidate-model MODEL` compares two

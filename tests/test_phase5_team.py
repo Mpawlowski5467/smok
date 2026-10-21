@@ -12,7 +12,7 @@ from smok.team.config import READ_TOOLS, TeamConfig
 from smok.team.coordinator import Team
 from smok.tools.files import ToolError, Workspace
 from smok.tools.registry import ToolRegistry
-from smok.types import Event, Message, Text, ToolCall
+from smok.types import Event, Message, Text, ToolCall, ToolResult
 from smok.usage import BudgetExceeded, RunBudget
 
 
@@ -139,7 +139,8 @@ async def test_worker_cannot_call_hidden_tools_or_delegate_recursively(tmp_path)
     agent, team = setup(tmp_path, factory=lambda c: child, full_auto=True)
     result = await team.worker("Explore only", "explore")
     assert result["reason"] == "complete" and not (tmp_path / "forbidden").exists()
-    errors = child.histories[-1][-1].content
+    errors = [b for b in child.histories[-1][-1].content if isinstance(b, ToolResult)]
+    assert len(errors) == 2
     assert all(e.is_error and "restricted" in e.content for e in errors)
     await agent.tools.close()
 

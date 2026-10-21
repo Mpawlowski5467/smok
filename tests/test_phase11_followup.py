@@ -14,7 +14,7 @@ from smok.permissions import allow
 from smok.process import capture
 from smok.tools.files import ToolError, Workspace
 from smok.tools.registry import ToolRegistry
-from smok.types import Event, ToolCall, messages_from_data
+from smok.types import Event, RuntimeHint, ToolCall, messages_from_data
 from smok.usage import RunBudget
 
 EMPTY = [Event("stop", {"reason": "stop"})]
@@ -60,7 +60,13 @@ async def test_empty_completion_retries_without_replaying_tools_or_losing_review
     assert len([e for e in events if e.type == "tool_call"]) == 1
     assert len([e for e in events if e.type == "permission_requested"]) == 1
     assert len([e for e in events if e.type == "self_check_started"]) == 1
-    assert model.histories[1] == model.histories[2]
+    assert [
+        (m.role, [b for b in m.content if not isinstance(b, RuntimeHint)])
+        for m in model.histories[1]
+    ] == [
+        (m.role, [b for b in m.content if not isinstance(b, RuntimeHint)])
+        for m in model.histories[2]
+    ]
     assert messages_from_data(agent.state()["messages"]) == agent.messages
     assert (tmp_path / "a").read_text() == "new"
 
@@ -78,7 +84,7 @@ async def test_only_one_empty_retry_per_turn_and_a_new_turn_can_recover(tmp_path
     assert agent.usage.requests == 5
 
 
-@pytest.mark.parametrize("ending", ["length", "tool_calls", "", "content_filter"])
+@pytest.mark.parametrize("ending", ["tool_calls", "", "content_filter"])
 async def test_noncompletion_empty_response_is_not_retried(tmp_path, ending):
     model = ScriptedModel([[Event("stop", {"reason": ending})], DONE])
     agent = Agent(model, ToolRegistry(Workspace(tmp_path)))

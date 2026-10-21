@@ -1,0 +1,82 @@
+{
+  "schema_version": 1,
+  "kind": "parser_runtime_publication_checks",
+  "smok_version": "0.12.2",
+  "checked_utc": "2026-10-21T23:22:59.120532+00:00",
+  "source_fingerprint": "6cf2e1f2493da7be98ebf543c20117162a030927ceeef0ee8a27c578caa9e389",
+  "automated": {
+    "python": {
+      "passed": 614,
+      "seconds": 29.65
+    },
+    "ruff": {
+      "lint_passed": true,
+      "formatted_files": 166
+    },
+    "lockfile_offline": true,
+    "production_web_build": true,
+    "browser": {
+      "passed": 2,
+      "seconds": 5.4,
+      "sampling_zero_and_top_p_saved_and_reloaded": true
+    },
+    "local_documentation_targets_checked": 292
+  },
+  "native": {
+    "smok_version": "0.12.2",
+    "passed": true,
+    "generation_requests": 0,
+    "checks": [
+      "bundle version",
+      "bundled server version",
+      "complete bundle signature",
+      "loopback readiness",
+      "authentication",
+      "workspace bootstrap",
+      "offline setup diagnostics without a session",
+      "compiled asset byte parity",
+      "deadline validation, save, resume, and clear",
+      "graceful shutdown",
+      "listener closed",
+      "session writer lock released"
+    ],
+    "executables": {
+      "smok-server": "94ff29263a15515cf68f5014f45f39fbbca77baf4e3e72e10f432c3af13fa89a",
+      "smok-desktop": "9a4c7ce8b4d61cdf0bd03c9befe7ec8cf46616c2070404c2ead5f318e0ecb24a"
+    }
+  },
+  "packaging": {
+    "version": "0.12.2",
+    "passed": true,
+    "wheel_files_matched": 61,
+    "source_files_matched": 344,
+    "graders": 34,
+    "suites": {
+      "phase7_tasks.json": 20,
+      "phase10_tasks.json": 6,
+      "phase11_tasks.json": 4,
+      "phase12_tasks.json": 4
+    },
+    "final_hash_report": "dist/release-check-0.12.2.json"
+  },
+  "logs_sha256": {
+    "pytest": "5ffcb028d92b2188b5814394d4709ff59f068a4a5215268313739f228abbb4fb",
+    "browser": "3ffa4ee5549ae445bebd887bee6c04c9efe8dea098a741652e3a5de4f5eea62a",
+    "native_build": "9b661f10083fe3e9c1fed4ce15cf27547b8e657a46e838c9e4672f427134a47d"
+  },
+  "live_results": {
+    "evidence_index": "docs/phase12-parser-evidence.json",
+    "fixed_context_validation": "docs/phase12-parser-context-validation-results.json",
+    "complete_passes": 3,
+    "attempts": 3,
+    "context_window": 65536,
+    "original_32768_context_complete_passes": 1,
+    "original_32768_context_attempts": 3
+  },
+  "limitations": [
+    "Known parser regression, not fresh qualification; no global default changed.",
+    "All original output/time/call limits retained, but working context explicitly increased.",
+    "Raw model evidence and built packages remain local and ignored.",
+    "Native validation covers the local Apple Silicon build; no public signing or other platforms."
+  ]
+}

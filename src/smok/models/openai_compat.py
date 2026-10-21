@@ -77,8 +77,10 @@ class OpenAICompatibleAdapter:
             "stream_options": {"include_usage": True},
             self.config.token_parameter: self.config.max_output_tokens,
         }
-        if self.config.reasoning_effort is not None:
-            payload["reasoning_effort"] = self.config.reasoning_effort
+        for name in ("reasoning_effort", "temperature", "top_p"):
+            value = getattr(self.config, name)
+            if value is not None:
+                payload[name] = value
         if tools:
             payload["tools"] = [
                 {

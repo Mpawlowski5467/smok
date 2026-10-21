@@ -1,5 +1,8 @@
 # Phase 12 input and parser repair follow-up — Smok 0.12.1
 
+For the subsequent 0.12.2 work, see [command-parser recovery](phase12-parser-resolution.md).
+The trials below retain their original controls and outcomes.
+
 This follows the [audited Phase 12 results](phase12-contract-audit.md). The four
 projects are now known regressions. Expanded public feedback supports repair;
 it does not turn these cases into fresh qualification evidence.
@@ -253,10 +256,11 @@ assertions remain in force. The final full suite passes **580 tests in 25.00 sec
 with Ruff lint and formatting clean for 160 Python files. See [validation](validation.md)
 for browser, native, and packaging checks.
 
-**No live model trial has run on this latest review sequence.** The earlier live
-outcomes remain attached to their original source fingerprints. Command-parser
-reliability and repeated byte-range validation remain open; a new fixed plan and
-fresh-project qualification are still needed before claiming a broader improvement.
+**At 0.12.1 publication, no live model trial had run on this review sequence.** The
+earlier live outcomes remain attached to their original source fingerprints. The
+[subsequent parser follow-up](phase12-parser-resolution.md) records the new trials
+and runtime changes. Repeated byte-range validation and fresh-project qualification
+remain separate work before claiming a broader improvement.
 
 The [evidence index](phase12-repair-evidence.json) links all 13 retained trials and
 checks their plan/report/archive hashes. It records 28 finished attempts, one

@@ -182,6 +182,23 @@ export function Settings({
                       <option value="lean">Lean guidance</option>
                     </select>
                   </label>
+                  {(['temperature', 'top_p'] as const).map((field) => (
+                    <label key={field}>
+                      {field === 'temperature' ? 'Temperature' : 'Top-p'}
+                      <input
+                        type="number"
+                        min="0"
+                        max={field === 'temperature' ? 2 : 1}
+                        step="0.05"
+                        placeholder="Endpoint default"
+                        value={m[field] ?? ''}
+                        disabled={m.adapter === 'anthropic'}
+                        onChange={(e) =>
+                          changeModel(i, field, e.target.value === '' ? null : +e.target.value)
+                        }
+                      />
+                    </label>
+                  ))}
                   <label>
                     Tool set
                     <select

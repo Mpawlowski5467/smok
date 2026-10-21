@@ -1,0 +1,15 @@
+# Experimental known-parser regression profile; no default model is changed.
+# Doubles Smok's working context from 32768 to 65536 to reduce compaction/read resets.
+# Installed Gemma metadata reports 262144 context capacity. This changes the
+# configuration and must be reported separately from the 32768-context trials.
+models:
+  ollama/gemma4:26b:
+    max_output_tokens: 4096
+    timeout_seconds: 180
+    context_window: 65536
+    prompt_style: lean
+    tool_set: minimal
+    edit_format: both
+    reasoning_effort: none
+    temperature: 1.0
+    top_p: 0.95

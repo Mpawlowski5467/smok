@@ -1,0 +1,162 @@
+{
+  "schema_version": 1,
+  "kind": "known_regression_repair",
+  "audited_utc": "2026-10-21T22:54:29.659051+00:00",
+  "plan": "docs/phase12-parser-greedy-pilot-plan.json",
+  "plan_sha256": "ec7721cfdcb552f908e1c22e089ab241e7a6726f1695f45a05d688ea29b590df",
+  "report": "evals/results/20261021T225239.292862Z-phase12/report.json",
+  "report_sha256": "4b90f36b5e7532304755e317fdd242337d667601175b16967e4e51d198941215",
+  "run_fingerprint": "7b0cc52151d72db662147f21a424e308cb81bc2f3a9c776125020a018a05d0c0",
+  "source_fingerprint": "e47c1bc3b733684e6cae50c7844ef0c36e6b3a3d228e36489214f921b6983d15",
+  "source_snapshot": {
+    "path": "evals/results/phase12-parser-greedy-pilot-freeze-20261021T225232.708057Z/source.tar.gz",
+    "sha256": "d19c32498431b1ac1d2292e975d706b7e305db9a5ccee4f846792c3f443fbcaa",
+    "files": 168
+  },
+  "status": "complete",
+  "planned_cases": 1,
+  "finished_cases": 1,
+  "model_metadata_after": {
+    "server": "Ollama",
+    "version": "0.40.4",
+    "models": {
+      "gemma4:26b": {
+        "digest": "48eb98ec778c163d87f69d735fcdd79e345063af9af4685613fd018ae5debf5e",
+        "capabilities": [
+          "completion",
+          "vision",
+          "tools",
+          "thinking"
+        ],
+        "thinking": {
+          "values": [
+            false,
+            true
+          ],
+          "default": true
+        },
+        "details": {
+          "parent_model": "",
+          "format": "safetensors",
+          "family": "gemma4",
+          "families": null,
+          "parameter_size": "26.2B",
+          "quantization_level": "nvfp4",
+          "runner": "mlx"
+        },
+        "parameters": "temperature                    1\ntop_k                          64\ntop_p                          0.95"
+      }
+    }
+  },
+  "model_metadata_matches": true,
+  "archive_matches_at_completion": true,
+  "budget": {
+    "usage": {
+      "requests": 5,
+      "input_tokens": 14282,
+      "output_tokens": 4179,
+      "estimated_requests": 0,
+      "cache_read_input_tokens": 8344,
+      "cache_creation_input_tokens": 0,
+      "known_cost_usd": 0.0,
+      "unpriced_requests": 0,
+      "models": {
+        "ollama/gemma4:26b": {
+          "requests": 5,
+          "input_tokens": 14282,
+          "output_tokens": 4179
+        }
+      }
+    },
+    "requests": 5,
+    "turns": 1
+  },
+  "summary": [
+    {
+      "task": "command-arguments",
+      "attempts": 1,
+      "passed": 0,
+      "correct": 0,
+      "verified": 0,
+      "completed": 0,
+      "seconds": [
+        88.27
+      ]
+    }
+  ],
+  "attempts": [
+    {
+      "case_id": "2491cabdda62c825de12",
+      "task": "command-arguments",
+      "model": "ollama/gemma4:26b",
+      "variant": "focused-repair",
+      "repeat": 1,
+      "passed": false,
+      "stop_reason": "error",
+      "seconds": 88.27,
+      "iterations": 5,
+      "check_passed": false,
+      "verification": {
+        "required": [
+          "python3 -B -m unittest discover -s tests -q"
+        ],
+        "passed": false,
+        "commands": [
+          {
+            "command": "python3 -B -m unittest discover -s tests -q",
+            "before": "abb86627b3414c1f689a94aadbf1a1b47b233ccab89c1183f6bb33133492a113",
+            "after": "abb86627b3414c1f689a94aadbf1a1b47b233ccab89c1183f6bb33133492a113",
+            "ok": false,
+            "finished_seconds": 5.146530375001021,
+            "matches_final_files": true
+          }
+        ],
+        "final_files_fingerprint": "abb86627b3414c1f689a94aadbf1a1b47b233ccab89c1183f6bb33133492a113"
+      },
+      "scope": {
+        "passed": true,
+        "changed": [],
+        "outside_scope": [],
+        "unsafe_files": []
+      },
+      "tool_checks_passed": true,
+      "usage": {
+        "requests": 5,
+        "input_tokens": 14282,
+        "output_tokens": 4179,
+        "estimated_requests": 0,
+        "cache_read_input_tokens": 8344,
+        "cache_creation_input_tokens": 0,
+        "known_cost_usd": 0.0,
+        "unpriced_requests": 0,
+        "models": {
+          "ollama/gemma4:26b": {
+            "requests": 5,
+            "input_tokens": 14282,
+            "output_tokens": 4179
+          }
+        }
+      },
+      "evidence": "attempts/2491cabdda62c825de12-b726cbc4",
+      "error": "Model stopped with length; pending tools were not executed.",
+      "check_output": "Traceback (most recent call last):\n  File \"<string>\", line 34, in <module>\nAssertionError: ('\\'\"\"\\'', ['\"\"'], [''])\n",
+      "evidence_sha256": {
+        "result.json": "9d142c53ecdcbea875fc553abe036dc395c054dea96d289f9a2fa4e6a732c891",
+        "events.jsonl": "3c198f5c97eae5649867dcb79b08888db990e7a46e89ee55a5c21bfbfe09f6c4",
+        "files/AGENTS.md": "3bdf4d09453d07eca0a6c6d820800d532b88a2f665b96523810845157df32e49",
+        "files/arguments/__init__.py": "e3b0c44298fc1c149afbf4c8996fb92427ae41e4649b934ca495991b7852b855",
+        "files/arguments/lexing.py": "6ff5077d391f371483deb314f4fb07f1ba6018cbda70ac97db7185f1a045d5af",
+        "files/arguments/options.py": "1ecd09db8de304ca6a3dd2c910cc71225a08742dc86c4c247a0b20d7bb01a00a",
+        "files/tests/test_project.py": "a47f3272eb0b8a2767ac0e5f9da4e7215218b460c21d4a0e75aaafa6887c08ec"
+      }
+    }
+  ],
+  "limitations": [
+    "Known inspected regressions with expanded public feedback; no fresh qualification or default selection.",
+    "Adaptive pilot and validation runs are recorded separately. Every outcome retained."
+  ],
+  "config_snapshot": {
+    "path": "evals/results/phase12-parser-greedy-pilot-freeze-20261021T225232.708057Z/profile.yaml",
+    "sha256": "4b8137494e9fb7dde708bb35589481ba0565b7c575464d2b6759eb0815606750"
+  }
+}

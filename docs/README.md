@@ -26,6 +26,7 @@ Start with [model results](model-results.md) for the measured outcomes and their
 | [Cross-model qualification](cross-model-qualification.md) | Phase 12 model/profile pairing and selection rules. |
 | [Phase 12 contract audit](phase12-contract-audit.md) | Corrected grading and all 16 original attempts. |
 | [Phase 12 repair follow-up](phase12-repair.md) | Input-validation results, parser failures, runtime changes, and retained trials. |
+| [Command-parser recovery](phase12-parser-resolution.md) | Compaction recovery, sampling audit, explicit profiles, and subsequent parser trials. |
 | [Validation log](validation.md) | Dated automated, browser, native, package, and live integration checks. |
 | [Evaluation commands](../evals/README.md) | Running suites, opt-ins, artifacts, and historical integration scripts. |
 

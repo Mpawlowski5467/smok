@@ -78,6 +78,8 @@ test('chat streams, diff approval survives reconnect, context, settings, and rea
   await page.getByRole('button', { name: 'Models', exact: true }).click();
   await page.getByLabel('Prompt style', { exact: true }).first().selectOption('lean');
   await page.getByLabel('Reasoning effort', { exact: true }).first().selectOption('none');
+  await page.getByLabel('Temperature', { exact: true }).first().fill('0');
+  await page.getByLabel('Top-p', { exact: true }).first().fill('0.95');
   await page.getByLabel('Tool set', { exact: true }).first().selectOption('coding');
   await page.getByLabel('Edit format', { exact: true }).first().selectOption('exact');
   await page.screenshot({ path: 'test-results/settings-tuning.png', fullPage: true });
@@ -88,6 +90,8 @@ test('chat streams, diff approval survives reconnect, context, settings, and rea
   await page.getByRole('button', { name: 'Settings', exact: true }).click();
   await expect(page.getByLabel('Prompt style', { exact: true }).first()).toHaveValue('lean');
   await expect(page.getByLabel('Reasoning effort', { exact: true }).first()).toHaveValue('none');
+  await expect(page.getByLabel('Temperature', { exact: true }).first()).toHaveValue('0');
+  await expect(page.getByLabel('Top-p', { exact: true }).first()).toHaveValue('0.95');
   await expect(page.getByLabel('Tool set', { exact: true }).first()).toHaveValue('coding');
   await expect(page.getByLabel('Edit format', { exact: true }).first()).toHaveValue('exact');
   await page.getByRole('button', { name: 'Close dialog', exact: true }).click();

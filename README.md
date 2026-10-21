@@ -13,7 +13,7 @@ a tool-capable model a workspace, an inspect–edit–check loop, reviewable per
 and persistent context. Use the streaming terminal, a local browser app, or the
 Tauri desktop app; all three share the same Python agent core.
 
-**Development preview: 0.12.1.** Smok implements the original six-phase plan and
+**Development preview: 0.12.2.** Smok implements the original six-phase plan and
 six further evaluation and reliability milestones. The code has automated regression
 coverage and local model measurements. Model-generated repairs can still be wrong
 or incomplete; the [results below](#model-evaluation-results) include those failures.
@@ -31,7 +31,7 @@ the approval workflow; it is separate from the live model evaluations.*
 | **Reviewable execution** | Plan/build modes, per-action approvals, scoped `AGENTS.md`, stale-read checks, unified diffs, recorded command results, and a self-review before completion. |
 | **Recovery** | Shadow Git checkpoints, conflict-aware undo, persisted sessions, resume, and retention of partial work when a turn stops. |
 | **Context and budgets** | File pins, context inspection, structured compaction, editable handoffs, token/cost accounting, and request, turn, and time limits. |
-| **Model controls** | Anthropic and OpenAI-compatible adapters, configurable endpoints, prompt/tool/edit presets, optional reasoning controls, and explicit profile export. |
+| **Model controls** | Anthropic and OpenAI-compatible adapters, configurable endpoints, prompt/tool/edit presets, optional reasoning and sampling controls, and explicit profile export. |
 | **Extensions** | MCP stdio/HTTP servers, skills, Markdown commands, recipes, approved hooks, web fetching/search, and Playwright MCP integration. |
 | **Team workflows** | Role routing, workers, councils in isolated worktrees, explicit candidate acceptance, background processes, and an optional SSH/Docker runner. |
 | **Interfaces** | Streaming CLI/JSONL, React browser UI, Tauri desktop wrapper, session/context panels, setup diagnostics, image input, and optional browser dictation. |
@@ -107,13 +107,14 @@ An explicit Gemma repair profile is available:
 
 ```sh
 uv run smok --model ollama/gemma4:26b \
-  --config examples/models/focused-repair-gemma.yaml
+  --config examples/models/phase12-parser-gemma-context.yaml
 ```
 
-This enables lean guidance, minimal tools, and no-thinking controls. It reproduces
-the recorded configuration; it is **not a universal recommendation**. The profile
-excludes search, LSP, extensions, and team tools. Neither qualification nor profile
-export silently changes your default model.
+This is the **64K working-context profile** tested on the known command-parser
+regression: lean guidance, minimal tools, no thinking, temperature 1.0, and top-p 0.95.
+It is **not a universal recommendation**. It excludes search, LSP, extensions, and
+team tools. Neither qualification nor profile export silently changes your default
+model. See the [protocol and results](docs/phase12-parser-resolution.md).
 
 ## Model evaluation results
 
@@ -149,24 +150,27 @@ Later known-regression checks are encouraging but narrower:
 - Phase 12 Gemma validation passed **2/2 renames** and **2/2 event replays**; byte ranges
   were **0/2**. A subsequent whole-file pilot passed one byte-range case but failed
   its parser case during compaction.
-- The command parser is **still unresolved**. A three-attempt Gemma validation passed
-  **1/3**. Qwen3.6 27B, Qwen3.6 35B coding, and Qwen3.8 27B pilots also failed through
-  timeouts or incorrect repairs. Longer reasoning did not establish reliability.
+- The latest **0.12.2 Gemma parser validation passed 3/3**, in **88–99 seconds** with
+  13–14 calls, using the explicit **64K working-context profile** above. Output,
+  request, and turn limits stayed at 4,096 tokens, 16 calls, and 300 seconds.
+  The same runtime with 32K context passed **1/3**. All failed pilots remain recorded;
+  this known regression is not fresh-project qualification or a guarantee of reliability.
 
-Version 0.12.1 strengthens public regressions, keeps countdown hints out of stable
-request prefixes, and lets related edits reach a check before self-review. The latest
-review-timing change has automated coverage but **has not received live model
-qualification**. It must not be credited with the earlier live results.
+Version 0.12.2 adds explicit sampling controls, a remaining-call hint, fresh-read
+guidance after compaction, and one bounded retry after a truncated task response.
+It skips compaction that cannot shrink history and keeps recent check evidence first
+in review. Permissions, stale-read checks, final review, and budget enforcement remain
+in place. The larger working context is an opt-in profile, not a changed global default.
 
 Read the [model results and methodology](docs/model-results.md),
 [Phase 12 contract audit](docs/phase12-contract-audit.md), and
-[repair follow-up](docs/phase12-repair.md). Compact plans/results and hashes are
+[parser recovery results](docs/phase12-parser-resolution.md). Compact plans/results and hashes are
 committed under `docs/`. Full local model traces, generated workspaces, and frozen
 archives stay in ignored `evals/results/`; they are not included in this repository.
 
 ## Checks and development
 
-The current Python regression suite passes **580 tests**. CI runs deterministic
+The current Python regression suite passes **614 tests**. CI runs deterministic
 Python checks, the frontend build, browser scenarios, and wheel/source verification;
 it does not spend a live model API budget. See [validation](docs/validation.md) for
 dated results, exact scope, and remaining checks.
@@ -209,8 +213,8 @@ Start at the [documentation index](docs/README.md). It links setup, troubleshoot
 CLI/configuration, GUI, extensions, teamwork, architecture, all evaluation protocols,
 and the [roadmap](docs/roadmap.md).
 
-The immediate next work is reliable parser completion on the current runtime,
-fresh-task qualification after tuning, and broader platform/provider validation.
+The immediate next work is fresh-task qualification after tuning, repeated byte-range
+validation on the current runtime, and broader platform/provider validation.
 The source and dragon artwork do not yet have a selected open-source license.
 `smok-harness` is the Python distribution name and `smok` is the command; this source
 publication does not publish a package or a signed desktop release.

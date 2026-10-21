@@ -17,8 +17,8 @@ def deadline_guidance():
     remaining = max(0, math.ceil(deadline - asyncio.get_running_loop().time()))
     return (
         f"\nTURN TIME BUDGET: approximately {remaining} seconds remain, including model "
-        "responses, tools, approvals, and verification. Use the code and diffs already "
-        "available; avoid repeated reads of unchanged files. Prioritize the requested change "
+        "responses, tools, approvals, and verification. Reuse observed code while valid; "
+        "reread after compaction or stale-read errors. Prioritize the requested change "
         "and required checks, then finish with a concise, truthful result. "
         "Do not skip necessary checks or claim unfinished work is complete to meet the limit.\n"
     )

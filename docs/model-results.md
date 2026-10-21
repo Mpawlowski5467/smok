@@ -47,12 +47,39 @@ for latency selection. Neither result changes defaults or establishes general qu
 | Input validation / 0.12.1, before latest review timing | Gemma4 26B, focused repair | Renames 2/2; events 2/2; byte ranges 0/2 | Byte failures were empty-header validation and correct-but-unverified work at the call limit. [Receipt](phase12-input-validation-results.json) |
 | Whole-file pilot / 0.12.1, before latest review timing | Gemma4 26B, no thinking, whole-file writes | Byte ranges 1/1; parser 0/1 | Explicit 20-call cap rather than 16; byte pass 53.16 seconds, parser stopped on invalid compaction at 194.04 seconds. This is a pilot, not repeated validation. [Receipt](phase12-whole-file-pilot-results.json) |
 
+### Parser recovery trials
+
+These follow-ups use the same final parser fixture and independent grader. Every
+attempt is retained; adaptive pilots and fixed validations are separate rows. The
+explicit-sampling trials use installed Gemma4 26B with temperature 1.0 / top-p 0.95
+unless the row says otherwise. Time, output, and call limits remain 300 seconds,
+4,096 tokens, and 16 calls.
+
+| Frozen configuration | Design | Complete passes | Evidence |
+| --- | --- | ---: | --- |
+| Published 0.12.1 review sequence; sampler fields omitted | Pilot | 1/1; 220.30 s / 11 calls | [Receipt](phase12-review-parser-pilot-results.json) |
+| Same published controls | Fixed three repeats | 1/3; two call-limit failures | [Receipt](phase12-review-parser-validation-results.json) |
+| 0.12.2 compaction read notice + newest-check preview; explicit sampling | Pilot | 1/1; 176.87 s / 13 calls | [Receipt](phase12-parser-recovery-pilot-results.json) |
+| Same recovery controls | Fixed three repeats | 1/3; truncation and call-limit failures | [Receipt](phase12-parser-recovery-validation-results.json) |
+| Same recovery runtime, temperature 0.0 | Pilot | 0/1; truncation at 88.27 s / 5 calls | [Receipt](phase12-parser-greedy-pilot-results.json) |
+| Bounded truncation retry + call-budget hint + impossible-compaction skip | Pilot | 0/1; invalid compaction at 75.42 s / 14 calls | [Receipt](phase12-parser-budget-pilot-results.json) |
+| Same recovery plus concise implementation/whole-string guidance; 32K context | Pilot | 1/1; 90.55 s / 16 calls | [Receipt](phase12-parser-focused-pilot-results.json) |
+| Same focused controls; 32K context | Fixed three repeats | 1/3; two call-limit failures, one with independently correct code | [Receipt](phase12-parser-focused-validation-results.json) |
+| Same focused runtime/sampling; **64K context** | Fixed three repeats | **3/3**; 89.16, 87.88, 98.68 s; 14, 13, 13 calls | [Receipt](phase12-parser-context-validation-results.json) |
+
+The [parser follow-up](phase12-parser-resolution.md) records the diagnoses, frozen
+plans, sampling audit, and later context-profile validation. Omitted sampler fields
+use endpoint behavior; installed metadata alone did not establish the effective
+historical values. No default model or profile is selected by these trials.
+The [follow-up evidence index](phase12-parser-evidence.json) links all nine new runs
+and 17 finished attempts without pooling their differing configurations.
+
 ## Models exercised during repair experiments
 
 | Exact local selector | Recorded experience |
 | --- | --- |
 | `ollama/qwen3.6:27b-mlx` | Main Phase 7/10/11/12 comparisons. No-thinking helped selected known repairs, but release selection and parser follow-ups still failed. |
-| `ollama/gemma4:26b` | Repeated release/join and rename/event successes with focused repair. Original Phase 12 score was 1/8; parser validation remained 1/3 and byte handling needed further coverage. |
+| `ollama/gemma4:26b` | Repeated release/join and rename/event successes. Original Phase 12 score was 1/8; the latest known-parser validation passed 3/3 with 64K context, while 32K remained 1/3. Byte handling needs current-runtime coverage. |
 | `ollama/qwen3.6:35b-a3b-coding` | Release-selection pilots failed with truncation or incorrect repairs; Phase 12 no-thinking parser pilot timed out after 13 requests. |
 | `ollama/qwen3.8:27b` | Parser pilot completed but reordered duplicate keys incorrectly. A planned eight-case repair run was stopped after three timeouts and one byte-range pass; one case was interrupted and three unstarted. A separate low-reasoning/8,192-output/600-second parser pilot timed out without applying a repair. |
 
@@ -64,13 +91,17 @@ These heterogeneous trials are not pooled into a model success rate.
 
 ## Current limitations and next validation
 
-Command-parser reliability is unresolved. The 0.12.1 review sequence now lets related
-edits reach a shell check before review, while withholding an unreviewed final answer
-and preserving request/deadline limits. Automated coverage verifies these mechanics;
-**no live result in the tables measures this latest review-timing change**.
+Parser completion with the original 32K working context remains inconsistent: the
+published review sequence and both fixed recovery validations each passed 1/3.
+The latest runtime adds bounded recovery, explicit sampling, and call-budget guidance;
+those mechanics do not guarantee a correct, completed model repair.
+The separate 64K-context validation passed all three attempts with correct code,
+allowed scope, final-file public verification, and completed turns. This small known-task
+sample supports documenting that opt-in configuration; it does not establish a causal
+effect, general model ranking, or fresh-project reliability.
 
-Next validation should freeze the current runtime and controls, complete a fixed
-repeat plan, retain every result, and then use new projects for fresh qualification.
+Further validation must keep the runtime and controls frozen, retain every result,
+and use new projects for fresh qualification after this known regression is tuned.
 More reasoning, a larger output allowance, or more calls are separate configurations;
 success under those settings cannot be credited to the original limits.
 

@@ -130,22 +130,29 @@ and attempts rollback if restoration fails. It refuses later conflicting changes
 symlink-parent redirects, and hard-crash turns without an end boundary. Limits and
 scope exclusions are documented in the README; this is not a whole-machine rollback.
 
-After mutations and before the next model request, the core supplies actual snapshot
+After related mutations reach a shell check, the core supplies actual snapshot
 diffs, a bounded copy of the current user request, and recorded command outcomes.
+Without a shell tool, review follows mutations immediately. If the model attempts
+to finish before review, the draft completion is withheld until review runs.
 The request remains available to review after history dropping or compaction. Full
 and lean prompts share guidance to check constraints across affected entry points
 and input sources, and to avoid todo bookkeeping for small repairs.
 Further changes trigger another review; unchanged
 signatures are deduplicated and iterations remain bounded. A final-response check also
-detects edits made during generation; in that case another review can follow streamed
-text. `turn_finished` is held until review and final checkpoint finish.
+detects edits made during generation and withholds an unreviewed completion.
+`turn_finished` is held until review and final checkpoint finish. Command previews
+list newest evidence first; persistent logs preserve the original order.
 Without checkpoints, the fallback reviews only file-tool diffs. Review is model-based,
 not independent verification. Deterministic eval checks remain separate.
 
 Successful atomic writes retain the hash of their supplied contents as observed
 file state. This allows consecutive edits without a redundant read while preserving
 the current-bytes comparison at preparation and approval time. Hooks clear observed
-hashes, as do context resets and session resume. Eval runs reuse the same enforced
+hashes, as do context resets, successful compaction, and session resume. Compaction
+appends a notice requiring fresh reads before edits; failed summaries retain the
+original history and hashes. Automatic compaction skips its model call when even
+an empty valid summary and notice could not shrink the retained conversation.
+Eval runs reuse the same enforced
 `allowed_tools` intersection as workers, exposing only capabilities their approval
 callback can authorize; profile presets cannot widen that restriction.
 

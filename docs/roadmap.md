@@ -264,7 +264,7 @@ complete passes. It corrected one false pass in the frozen grader's deletion-sha
 coverage and rechecked every saved repair without inference. Original reports remain
 intact. The comparison verdict is a tradeoff; defaults remain unchanged.
 
-## Phase 12 repair follow-up: 0.12.1
+## Phase 12 repair follow-up: 0.12.1–0.12.2
 
 - [x] Public input/parser regressions and thirteen faulty repairs rejected by both checks
 - [x] Offline coverage replay of all sixteen original saved repairs, without inference
@@ -272,12 +272,20 @@ intact. The comparison verdict is a tradeoff; defaults remain unchanged.
 - [x] Related edits reach a check before review; unreviewed completion stays withheld
 - [x] Complete automated regression suite, retained trial receipts, and model results guide
 - [x] Repeated Gemma rename/event passes on the recorded earlier runtime
-- [ ] Repeated byte-range and command-parser completion on the final runtime
-- [ ] Live qualification of the latest review sequence, followed by additional fresh tasks
+- [x] Compaction reread notice, bounded truncation recovery, and remaining-call hints
+- [x] Explicit temperature/top-p settings, saved profiles, and legacy-report exports
+- [x] Fixed live parser validation of the published review sequence and recovery revisions
+- [x] Command-parser completion: 3/3 with the final runtime and explicit 64K Gemma profile
+- [ ] Repeated byte-range completion on the final runtime
+- [ ] Additional fresh projects for qualification after tuning
 
-See the [repair follow-up](phase12-repair.md) and [model results](model-results.md).
+See the [repair follow-up](phase12-repair.md),
+[parser recovery trials](phase12-parser-resolution.md), and [model results](model-results.md).
 All failed pilots, the interrupted Qwen3.8 run, and changed experimental limits remain
-visible. Historical live results must not be attributed to the latest review timing.
+visible. Each live result belongs to its recorded runtime and controls. Completed
+validation runs can contain failed cases; they do not by themselves establish reliability.
+The final 64K parser plan passed all three attempts; the same runtime's 32K plan
+passed 1/3. The working-context change is explicit and does not change global defaults.
 
 ## Source preview and future releases
 

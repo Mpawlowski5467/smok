@@ -4,9 +4,48 @@ October 19–21, 2026 (America/Chicago). Tested locally on Apple Silicon macOS w
 Python 3.12. Historical sections describe their recorded versions, not the current
 runtime. For a concise comparison, see [model results](model-results.md).
 
+## Parser recovery checks: Smok 0.12.2
+
+October 21, 2026. The [validation receipt](phase12-parser-artifacts.json) records the
+runtime, controls, browser, and native checks separately from live model quality.
+
+- **614 Python tests pass in 29.65 seconds.** Coverage includes fresh reads after
+  compaction, stale-read rejection, retained history on failed summaries, bounded
+  truncation recovery without executing partial tools, original deadlines/shared
+  budgets, remaining-call accounting, and newest-check review evidence.
+- Ruff lint passes; all **166 Python files** pass formatting. The locked dependency
+  resolution passes offline. Sampling controls are checked on the wire, in saved
+  settings and resumed sessions, and in exports from both new and legacy reports.
+- The production frontend builds successfully. Both desktop/mobile Playwright
+  scenarios pass in **5.4 seconds**, including saving and reopening temperature zero
+  and top-p 0.95. The model Settings screenshot was refreshed from that test run.
+- The rebuilt **0.12.2 Apple Silicon app** passes the bundled-server check: versions,
+  local/ad-hoc signature, readiness/authentication, setup diagnostics, compiled assets,
+  saved deadlines, shutdown, listener closure, and released session locks. It makes
+  **zero generation requests**. Other platforms and public signing remain separate work.
+- Wheel/source versions, byte parity, required guides/graders, and excluded local
+  data are checked with `scripts/check_release.py`. The final report is retained
+  locally at `dist/release-check-0.12.2.json`; generated binaries and raw model traces
+  remain outside the public source repository.
+
+The [fixed 64K-context parser validation](phase12-parser-context-validation-results.json)
+passes **3/3** in **89.16 / 87.88 / 98.68 seconds** with **14 / 13 / 13 calls**. All
+three pass independent correctness, scope, final-file public verification, and turn
+completion. Output, request-time, turn-time, and call limits remain 4,096 tokens,
+180 seconds, 300 seconds, and 16 calls; the working context explicitly changes from
+32K to 64K. Frozen source/profile/task hashes and model/server metadata match at
+completion. No task contract, seed, public test, reference repair, or grader changed
+during this follow-up.
+
+The same runtime's 32K-context validation remains **1/3**. The
+[nine-run index](phase12-parser-evidence.json) retains all 17 new attempts, including
+failed pilots and validations. This is a known-task regression result, not fresh
+qualification or evidence to change a global default. See the
+[parser guide](phase12-parser-resolution.md) for the full protocol and limitations.
+
 ## Source publication checks: Smok 0.12.1
 
-October 21, 2026. The [current receipt](publication-validation.json) records this
+October 21, 2026. The [publication receipt](publication-validation.json) records this
 source preview separately from the original 0.12.0 model comparison and artifacts.
 
 - **580 Python tests pass in 25.00 seconds.** The latest review sequence is covered
@@ -36,8 +75,8 @@ latest runtime changes. Its current public coverage rejects all ten incorrect
 original repairs and retains all six correct repairs in an offline replay. Those
 six are not six new complete passes: unfinished original attempts remain failures.
 
-**Command-parser reliability is still unresolved.** The latest review-timing change
-has not been tested with live models. Earlier Gemma rename/event successes and the
+**At publication, command-parser reliability remained unresolved.** The review-timing
+change had not been tested with live models. Earlier Gemma rename/event successes and the
 single whole-file byte-range pass belong to earlier frozen snapshots. No new model
 default was selected. Hosted quality/billing/vision, live Docker/SSH, physical
 microphone behavior, wider platforms, and public installer signing remain open.

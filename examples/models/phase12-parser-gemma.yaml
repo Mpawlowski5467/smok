@@ -1,0 +1,15 @@
+# Experimental known-regression profile for the command-parser follow-up.
+# Separate from the original Phase 12 comparison; no default model is changed.
+# Explicit temperature/top-p avoid Ollama compatibility endpoint defaults.
+# Gemma's installed top_k=64 remains a server-side parameter.
+models:
+  ollama/gemma4:26b:
+    max_output_tokens: 4096
+    timeout_seconds: 180
+    context_window: 32768
+    prompt_style: lean
+    tool_set: minimal
+    edit_format: both
+    reasoning_effort: none
+    temperature: 1.0
+    top_p: 0.95
